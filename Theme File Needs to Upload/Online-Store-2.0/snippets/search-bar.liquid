@@ -1,0 +1,7 @@
+<form action="/search" method="get" class="action-form" role="search">
+  {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
+  <input class="form-control" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
+  <button type="submit" class="submit">
+    <i class="icon-magnifier"></i>
+  </button>
+</form>

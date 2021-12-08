@@ -1,0 +1,7 @@
+Version: 1.0.2 —-—- DATE: 23-10-2021
+- Migrated to Shopify Online Store 2.0
+    - More flexible, and more maintainable
+    - Sections on every page 
+    - Drag & drop on every page
+- Collection filter chaining added
+- CSS issue fixed

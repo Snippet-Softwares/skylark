@@ -1,0 +1,216 @@
+<!-- Header Area start  -->
+<div class="header section">
+  <!-- Header Top Message Start -->
+  {%- if section.settings.header_top_enable -%}
+  <div class="header-top section-fluid bg-black">
+    <div class="container{% if section.settings.header_top_fullwidth_on %}-fluid{%endif%}">
+      <div class="row row-cols-lg-2 align-items-center">
+        <!-- Header Top Message Start -->
+        {%- if section.settings.offer_message_enable -%}
+        <div class="col text-center text-lg-left">
+          <div class="header-top-massege">
+            {% if section.settings.top_ber_left_message == 'style_1' %}
+            <p>{{ section.settings.offer_message }}</p>
+            {% elsif section.settings.top_ber_left_message == 'style_2' %}
+            {%- if shop.customer_accounts_enabled and customer -%}
+            
+              <p>Welcome <strong>{{ customer.first_name }}</strong>
+              {{ 'layout.customer.log_out' | t | customer_logout_link }}
+              {%- else -%}
+              <p>Welcome our store
+              {{ 'layout.customer.log_in' | t | customer_login_link }}
+              or
+              {{ 'layout.customer.create_account' | t | customer_register_link }}</p>
+            
+            {%- endif -%}
+            {% endif %}
+          </div>
+        </div>
+        {%- endif -%}
+        <!-- Header Top Message End -->
+        <!-- Header Top Language Currency -->
+        <div class="col d-none d-lg-block">
+          <div class="header-top-set-lan-curr d-flex j{%- if section.settings.offer_message_enable -%} ustify-content-end{%- endif -%}">
+            <!-- Single Wedge Start -->
+            {%- if section.settings.google_translate_enable -%}
+            <div class="header-top-curr dropdown">
+              <button class="dropdown-toggle"> Language : (ENG) <i class="ion-ios-arrow-down"></i></button>
+              {% render 'gtranslate2' %}
+            </div>
+            {%- endif -%}
+            <!-- Single Wedge End -->
+
+            <!-- Single Wedge Start -->
+            {%- if section.settings.header_top_currency_enable -%}
+            <div class="header-top-curr dropdown">
+              {%- render 'currency-picker' -%}
+            </div>
+            {%- endif -%}
+            <!-- Single Wedge End -->
+
+          </div>
+        </div>
+        <!-- Header Top Language Currency -->
+      </div>
+    </div>
+  </div>
+  {%- endif -%}
+  <!-- Header Top  End -->
+      
+  <!-- Header Middle  Start -->
+  {%- if section.settings.header_middle_enable -%}
+  <div class="header-bottom d-none d-lg-block">
+    <div class="container{% if section.settings.header_middle_fullwidth_on %}-fluid{%endif%} position-relative">
+      <div class="row align-self-center">
+        
+        <!-- Header Logo Start -->
+        <div class="col-auto align-self-center">
+          <div class="header-logo">
+            {%- render 'header-logo' -%}
+          </div>
+        </div>
+        <!-- Header Logo End -->
+
+        <!-- Header Action Start -->
+        <div class="col align-self-center">
+          <div class="header-actions">
+            {%- if section.settings.header_search_enable -%}
+            <div class="header_account_list">
+              <a href="javascript:void(0)" class="header-action-btn search-btn"><i class="icon-magnifier"></i></a>
+              <div class="dropdown_search">
+                {% render 'search-bar' %}
+              </div>
+            </div>
+            {%- endif -%}
+            <!-- Single Wedge Start -->
+            {%- if section.settings.header_login_enable -%}
+            <div class="header-bottom-set">
+              <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown"><i class="icon-user"></i></button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a class="dropdown-item" href="{{ routes.account_url }}">My account</a></li>
+                <li><a class="dropdown-item" href="/checkout">Checkout</a></li>
+                <li>
+                  {% if customer and shop.customer_accounts_enabled %}
+                  <a class="dropdown-item" href="/account/logout">Logout</a>
+                  {% else %}
+                  <a class="dropdown-item" href="{{ routes.account_login_url }}">Login</a>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+            {%- endif -%}
+            <!-- Single Wedge End -->
+            {% if section.settings.header_mini_cart_enable and template != "cart" %}
+            <a href="#offcanvas-cart" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+              {%- assign item_count = cart.item_count -%}
+              <i class="icon-handbag"></i>
+              <span class="header-action-num bigcounter">{{ item_count }}</span>
+              <!-- <span class="cart-amount">€30.00</span> -->
+            </a>
+            {%- endif -%}
+            <a href="#offcanvas-mobile-menu" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+              <i class="icon-menu"></i>
+            </a>
+            
+          </div>
+        </div>
+        <!-- Header Action End -->
+        
+      </div>
+    </div>
+  </div>
+  {%- endif -%}
+  <!-- Header Middle  End -->
+
+  <!-- Mobile Header Start -->
+  <div class="header-bottom d-lg-none sticky-nav bg-white">
+    <div class="container position-relative">
+      <div class="row align-self-center">
+        <!-- Header Logo Start -->
+        <div class="col-auto align-self-center">
+          <div class="header-logo">
+            {%- render 'header-logo' -%}
+          </div>
+        </div>
+        <!-- Header Logo End -->
+
+        <!-- Header Action Start -->
+        <div class="col align-self-center">
+          <div class="header-actions">
+            {%- if section.settings.header_search_enable -%}
+            <div class="header_account_list">
+              <a href="javascript:void(0)" class="header-action-btn search-btn"><i
+                                                                                   class="icon-magnifier"></i></a>
+              <div class="dropdown_search">
+                {% render 'search-bar' %}
+              </div>
+            </div>
+            {%- endif -%}
+
+            <!-- Single Wedge Start -->
+            {%- if section.settings.header_login_enable -%}
+            <div class="header-bottom-set">
+              <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown"><i class="icon-user"></i></button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a class="dropdown-item" href="{{ routes.account_url }}">My account</a></li>
+                <li><a class="dropdown-item" href="/checkout">Checkout</a></li>
+                <li>
+                  {% if customer and shop.customer_accounts_enabled %}
+                  <a class="dropdown-item" href="/account/logout">Logout</a>
+                  {% else %}
+                  <a class="dropdown-item" href="{{ routes.account_login_url }}">Login</a>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+            {%- endif -%}
+            <!-- Single Wedge End -->
+            {% if section.settings.header_mini_cart_enable and template != "cart" %}
+            <a href="#offcanvas-cart" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+              {%- assign item_count = cart.item_count -%}
+              <i class="icon-handbag"></i>
+              <span class="header-action-num bigcounter">{{ item_count }}</span>
+              <!-- <span class="cart-amount">€30.00</span> -->
+            </a>
+            {%- endif -%}
+            <a href="#offcanvas-mobile-menu" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+              <i class="icon-menu"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Header Action End -->
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Header End -->
+  
+  <!-- Main Menu Start -->
+  <div class="bg-black d-none d-lg-block sticky-nav">
+    <div class="container{% if section.settings.header_buttom_fullwidth_on %}-fluid{%endif%} position-relative">
+      <div class="row">
+        <div class="col-md-12 align-self-center">
+          <div class="main-menu">
+            {% render 'main-menu' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Main Menu End -->
+</div>
+<!-- Header Area End  -->
+
+<!-- OffCanvas Cart Start -->
+<div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+  {%- render 'mini-cart' -%}
+</div>
+<!-- OffCanvas Cart End -->
+
+<!-- OffCanvas Menu Start -->
+<div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
+  {%- render 'offcanvas_menu' -%}
+</div>
+<!-- OffCanvas Menu End -->
+
+
+<div class="offcanvas-overlay"></div>

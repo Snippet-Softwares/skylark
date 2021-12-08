@@ -1,0 +1,44 @@
+{{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}
+
+
+{%- if template contains 'product' -%}
+
+
+
+  <span>{{ block.settings.social_share_title }}</span>
+
+  <style>
+    .social-links a { display: -moz-inline-stack; display: inline-block; zoom: 1; *display: inline; margin: 0; padding: 0.05em; color: #555!important; font-size: 24px!important; }
+  </style>
+  <div class="social-info">
+    <span class="d-flex">
+      <a href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}" title="Follow us on Facebook" target="_blank"><i class="ion-social-facebook"></i></a>
+      <a href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}" title="Follow us on Twitter" target="_blank"><i class="ion-social-twitter"></i></a>
+      {% if product.featured_image or article.image  %}
+      <a href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | img_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" title="Follow us on Pinterest" target="_blank"><i class="icon-social-pinterest"></i></a>
+      {% endif %}
+    </span>
+  </div>
+
+{%- endif -%}
+
+{%- if template contains 'article' or template contains 'blog' -%}
+<div class="share-icons">
+  {% capture permalinkURL %}{{ shop.url }}{{ article.url }}{% endcapture %}
+  {% capture shareTitle %}{{ article.title | url_param_escape }}{% endcapture %}
+
+  <span>{{ block.settings.social_share_title }}</span>
+
+  <style>
+    .social-links a { display: -moz-inline-stack; display: inline-block; zoom: 1; *display: inline; margin: 0; padding: 0.05em; color: #555!important; font-size: 24px!important; }
+  </style>
+  <span class="social-links">
+    <a href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" title="Follow us on Facebook" target="_blank"><span class="shopify-social-icon-facebook-rounded color"></span></a>
+    <a href="//twitter.com/share?text={{ shareTitle }}&amp;url={{ permalinkURL }};source=webclient" title="Follow us on Twitter" target="_blank"><span class="shopify-social-icon-twitter-rounded color"></span></a>
+    {% if product.featured_image or article.image  %}
+    <a href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media=http:{% if template contains 'product' %}{{ product | img_url: '1024x1024' }}{% else %}{{ article | img_url: '1024x1024' }}{% endif %}&amp;description={{ shareTitle }}" title="Follow us on Pinterest" target="_blank"><span class="shopify-social-icon-pinterest-rounded color"></span></a>
+    {% endif %}
+  </span>
+
+</div>
+{%- endif -%}

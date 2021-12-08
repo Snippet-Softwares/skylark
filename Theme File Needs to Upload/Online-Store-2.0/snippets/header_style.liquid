@@ -1,0 +1,325 @@
+<style>
+  {%- for block in section.blocks -%}
+  {%- case block.type -%}
+  
+  
+  {%- when 'topbar_style' -%}
+  #section-{{ section.id }} .header-top.section-fluid.bg-black {
+    background: {{ block.settings.top_bar_bg_color }};
+  }
+  #section-{{ section.id }} .header-top-massege p {
+    color: {{ block.settings.offer_text_color }};
+  }
+  #section-{{ section.id }} .header-top-set-lan-curr .dropdown .dropdown-toggle, .header-top-set-lan-curr .dropdown .dropdown-toggle i {
+    color: {{ block.settings.menu_label_color }};
+  }
+  #section-{{ section.id }} .header-top-set-lan-curr .dropdown .dropdown-toggle:hover, .header-top-set-lan-curr .dropdown .dropdown-toggle:hover i {
+    color: {{ block.settings.menu_label_hover_color }};
+  }
+  #section-{{ section.id }} .header-top-set-lan-curr .dropdown .dropdown-menu .dropdown-item {
+    color: {{ block.settings.menu_color }};
+  }
+  #section-{{ section.id }} .header-top-set-lan-curr .dropdown .dropdown-menu .dropdown-item:hover {
+    color: {{ block.settings.menu_hover_color }};
+  }
+  #section-{{ section.id }} .header-top-set-lan-curr .dropdown .dropdown-menu li {
+    border-bottom: 1px solid {{ block.settings.separator_color }};
+  }
+  #section-{{ section.id }} .header-top-set-lan-curr .dropdown .dropdown-menu {
+    background: {{ block.settings.menu_bg_color }};
+  }
+  
+  
+  
+  {%- when 'header_style' -%}
+  /* Header Color Options */
+  #section-{{ section.id }} .bg-black,#section-{{ section.id }} .bg-gray {
+    background: {{ block.settings.header_bg_color }};
+  } 
+  #section-{{ section.id }} .main-menu ul li a i {
+    color: {{ block.settings.dropdown_arrow_color }};
+  }
+  #section-{{ section.id }} .main-menu ul li a:hover i,
+  #section-{{ section.id }} .main-menu ul li.active > a i {
+    color: {{ block.settings.dropdown_arrow_color_hov }};
+  }
+  .main-menu ul > li > a {
+    color: {{ block.settings.header_menu_color }};
+  }
+  .main-menu ul li:hover > a, .main-menu ul li.active > a {
+    color: {{ block.settings.header_menu_hover_color }} !important;
+  }
+  .main-menu ul li .mega-menu,
+  .main-menu ul li.dropdown ul.sub-menu {
+    background: {{ block.settings.submenu_bg_color }};
+  }
+  .main-menu ul li.dropdown ul li a {
+    color: {{ block.settings.sub_mega_menu_color }};
+  }
+  .main-menu ul li.dropdown ul li a:hover {
+    color: {{ block.settings.sub_mega_menu_hover_color }} !important;
+  }
+  .main-menu ul li .mega-menu li.mega_dropdown ul li a {
+    color: {{ block.settings.sub_mega_menu_color }};
+  }
+  
+  
+  #section-{{ section.id }} .site-main-menu > ul > li > a,#section-{{ section.id }} .overlay-menu > ul > li > a {
+    color: {{ block.settings.header_menu_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li:hover > a,#section-{{ section.id }} .overlay-menu > ul > li > a:hover {
+    color: {{ block.settings.header_menu_hover_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li.has-children > a::before {
+    color: {{ block.settings.dropdown_arrow_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li > a > .menu-text::after {
+    background-color: {{ block.settings.header_menu_hover_border_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li ul.sub-menu.mega-menu,#section-{{ section.id }} .site-main-menu > ul > li ul.sub-menu,#section-{{ section.id }} .offcanvas.offcanvas-overlay-menu {
+    background-color: {{ block.settings.submenu_bg_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li ul.sub-menu.mega-menu > li > a.mega-menu-title {
+    color: {{ block.settings.mega_item_menu_title_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li ul.sub-menu.mega-menu > li ul li a,#section-{{ section.id }} .sub-menu li a {
+    color: {{ block.settings.mega_menu_item_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li ul.sub-menu.mega-menu > li ul li a:hover,#section-{{ section.id }} .sub-menu li a:hover {
+    color: {{ block.settings.mega_menu_hover_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li ul.sub-menu li a:not(.mega-menu-title) .menu-text::after,#section-{{ section.id }} .sub-menu li a:not(.mega-menu-title) .menu-text::after {
+    background-color: {{ block.settings.mega_menu_hover_border_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li ul.mega-menu > li {
+    border-color: {{ block.settings.mega_item_border_color }};
+  }
+  
+ /* Header language & Currency Style */
+  #section-{{ section.id }} .header-lan-curr > li > a,#section-{{ section.id }} .header-lan-curr > li > span > span {
+    color: {{ block.settings.language_color }};
+  }
+  #section-{{ section.id }} .header-lan-curr > li > a:hover,#section-{{ section.id }} .header-lan-curr > li > span > span:hover {
+    color: {{ block.settings.language_hover_color }};
+  }
+  #section-{{ section.id }} .header-lan-curr > li > .curr-lan-sub-menu {
+    background-color: {{ block.settings.language_submenu_bg_color }};
+  }
+  #section-{{ section.id }} .header-lan-curr > li > .curr-lan-sub-menu li a {
+    color: {{ block.settings.language_submenu_color }};
+  }
+  #section-{{ section.id }} .header-lan-curr > li > .curr-lan-sub-menu li a:hover {
+    color: {{ block.settings.language_submenu_hover_color }};
+  }
+  #section-{{ section.id }} .header-lan-curr > li > a::after,#section-{{ section.id }} .header-lan-curr > li > span > span::after {
+    color: {{ block.settings.currency_arrow_color }};
+  }
+  #section-{{ section.id }} .header-lan-curr > li::after {
+    background-color: {{ block.settings.currency_separator_color }};
+  }
+  
+  /* -- Header Tools Start -- */
+  #section-{{ section.id }} .header-tools > div a,#section-{{ section.id }} .header2-search form .btn {
+    color: {{ block.settings.header_tools_icon_color }};
+  }
+  #section-{{ section.id }} .header-tools > div a:hover,#section-{{ section.id }} .header2-search form .btn:hover {
+    color: {{ block.settings.header_tools_icon_hover_color }};
+  }
+  #section-{{ section.id }} .header-tools > div a span {
+    color: {{ block.settings.mini_cart_counter_color }};
+    background-color: {{ block.settings.mini_cart_counter_bg }};
+  }
+  
+  
+  nav.site-nav > ul > li ul.mega-menu > li > .mega-sub-menu li.single-column-has-children::before,nav.site-nav > ul > li ul.single-column-menu li.single-column-has-children::after {
+    color: {{ block.settings.mega_menu_item_color }};
+  }
+  nav.site-nav > ul > li ul.mega-menu > li > .mega-sub-menu li.single-column-has-children .mega-sub-level2,nav.site-nav > ul > li ul.single-column-menu li.single-column-has-children .multilevel-submenu {
+    background:  {{ block.settings.submenu_bg_color }};
+  }
+
+
+  #section-{{ section.id }} nav.site-nav > ul > li ul.single-column-menu li a {
+    color: {{ block.settings.mega_menu_item_color }};
+  }
+  #section-{{ section.id }} nav.site-nav > ul > li ul.single-column-menu li a:hover {
+    color: {{ block.settings.mega_menu_hover_color }}
+  }
+  #section-{{ section.id }} nav.site-nav > ul > li ul.single-column-menu li a:hover::after {
+    background-color: {{ block.settings.mega_menu_hover_border_color }};
+  }
+  #section-{{ section.id }} .site-main-menu > ul > li ul.sub-menu li.has-children > a::before {
+    color: {{ block.settings.multi_dropdown_arrow_color }}
+  }
+
+
+  #section-{{ section.id }} nav.site-nav > ul > li a span,#section-{{ section.id }} .site-mobile-nav .dl-menu li a span {
+    background: {{ block.settings.menu_badge_bg_color }};
+    color: {{ block.settings.menu_badge_color }};
+  }
+  #section-{{ section.id }} nav.site-nav > ul > li a span::before,#section-{{ section.id }} .site-mobile-nav .dl-menu li a span::before {
+    background: {{ block.settings.menu_badge_bg_color }};
+  }
+  #section-{{ section.id }} nav.site-nav > ul > li a span.sale,#section-{{ section.id }} .site-mobile-nav .dl-menu li a span.sale {
+    background: {{ block.settings.menu_sale_badge_bg_color }};
+    color: {{ block.settings.menu_sale_badge_color }};
+  }
+  #section-{{ section.id }} nav.site-nav > ul > li a span.sale:before,#section-{{ section.id }} .site-mobile-nav .dl-menu li a span.sale::before { 
+    background: {{ block.settings.menu_sale_badge_bg_color }};
+  }
+
+  #section-{{ section.id }} .header-right-icons .single-icon a i {
+    color: {{ block.settings.menu_account_icon_color }};
+  }
+  #section-{{ section.id }} .header-right-icons .single-icon a span.count {
+    background-color: {{ block.settings.mini_cart_counter_bg }};
+    color: {{ block.settings.mini_cart_counter_color }};
+  }
+
+  .site-mobile-nav .hamburger .hamburger-box .hamburger-inner,
+  .site-mobile-nav .hamburger .hamburger-box .hamburger-inner::before, 
+  .site-mobile-nav .hamburger .hamburger-box .hamburger-inner::after{
+    background-color: {{ block.settings.mobile_menu_bar_color }};
+  }
+  #section-{{ section.id }} .site-mobile-nav .dl-menu {
+    background-color: {{ block.settings.mobile_menu_bg_color }};
+  }
+  #section-{{ section.id }} .site-mobile-nav .dl-menu li {
+    border-color: {{ block.settings.menu_item_border_color }};
+  }
+  #section-{{ section.id }} .site-mobile-nav .dl-menu li > a:not(:only-child)::after {
+    color: {{ block.settings.mobile_menu_arrow_color }};
+  }
+  #section-{{ section.id }} .site-mobile-nav .dl-menu li > a {
+    color: {{ block.settings.mobile_menu_item_color }};
+  }
+  #section-{{ section.id }}  .site-mobile-nav .dl-menu li:hover > a {
+    color: {{ block.settings.mobile_menu_hover_color }};
+    background-color: {{ block.settings.mobile_menu_hover_bg_color }};
+  }
+  #section-{{ section.id }}  .site-mobile-nav .dl-menu li:hover > a::after {
+    color: {{ block.settings.hover_dropdown_arrow_color }};
+  }
+  
+
+  
+  
+  {%- when 'megamenu' -%}
+  #block-{{ block.id }} .mega_banner_content .title1 {
+    color: {{ block.settings.banner_title1 }};
+  }
+  #block-{{ block.id }} .mega_banner_content .title2 {
+    color: {{ block.settings.banner_title2 }};
+  }
+  #block-{{ block.id }} .mega_banner_content .content {
+    color: {{ block.settings.description_color }};
+  }
+  #block-{{ block.id }} .mega_banner_content .banner__btn {
+    color: {{ block.settings.banner_btn_color }};
+  }
+  #block-{{ block.id }} .product_menu_title {
+    color: {{ block.settings.product_menu_titie_color }};
+  }
+  #block-{{ block.id }} .menu_sin_product .product-title a{
+    color: {{ block.settings.product_title_color }};
+  }
+  #block-{{ block.id }} .menu_sin_product .product__price span{
+    color: {{ block.settings.product_price_color }};
+  }
+  #block-{{ block.id }} .menu_sin_product .product__price .main-price.discounted span{
+    color: {{ block.settings.product_old_price_color }};
+  }
+  #block-{{ block.id }} .menu_product_contain .owl-nav > div {
+    color: {{ block.settings.arrow_btn_color }};
+    background: {{ block.settings.arrow_btn_bg_color }};
+  }
+  
+  
+  
+  
+  {%- when 'offcanvas_color' -%}
+  #section-{{ section.id }} .mobile-menu-toggle .offcanvas-toggle i,#section-{{ section.id }} .mobile-menu-toggle .offcanvas-toggle i:before,#section-{{ section.id }} .mobile-menu-toggle .offcanvas-toggle i:after  {
+    background-color: {{ block.settings.mobile_hamburger_icon }};
+  }
+  
+  #section-{{ section.id }} .offcanvas.offcanvas-mobile-menu.offcanvas-open,#section-{{ section.id }} .offcanvas.offcanvas-header {
+    background-color: {{ block.settings.off_menu_bg_color }};
+  }
+  #section-{{ section.id }} .offcanvas-menu > ul > li > a,#section-{{ section.id }} .offcanvas-menu > ul > li .sub-menu li > a {
+    color: {{ block.settings.off_can_menu_color }};
+  }
+  #section-{{ section.id }} .offcanvas-menu > ul > li .menu-expand::before, #section-{{ section.id }} .offcanvas-menu > ul > li .menu-expand::after {
+    background-color: {{ block.settings.off_can_menu_color }};
+}
+  #section-{{ section.id }} .offcanvas-menu > ul > li > a:hover,#section-{{ section.id }} .offcanvas-menu > ul > li .sub-menu li > a:hover {
+    color: {{ block.settings.off_can_menu_hover_color }};
+  }
+  
+  
+  #section-{{ section.id }} .offcanvas-menu-search-form form input[type="search"] {
+    border: 1px solid {{ block.settings.input_bg_color }}; 
+    color: {{ block.settings.input_text_color }};
+  }
+  #section-{{ section.id }} .offcanvas-menu-search-form form button {
+    color: {{ block.settings.submit_btn_color }};
+  }
+
+  #section-{{ section.id }} .offcanvas-mobile-menu .social-icons--footer ul li a {
+    color: {{ block.settings.socila_icon_color }};
+  }
+  
+  
+  #section-{{ section.id }} .offcanvas-social a {
+    color: {{ block.settings.socila_icon_color }};
+    background-color: {{ block.settings.socila_icon_bg_color }};
+  }
+  #section-{{ section.id }} .offcanvas-social a:hover {
+    color: {{ block.settings.socila_icon_hover_color }};
+    background-color: {{ block.settings.socila_icon_bg_hover_color }};
+  }
+  
+  
+  
+  
+    {%- when 'mini_cart' -%}
+  /*Checkout Button*/
+  .offcanvas .inner .foot .buttons .checkout_btn {
+    background-color: {{ block.settings.checkout_Btn_bg_color }};
+    border-color:  {{ block.settings.checkout_Btn_boder_color }};
+    color:  {{ block.settings.checkout_Btn_text_color }};
+  }
+  .offcanvas .inner .foot .buttons .checkout_btn:hover {
+    background-color: {{ block.settings.checkout_Btn_hover_bg_color }};
+    border-color:  {{ block.settings.checkout_Btn_hover_bg_color }};
+    color:  {{ block.settings.checkout_Btn_hover_text_color }};
+  }
+	/* Cart Button */
+  
+  .offcanvas .inner .foot .buttons .cart_btn{
+  	background-color: {{ block.settings.miniCart_Btn_bg_color }};
+    border-color:  {{ block.settings.miniCart_Btn_border_color }};
+    color:  {{ block.settings.miniCart_Btn_text_color }};
+  }
+  .offcanvas .inner .foot .buttons .cart_btn:hover {
+    background-color: {{ block.settings.miniCart_Btn_hover_bg_color }};
+    border-color:  {{ block.settings.miniCart_Btn_hover_bg_color }};
+    color:  {{ block.settings.miniCart_Btn_hover_text_color }};
+  }
+  
+  {%- endcase -%}
+  {%- endfor -%}
+  .theme-logo img{
+    max-width: {{ section.settings.logo_width }}px;
+  }
+  
+  a#scrollUp {
+    display: none !important;
+  }
+  {%- if settings.scroll_to_top -%}
+    a#scrollUp {
+      display: block !important;
+    }
+  {%- endif -%}
+  
+  
+</style>

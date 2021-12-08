@@ -1,0 +1,7 @@
+{%- if product.handle != blank -%}
+<a class="action-wishlist tile-actions--btn flex wishlist-btn action wishlist" href="javascript: void(0)" button-wishlist data-product-handle="{{ product.handle }}">
+  <span class="add-wishlist">{{ settings.add_wishlit_title }}</span>
+  <span class="loading-wishlist">{{ settings.loading_wishlist }}</span>
+  <span class="remove-wishlist">{{ settings.remove_wishlit_title }}</span>
+</a>
+{%- endif -%}

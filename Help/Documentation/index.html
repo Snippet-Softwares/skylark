@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Furns - Furniture Shopify Theme</title>
+	<!-- Favicon icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="stylesheet" href="jquery.fancybox.min.css">
+	<link rel="stylesheet" href="style.css" type="text/css" media="all">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="body-wrapper">
+		<!-- nav area -->
+		<div class="nav-wrapper">
+			<div class="logo-wrapper">
+				<h1 class="logo-title">Furns - Furniture Shopify Theme</h1>
+			</div>
+			<div class="nav" id= "nav" >
+				<div class="nav-item active"><a class="main-nav-item"><i class="fa fa-play"></i>Getting Start</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item active" href="#introduction">Introduction</a>
+						<a class="sub-nav-item" href="#filesincluded">Files Included</a>
+					</div>
+				</div>
+				<div class="nav-item"><a class="main-nav-item"><i class="fa fa-upload"></i>Installation</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item" href="#install-theme">Install Theme <i class="fa fa-youtube-play"></i></a>
+						<a class="sub-nav-item" href="#import-demo" >Import Demo (Quick Install) <i class="fa fa-youtube-play"></i></a>
+						<a class="sub-nav-item" href="#store-settings" >Store Settings</a>
+						<a class="sub-nav-item" href="#install-apps" >Install Apps</a>
+					</div>
+				</div>
+				<div class="nav-item"><a class="main-nav-item"><i class="fa fa-bars"></i>Navigation Setup</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item" href="#main-menu">Create Main Menu</a>
+						<a class="sub-nav-item" href="#dropdwon-menu">Drop-down Menu</a>
+						<a class="sub-nav-item" href="#mega-menu">MegaMenu <i class="fa fa-youtube-play"></i></a>
+					</div>
+				</div>
+				<div class="nav-item"><a class="main-nav-item"><i class="fa fa-newspaper-o"></i>Product</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item" href="#create-product">Create Product</a>
+						<a class="sub-nav-item" href="#product-description">Product Description</a>
+						<a class="sub-nav-item" href="#add-variants">Add Variants</a>
+						<a class="sub-nav-item" href="#product-tags">Add Tags</a>
+						<a class="sub-nav-item" href="#create-collection">Create Collection</a>
+					</div>
+				</div>
+				<div class="nav-item"><a class="main-nav-item"><i class="fa fa-file-text-o"></i>Pages</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item" href="#createpage">Create Page</a>
+						<a class="sub-nav-item" href="#about-page">About Page</a>
+						<a class="sub-nav-item" href="#contact-page">Contact Page</a>
+						<a class="sub-nav-item" href="#faq-page">FAQ Page</a>
+						<a class="sub-nav-item" href="#wishlist-page">Wishlist Page</a>
+						<a class="sub-nav-item" href="#blog-page">Create Blog/Article</a>
+					</div>
+				</div>
+				<div class="nav-item"><a class="main-nav-item"><i class="fa fa-cog"></i>Customization</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item" href="#customizer">Customizer</a>
+						<a class="sub-nav-item" href="#add-section">Add Section</a>
+						<a class="sub-nav-item" href="#section-content">Section Content</a>
+						<a class="sub-nav-item" href="#product-pages">Product Pages</a>
+						<a class="sub-nav-item" href="#collection-pages">Collection Pages</a>
+						<a class="sub-nav-item" href="#collection-list">Collection List</a>
+						<a class="sub-nav-item" href="#blogs">Blogs</a>
+						<a class="sub-nav-item" href="#blog-posts">Blog Posts</a>
+						<a class="sub-nav-item" href="#customizer-cart">Cart</a>
+						<a class="sub-nav-item" href="#customizer-about">About Page</a>
+						<a class="sub-nav-item" href="#customizer-contact">Contact Page</a>
+						<a class="sub-nav-item" href="#customizer-faq">FAQ Page</a>
+					</div>
+				</div>
+                <div class="nav-item"><a class="main-nav-item"><i class="fa fa-cogs"></i>Global Settings</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item" href="#theme-color">Theme Color</a>
+						<a class="sub-nav-item" href="#typography">Typography</a>
+						<a class="sub-nav-item" href="#rtl">RTL</a>
+						<a class="sub-nav-item" href="#newsletter">Newsletter</a>
+						<a class="sub-nav-item" href="#breadcrumb">Breadcrumb</a>
+						<a class="sub-nav-item" href="#currency">Currency</a>
+						<a class="sub-nav-item" href="#preloader">Preloader</a>
+						<a class="sub-nav-item" href="#header-bar">Header Bar</a>
+						<a class="sub-nav-item" href="#product-settings">Product Settings</a>
+						<a class="sub-nav-item" href="#wishlist">Wishlist</a>
+						<a class="sub-nav-item" href="#customer-page">Customer Page</a>
+						<a class="sub-nav-item" href="#default-padding">Default Padding</a>
+						<a class="sub-nav-item" href="#password">Password/Coming Soon Page</a>
+						<a class="sub-nav-item" href="#page-404">404 Page</a>
+						<a class="sub-nav-item" href="#custom-css-js">Custom CSS and JS</a>
+					</div>
+				</div>
+				<div class="nav-item"><a class="main-nav-item"><i class="fa fa-plus-square-o"></i>Sections</a>
+					<div class="sub-nav">
+						<a class="sub-nav-item" href="#header">Header</a>
+						<a class="sub-nav-item" href="#slider">Slider</a>
+						<a class="sub-nav-item" href="#bannergrid">Banner Grid</a>
+						<a class="sub-nav-item" href="#tabwithproduct">Tab With Product</a>
+						<a class="sub-nav-item" href="#collectioslider">Collection Slider</a>
+						<a class="sub-nav-item" href="#latestblog">Latest Blog</a>
+						<a class="sub-nav-item" href="#featured-pro">Featured Products</a>
+						<a class="sub-nav-item" href="#featured-cat">Banner Grid Two</a>
+						<a class="sub-nav-item" href="#instagram-feed">Instagram</a>
+						<a class="sub-nav-item" href="#welcometofurns">Welcome to furns</a>
+						<a class="sub-nav-item" href="#progressbar">Progress Bar</a>
+						<a class="sub-nav-item" href="#bannergridthree">Banner Grid Three</a>
+						<a class="sub-nav-item" href="#teammembers">Team Members</a>
+						<a class="sub-nav-item" href="#brandlogo">Brand Logo</a>
+						<a class="sub-nav-item" href="#googlemap">Google Map</a>
+						<a class="sub-nav-item" href="#contacttemplate">Contact Template</a>
+						<a class="sub-nav-item" href="#custom-html">Custom HTML</a>
+						<a class="sub-nav-item" href="#custom-page">Custom Page</a>
+						<a class="sub-nav-item" href="#section-faq">FAQ</a>
+						<a class="sub-nav-item" href="#rich-text">Rich Text</a>
+						<a class="sub-nav-item" href="#video-banner">Video Banner</a>
+						<a class="sub-nav-item" href="#footer">Footer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- content area -->
+		<div class="content-wrapper" id="content">
+			<div class="doc-hero-wrap">
+				<div class="hero-wrap-inner">
+					<h2 class="title">Furns - Furniture Shopify Theme</h2>
+					<h5 class="subtitle">eCommerce Shopify Theme</h5>
+				</div>
+			</div>
+			<div class="need-support"><a href="https://hasthemes.com/contact-us/" target="_blank"><i class="fa fa-support"></i>Need Support</a></div>
+			<!-- Getting start -->
+			<div class="content-section" id="introduction" style="display: block;" >
+				<h3>Introduction</h3>
+				<h5>Furns - Furniture Shopify Theme</h5>
+				Thank you very much for choosing our theme. We truly appreciate and really hope that you'll enjoy our theme! <br/>
+				<strong>If you like this theme, Please support us by rating us 5 stars..</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><br/><br/>
+
+                <p>Furns - Furniture Shopify Theme is a robust theme adorned with numerous useful features for the authors and visitors. Setting Furns - Furniture Shopify Theme as your website you can sell almost all kinds of products and service online. You can display Furniture Store and Men and Women Fashion, Readymade Garments, Kids Fashion, Ornaments, Cosmetics, Herbal Products Sports Products, Shoes and everything in the best way in Furns Shopify theme. Furns has lots of variations and creativity for the users. Furns has 2+ Home Variations, 2 Header Variations, 2 Slider Variations, Shop list & Grid View, Variable & Countdown products, Multiple Blog Pages and FAQ page as well. We have worked best on the user’s convenience in this theme. This quick install theme has Shopify Builder, Theme Colors, Newsletter Popup, Notification Bar, Ajax Pop Cart, Ajax Wishlist, Quick View, RTL Support and Multiple Currency. In addition, to engage your visitors more into your business we have put options like Disqus comment, Facebook comment, Product review, Product Video, Testimonial options etc. On the other hand, Furns Shopify theme is fully Responsive and Cross- Browser Compatible website demo. Furthermore, you will get Google Analytics, Google Font, A persuasive Documentation and easy customization in this Shopify theme. Install Furns Multipurpose theme and enjoy the best experience of eCommerce business.</p>
+				<ul>
+					<li>By: HasThemes</li>
+					<li>URL: <a target="_blank" href="https://hasthemes.com/">https://hasthemes.com/</a></li>
+					<li>HelpDesk: <a target="_blank" href="https://hasthemes.com/contact-us/">https://hasthemes.com/contact-us/</a></li>
+				</ul>
+				<h3>Theme features</h3>
+				<ul>
+					<li>2+ Home Version</li>
+					<li>2+ slider Version</li>
+					<li>22+ Drag &amp; Drop Section</li>
+					<li>1 Header Variations</li>
+					<li>1 Footer Variations</li>
+					<li>Dropdown Menu</li>
+					<li>swiper slider</li>
+					<li>Featured Product</li>
+					<li>Tab With Product</li>
+					<li>2 + Banner Style</li>
+					<li>Category Banner</li>
+					<li>Latest Blog</li>
+					<li>Ajax Popup Cart</li>
+					<li>Ajax Sipnner Cart</li>
+					<li>Redirect Add To Cart</li>
+					<li>QuickView</li>
+					<li>Newsletter Popup</li>
+					<li>Notification Bar</li>
+					<li>Multiple Currency</li>
+					<li>Breadcrumb banner</li>
+					<li>Shop Grid View</li>
+					<li>Shop List View</li>
+					<li>Collection Sorting</li>
+					<li>Facebook comment</li>
+					<li>Disqus Comment</li>
+					<li>Custom Tab</li>
+					<li>Related product</li>
+					<li>Quick Install</li>
+					<li>Shopify Builder</li>
+					<li>Theme Colors</li>
+					<li>Ajax Popup Cart</li>
+					<li>Ajax Wishlist</li>
+					<li>QuickView</li>
+					<li>Newsletter</li>										
+					<li>FAQ</li>
+					<li>Product review</li>
+					<li>Product Video</li>
+					<li>Custom Tab</li>
+					<li>Shortcodes</li>
+					<li>Coming Soon page</li>
+					<li>15+ Preloader</li>
+					<li>Coming Soon Page</li>
+					<li>Fully Responsive</li>
+					<li>Cross Browser Optimization</li>
+					<li>Well Documentation</li>
+				</ul>
+                <h5>Photo Credit</h5>
+				<ul>
+					<li><a href="https://www.pinterest.com/" target="_blank">Pinterest</a></li>
+				</ul>
+                
+				<h5>Need Support?</h5>
+                <ul>
+                    <li>If you have any questions regarding to theme issues, please submit a ticket at <a href="https://hasthemes.com/contact-us/" target="_blank">https://hasthemes.com/contact-us/</a></li>
+                </ul>
+			</div>
+			<div class="content-section" id="filesincluded">
+				<h3>Files Included</h3>
+				<ul>
+				    <li>Demo Content - (Presets, Demo Products)</li>
+				    <li>Help - (Documentation, theme-install.wmv, import-demo.wmv)</li>
+					<li>Theme File Needs to Upload - <strong>(Furns-v-1.0.0.zip)</strong></li>
+				</ul>
+				<a class="popup_image" data-fancybox="install-file" href="images/installation/file-include.png"><img src="images/installation/file-include.png"></a>
+			</div>
+			<div class="content-section" id="install-theme" >
+				<h3>Theme Installation</h3> 
+                <p>Extract your download file and upload Theme file <strong>(Furns-v-1.0.0.zip)</strong></p> <br>
+				<h5>Install theme via Shopify Dashboard</h5>
+				<ul>
+					<li>Login the Shopify backend and click "Online Store"</li>
+                    <li>Upload the zip file that contains the theme file</li>
+                    <li>Finally Publish it</li>
+				</ul>
+                <a class="popup_image" data-fancybox="installation" href="images/installation/install-theme-1.png"><img src="images/installation/install-theme-1.png"></a><br><br>
+                <a class="popup_image" data-fancybox="installation" href="images/installation/install-theme-2.png"><img src="images/installation/install-theme-2.png"></a><br><br>
+                <a class="popup_image" data-fancybox="installation" href="images/installation/install-theme-3.png"><img src="images/installation/install-theme-3.png"></a>
+				<br>
+				<br>
+				<br>
+				<a target="_blank" class="video-link" href="https://youtu.be/PsYuixoj9vc">Video Example</a>
+			</div>				
+			<div class="content-section" id="import-demo" >
+				<h3>Import Demo Content</h3>
+				<p>If you want to design your store like our demo/preview site</p>
+				<ul>
+					<li>Demo content files are included in the downloadable file (that you have downloaded from our market place)</li>
+				</ul>
+                <a class="popup_image" data-fancybox="demo-import" href="images/installation/import-demo-1.png"><img src="images/installation/import-demo-1.png" /></a><br><br>
+                <ul>
+					<li>Go to "Demo Content" folder and open "Presets" folder</li>
+				</ul>
+                <a class="popup_image" data-fancybox="demo-import" href="images/installation/import-demo-2.png"><img src="images/installation/import-demo-2.png" /></a><br><br>
+				<ol>
+					<li>Choose any preset file, open it using any text editor (e.g. notepad, notepad++) and copy all the code.</li>
+					<li>Now go to your online Shopify store backend Click "Online Store"</li>
+					<li>Click on “Actions” button then click "Edit Code"</li>
+				</ol>
+                <a class="popup_image" data-fancybox="demo-import" href="images/installation/import-demo-3.png"><img src="images/installation/import-demo-3.png" /></a><br><br>
+				<ul>
+					<li>Open "settings_data.json" file and paste the copied code here </li>
+				</ul>
+                <a class="popup_image" data-fancybox="demo-import" href="images/installation/import-demo-4.png"><img src="images/installation/import-demo-4.png" /></a><br><br>
+				<p>Now save it and you're done</p>
+				<br>
+				<br>
+				<a target="_blank" class="video-link" href="https://youtu.be/Z1q8jIn6lcQ">Video Example</a>
+			</div>	
+			<div class="content-section" id="store-settings" >
+				<h3>General (Currency)</h3>
+				<p>Editing the HTML for currency formatting</p>
+				<ol>
+					<li>From your shop admin, go to the <a href="http://shopify.com/admin/settings/general">Settings / General</a></li>
+					<li>Scroll down and then you will see a "Standards & formats" block. Find the "Currency" there</li>
+					<li>Select your currency</li>
+					<li>Click "Change formatting"</li>
+					<li>Replace selected text and click Save</li>
+				</ol>
+				<p><span copy="" href="#"></span><span msg-copy=""></span><textarea style="width:100%; text-align: left;" class="brush: html">&lt;span class=money&gt;${{amount}} USD&lt;/span&gt;</textarea>
+				</p>
+				<p><span copy="" href="#"></span><span msg-copy=""></span><textarea style="width:100%; text-align: left;" class="brush: html">&lt;span class=money&gt;${{amount}}&lt;/span&gt;</textarea>
+				</p>
+				<br>
+                <a class="popup_image" data-fancybox="general-currency" href="images/installation/store-settings-1.png"><img src="images/installation/store-settings-1.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/en/manual/using-themes/change-the-layout/help-script-find-money-formats">Read More</a>
+				<br>
+				<br>
+				<h3>Payment</h3>
+				<ol>
+					<li>From your shop admin, go to the <a  href="http://shopify.com/admin/settings/payments" target="_blank">Settings / Payments</a></li>
+					<li>Choose a payment gateway to accept payments for orders. Than checkout page is work</li>
+				</ol>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/en/manual/payments">Read More</a>
+				<br>
+				<br>
+				<h3>Checkout</h3>
+				<ol>
+					<li>From your shop admin, go to the <a href="http://shopify.com/admin/settings/checkout" target="_blank">Settings / Checkout</a></li>
+					<li>Select <strong>Accounts are optional</strong></li>
+				</ol>
+                <a class="popup_image" data-fancybox="checkout" href="images/installation/store-settings-2.png"><img src="images/installation/store-settings-2.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/en/manual/checkout-settings">Read More</a>
+				<br>
+				<br>
+				<h3>Shipping</h3>
+				<ol>
+					<li>From your shop admin, go to the <a href="http://shopify.com/admin/settings/shipping" target="_blank">Settings / Shipping</a></li>
+					<li>To enable shipping calculator, please configure your shipping rates. <a href="http://docs.shopify.com/manual/settings/shipping/shipping-rates" target="_blank">Set up shipping rates</a></li>
+				</ol>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/en/manual/shipping">Read More</a>
+			</div>	
+
+			<div class="content-section" id="install-apps" >
+				<h3>Install Apps</h3>
+				<p>Set Product Review APP</p>
+				<ol>
+					<li>Install product review app
+                        <a href="https://apps.shopify.com/product-reviews" target="_blank">Shopify Reviews</a>
+                        or
+                        <a href="https://apps.shopify.com/ali-reviews" target="_blank">Ali Reviews</a>
+                    </li>
+				</ol>
+			</div>	
+			<!-- Setup Navigation -->
+			<div class="content-section" id="main-menu">
+				<h3>Create Main Menu</h3>	
+				<ol>
+					<li>From your store admin, go to the <a href="http://shopify.com/admin/links" target="_blank">Online Store / Navigation</a></li>
+					<li>You will see a " Add menu " button ( Click here )</li>
+				</ol>
+                <a class="popup_image" data-fancybox="navigation" href="images/navigation/navigation-setup-0.png"><img src="images/navigation/navigation-setup-0.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="navigation" href="images/navigation/navigation-setup-1.png"><img src="images/navigation/navigation-setup-1.png" /></a><br><br>
+			</div>
+			<div class="content-section" id="dropdwon-menu">
+				<h3>Create Drop-down Menu</h3>	
+				<ul>
+					<li>1st add menu then then create dropdown menu by drag & drop</li>
+				</ul>
+                <a class="popup_image" data-fancybox="navigation" href="images/navigation/navigation-setup-2.png"><img src="images/navigation/navigation-setup-2.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/manual/sell-online/online-store/menus-and-links#create-a-drop-down-menu">Read More</a>
+			</div>
+			<div class="content-section" id="mega-menu">
+				<h3>Create MegaMenu</h3>	
+				<ul>
+					<li>You must have a single menu. Then create a drop-down menu and create again menu under the drop-down menu.</li>
+				</ul>
+                <a class="popup_image" data-fancybox="navigation" href="images/navigation/navigation-setup-3.png"><img src="images/navigation/navigation-setup-3.png" /></a><br><br>
+				<br>
+				<h3>MegaMenu Image</h3>	
+				<ul>
+					<li>When creating a drop-down menu then menu link select collection. If the collection has an image then this image show in the menu.</li>
+				</ul>
+                <a class="popup_image" data-fancybox="navigation" href="images/navigation/navigation-setup-4.png"><img src="images/navigation/navigation-setup-4.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="navigation" href="images/navigation/navigation-setup-5.png"><img src="images/navigation/navigation-setup-5.png" /></a><br><br>
+				<br>
+				<a target="_blank" class="video-link" href="https://www.youtube.com/watch?v=b1voDJLriVM">Video Example</a>
+			</div>
+			<!-- Product -->
+			<div class="content-section" id="create-product">
+				<h3>Create Product</h3>
+				<ol>
+					<li>From your Shopify admin, go to Products.</li>
+					<li>Click the "Add product" button</li>
+					<li><strong>Product image recommended Size: 800 x 800px</strong></li>
+				</ol>	
+                <a class="popup_image" data-fancybox="create-product" href="images/products/create-product-1.png"><img src="images/products/create-product-1.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="create-product" href="images/products/create-product-2.png"><img src="images/products/create-product-2.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/manual/products">Read More</a>
+			</div>
+			<div class="content-section" id="product-description">
+				<h3>Shortcodes for Product Description</h3>
+				<p>You have 6 shortcodes.<br>
+				<strong>You could use Editor mode or Show HTML mode</strong>
+				</p>
+				<p>Product short description shortcode (Optional) <br><textarea class="brush: html" style="width:100%; text-align: left;">[short_description]Your content or text here[/short_description]</textarea></p>	
+				<p>Product description shortcode in Product description tab (Optional)<br><textarea class="brush: html" style="width:100%; text-align: left;">[product_description]Your content or text here[/product_description]</textarea></p>
+                <p>Product New Badge shortcode. Put day limit, how many days show the new badge in your product.<br><textarea class="brush: html" style="width:100%; text-align: left;">[new_products]30[/new_products]</textarea></p>	
+				<p>Affiliate link product short code in "Add to cart icon"<br><textarea class="brush: html" style="width:100%; text-align: left;">[affiliate_link]https://affiliate-program.amazon.com/[/affiliate_link]</textarea></p>
+				<p>Product video shortcode in Product video tab<br><textarea class="brush: html" style="width:100%; text-align: left;">[product_video]2df62ekI9UY[/product_video]</textarea></p>
+                
+				<p>Product unique tab shortcode in Product tab<br><textarea class="brush: html" style="width:100%; text-align: left;">[unique_description_1] Your content or text here [/unique_description_1]</textarea></p>
+				<p>Product unique tab shortcode in Product tab<br><textarea class="brush: html" style="width:100%; text-align: left;">[unique_description_2] Your content or text here [/unique_description_2]</textarea></p>
+				<p>Product unique tab shortcode in Product tab<br><textarea class="brush: html" style="width:100%; text-align: left;">[unique_description_3] Your content or text here [/unique_description_3]</textarea></p>
+                
+                
+				<p>Product countdown shortcode.<br><textarea class="brush: html" style="width:100%; text-align: left;">[countdown]2019/05/24[/countdown]</textarea></p>
+				<br>			
+				<ol>
+					<li>[short_description]Here add your product short description[/short_description] - work on Product page below the product condition area, List product list view page, Search page and quick view</li>
+					<li>[product_description]Here add your product full description[/product_description] - work on Product page in product description tab</li>
+                    <li>[new_products]Here add your product New Badge day limit[/new_products] - work on Product Grid and List view</li>
+                    <li>[affiliate_link]Here add your affiliate link[/affiliate_link] - work on Product page in "Add to cart" action</li>
+                    <li>[product_video]YouTube Product Video ID[/product_video]  - work on Product page in video tab</li>
+                    <li>[unique_description_1] Your content or text here [/unique_description_1]  - work on Product page in Unique-tab-1</li>
+                    <li>[unique_description_2] Your content or text here [/unique_description_2]  - work on Product page in Unique-tab-2</li>
+                    <li>[unique_description_2] Your content or text here [/unique_description_3]  - work on Product page in Unique-tab-3</li>
+					<li>[countdown]YYYY/MM/DD[/countdown] - Here's how long the countdown times you want to see</li>
+				</ol>	
+				<br>
+				<br>
+				<a class="popup_image" data-fancybox="product-description" href="images/products/product-description-1.png"><img src="images/products/product-description-1.png" /></a><br>				
+			</div>
+			<div class="content-section" id="add-variants">
+				<h3>Product Variants</h3>
+				<ol>
+					<li>When add product then add variant for this product.</li>
+					<li>When add product then add variant for this product.</li>
+				</ol>	
+                <a class="popup_image" data-fancybox="product-variant" href="images/products/add-variant-1.png"><img src="images/products/add-variant-1.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="product-variant" href="images/products/add-variant-2.png"><img src="images/products/add-variant-2.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="product-variant" href="images/products/add-variant-3.png"><img src="images/products/add-variant-3.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://docs.shopify.com/manual/your-store/products/variants">Read More</a>
+                <br>
+                <br>
+                <ul>
+					<li>This variant is displaying in product swatch option</li>
+				</ul>	
+                <a class="popup_image" data-fancybox="product-variant" href="images/products/add-variant-4.png"><img src="images/products/add-variant-4.png" /></a>
+                <br>
+                <br>
+                <ul>
+					<li>If you add image for variant then this image will display in swatch color variant field</li>
+				</ul>	
+                <a class="popup_image" data-fancybox="product-variant" href="images/products/add-variant-5.png"><img src="images/products/add-variant-5.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="product-variant" href="images/products/add-variant-6.png"><img src="images/products/add-variant-6.png" /></a><br><br>
+                <br>
+                <br>
+			</div>
+			<div class="content-section" id="product-tags">
+				<h3>Product Tags</h3>
+				<ul>
+					<li><a href="https://help.shopify.com/en/manual/products/details/tags" target="_blank">Product tags</a></li>
+					<li>When add variants this variant must be add in tags</li>
+				</ul>			
+                <a class="popup_image" data-fancybox="product-tag" href="images/products/add-tags-1.png"><img src="images/products/add-tags-1.png" /></a><br><br>
+			</div>
+			<div class="content-section" id="create-collection">
+				<h3>Create Collection</h3>
+				<ul>
+					<li>Go to the <a href="http://shopify.com/admin/collections">Products / Collections</a></li>
+				</ul>
+                <a class="popup_image" data-fancybox="create-collection" href="images/products/create-collection-1.png"><img src="images/products/create-collection-1.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="create-collection" href="images/products/create-collection-2.png"><img src="images/products/create-collection-2.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="create-collection" href="images/products/create-collection-3.png"><img src="images/products/create-collection-3.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://docs.shopify.com/manual/your-store/collections">Read More</a>
+                <br>
+                <br>
+			</div>
+			<!-- Manual Settings -->
+			<div class="content-section" id="createpage">
+				<h3>Create A Custom Page</h3>	
+				<ol>
+					<li>In a <a href="http://shopify.com/admin/pages" target="_blank">Online Store / Pages</a>, find and click button "Add page"</li>
+					<li>Write in Title field page name</li>
+					<li>Select Template: <strong>page</strong></li>
+					<li>Select Visibility: <strong>Visible</strong></li>
+					<li>You could use code Editor or HTML write mode content</li>
+					<li>Click <strong>save</strong></li>
+				</ol>
+                <a class="popup_image" data-fancybox="custom-page" href="images/pages/create-page-1.png"><img src="images/pages/create-page-1.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="custom-page" href="images/pages/create-page-2.png"><img src="images/pages/create-page-2.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/en/manual/sell-online/online-store/pages">Read More</a>
+			</div>
+			<div class="content-section" id="about-page">
+				<h3>About Page</h3>	
+				<ol>
+					<li>In a <a href="http://shopify.com/admin/pages" target="_blank">Online Store / Pages</a>, find and click button "Add page"</li>
+					<li>Write in Title field page name</li>
+					<li>Select Template: <strong>page.about</strong></li>
+					<li>Select Visibility: <strong>Visible</strong></li>
+					<li>You could use code Editor or HTML write mode content</li>
+					<li>Click <strong>save</strong></li>
+				</ol>
+                <a class="popup_image" data-fancybox="about-page" href="images/pages/about-page-1.png"><img src="images/pages/about-page-1.png" /></a><br><br>
+                <ul>
+					<li>After creating the page, go to the page from the customizer</li>
+				</ul>
+                <a class="popup_image" data-fancybox="about-page" href="images/pages/about-page-2.png"><img src="images/pages/about-page-2.png" /></a><br>
+			</div>
+			<div class="content-section" id="contact-page">
+				<h3>Contact Page</h3>	
+				<ol>
+					<li>In a <a href="http://shopify.com/admin/pages" target="_blank">Online Store / Pages</a>, find and click button "Add page"</li>
+					<li>Write in Title field page name</li>
+					<li>Select Template: <strong>page.contact</strong></li>
+					<li>Select Visibility: <strong>Visible</strong></li>
+					<li>You could use code Editor or HTML write mode content</li>
+					<li>Click <strong>save</strong></li>
+				</ol>
+                <a class="popup_image" data-fancybox="contact-page" href="images/pages/contact-page-1.png"><img src="images/pages/contact-page-1.png" /></a><br><br>
+                <ul>
+					<li>After creating the page, go to the page from the customizer</li>
+				</ul>
+                <a class="popup_image" data-fancybox="contact-page" href="images/pages/contact-page-2.png"><img src="images/pages/contact-page-2.png" /></a><br>
+			</div>
+			<div class="content-section" id="faq-page">
+				<h3>FAQ Page</h3>	
+				<ol>
+					<li>In a <a href="http://shopify.com/admin/pages" target="_blank">Online Store / Pages</a>, find and click button "Add page"</li>
+					<li>Write in Title field page name</li>
+					<li>Select Template: <strong>page.faq</strong></li>
+					<li>Select Visibility: <strong>Visible</strong></li>
+					<li>You could use code Editor or HTML write mode content</li>
+					<li>Click <strong>save</strong></li>
+				</ol>
+                <a class="popup_image" data-fancybox="faq-page" href="images/pages/faq-page-1.png"><img src="images/pages/faq-page-1.png" /></a><br><br>
+                <ul>
+					<li>After creating the page, go to the page from the customizer</li>
+				</ul>
+                <a class="popup_image" data-fancybox="faq-page" href="images/pages/faq-page-2.png"><img src="images/pages/faq-page-2.png" /></a><br>
+			</div>
+			<div class="content-section" id="wishlist-page">
+				<h3>Wishlist Page</h3>	
+				<ol>
+					<li>In a <a href="http://shopify.com/admin/pages" target="_blank">Online Store / Pages</a>, find and click button "Add page"</li>
+					<li>Write in Title field page name</li>
+					
+					<p>Page Title:<br><textarea class="brush: html" style="width:100%; text-align: left;">wishlist</textarea></p>
+					
+					<li>Select Template: <strong>page.wishlist</strong></li>
+					<li>Select Visibility: <strong>Visible</strong></li>
+					<li>You could use code Editor or HTML write mode content</li>
+					<li>Click <strong>save</strong></li>
+				</ol>
+                <a class="popup_image" data-fancybox="wishlist-page" href="images/pages/wishlist-page-1.png"><img src="images/pages/wishlist-page-1.png" /></a><br><br>
+			</div>
+			<div class="content-section" id="blog-page">
+				<h3>Add Blog post</h3>	
+				<ul>
+					<li>Go to the <a target="_blank" href="https://shopify.com/admin/articles">Blog post</a></li>
+					<li>Click to "Create blog post"</li>
+					<li>Then add post title, content, tag and etc.</li>
+				</ul>
+                <a class="popup_image" data-fancybox="blog-post" href="images/blog/blog-1.png"><img src="images/blog/blog-1.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="blog-post" href="images/blog/blog-2.png"><img src="images/blog/blog-2.png" /></a><br><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/manual/sell-online/online-store/blogs">Read More</a>
+                <ul>
+					<li>Manage Blog post</li>
+				</ul>
+                <a class="popup_image" data-fancybox="blog-post" href="images/blog/blog-3.png"><img src="images/blog/blog-3.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="blog-post" href="images/blog/blog-4.png"><img src="images/blog/blog-4.png" /></a><br><br>
+                <a class="popup_image" data-fancybox="blog-post" href="images/blog/blog-5.png"><img src="images/blog/blog-5.png" /></a><br><br>
+			</div>
+			<!-- Theme Options -->
+			<div class="content-section" id="customizer">
+				<h3>Customizer</h3>
+				<ul>
+					<li>From your shop admin, go to the <a target="_blank" href="http://shopify.com/admin/themes">Online Store / Themes</a></li>
+					<li>Click the <strong>Customize</strong> button</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="customization" href="images/customization/customizer-1.png"><img src="images/customization/customizer-1.png" /></a></p><br>	
+                <p><a class="popup_image" data-fancybox="customization" href="images/customization/add-section-1.png"><img src="images/customization/add-section-1.png" /></a></p><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/en/manual/using-themes/change-the-layout/theme-settings/sections-and-settings">Read More</a>
+			</div>
+			<div class="content-section" id="add-section">
+				<h3>Add Section</h3>
+				<ul>
+					<li>Click <strong>Add Section</strong></li>
+					<li>Then Click <strong>Add</strong> which section want to add</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="add-section" href="images/customization/add-section-1.png"><img src="images/customization/add-section-1.png" /></a></p><br><br>
+                <p><a class="popup_image" data-fancybox="add-section" href="images/customization/add-section-2.png"><img src="images/customization/add-section-2.png" /></a></p><br>
+                <a target="_blank" class="btn-link" href="https://help.shopify.com/en/manual/using-themes/change-the-layout/theme-settings/sections-and-settings#add-dynamic-sections-sections-specific">Read More</a>
+			</div>
+			<div class="content-section" id="section-content">
+				<h3>Section Content</h3>
+				<ul>
+					<li>Every section has 3 common content - Section Padding, Section Margin, and Section Background.</li>
+					<li>Click <strong>Add Content</strong> and add content which is need.</li>
+					<li><strong>Section Padding</strong> - You can set Section padding top and bottom for desktop and mobile device.</li>
+					<li><strong>Section Margin</strong> - You can set Section margin top and bottom for desktop and mobile device.</li>
+					<li><strong>Section Background</strong> - You can set Section background image and color.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="section-content" href="images/customization/section-content-1.png"><img src="images/customization/section-content-1.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="product-pages">
+				<h3>Product Pages</h3>
+				<ul>
+					<li>Go to the "Products pages" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="product-pages" href="images/customization/product-page-1.png"><img src="images/customization/product-page-1.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="collection-pages">
+				<h3>Collection Pages</h3>
+				<ul>
+					<li>Go to the "Collection Pages" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="collection-pages" href="images/customization/collection-page-1.png"><img src="images/customization/collection-page-1.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="collection-list">
+				<h3>Collection List</h3>
+				<ul>
+					<li>Go to the "Collection List" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="collection-list" href="images/customization/collection-list-page-1.png"><img src="images/customization/collection-list-page-1.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="blogs">
+				<h3>Blogs</h3>
+				<ul>
+					<li>Go to the "Blogs" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="blogs" href="images/customization/blog-page-1.png"><img src="images/customization/blog-page-1.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="blog-posts">
+				<h3>Blog Posts</h3>
+				<ul>
+					<li>Go to the "Blog Posts" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="blog-posts" href="images/customization/blog-page-2.png"><img src="images/customization/blog-page-2.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="customizer-cart">
+				<h3>Cart</h3>
+				<ul>
+					<li>Go to the "Cart" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="customizer-cart" href="images/customization/cart-page-1.png"><img src="images/customization/cart-page-1.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="customizer-about">
+				<h3>About</h3>
+				<ul>
+					<li>Go to the "About" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="customizer-about" href="images/customization/about-page-2.png"><img src="images/customization/about-page-2.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="customizer-contact">
+				<h3>Contact</h3>
+				<ul>
+					<li>Go to the "Contact" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="customizer-contact" href="images/customization/contact-page-2.png"><img src="images/customization/contact-page-2.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="customizer-faq">
+				<h3>FAQ</h3>
+				<ul>
+					<li>Go to the "FAQ" page on the Customize page from Customizer. Display the functionality for this page.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="customizer-faq" href="images/customization/faq-page-2.png"><img src="images/customization/faq-page-2.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="theme-color">
+				<h3>Theme Color</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Colors</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="theme-color" href="images/global-settings/color-1.png"><img src="images/global-settings/color-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="typography">
+				<h3>Typography</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Typography</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="typography" href="images/global-settings/typography-1.png"><img src="images/global-settings/typography-1.png" /></a></p><br><br>				
+                <p><a class="popup_image" data-fancybox="typography" href="images/global-settings/typography-2.png"><img src="images/global-settings/typography-2.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="rtl">
+				<h3>RTL</h3>
+				<ul>
+					<li>Go to <strong>Customizer > Theme Settings > RTL</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="rtl" href="images/global-settings/rtl-1.png"><img src="images/global-settings/rtl-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="newsletter">
+				<h3>Newsletter</h3>
+				<ul>
+                    <li>Go to <strong>Customizer > Theme Settings > Newsletter</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="newsletter" href="images/global-settings/newsletter-1.png"><img src="images/global-settings/newsletter-1.png" /></a></p><br>		
+			</div>
+			<div class="content-section" id="breadcrumb">
+				<h3>Breadcrumb</h3>
+				<ul>
+                    <li>Golobal settings - Go to <strong>Customizer > Theme Settings > Breadcrumb</strong></li>
+                    <li>Individual settings - Go to <strong>Page > Sections > Breadcrumb</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="breadcrumb" href="images/global-settings/breadcrumb-1.png"><img src="images/global-settings/breadcrumb-1.png" /></a></p><br>				
+                <p><a class="popup_image" data-fancybox="breadcrumb" href="images/global-settings/breadcrumb-2.png"><img src="images/global-settings/breadcrumb-2.png" /></a></p><br>				
+			</div>
+            
+            
+			<div class="content-section" id="currency">
+				<h3>Currency</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>General Settings</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="currency" href="images/global-settings/currency-1.png"><img src="images/global-settings/currency-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="preloader">
+				<h3>Preloader</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>General Settings</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="preloader" href="images/global-settings/preloader-1.png"><img src="images/global-settings/preloader-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="header-bar">
+				<h3>Header Bar</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Header Bar</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header-bar" href="images/global-settings/header-bar-1.png"><img src="images/global-settings/header-bar-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="product-settings">
+				<h3>Product Settings</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Product Settings</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="wishlist" href="images/global-settings/product-settings-1.png"><img src="images/global-settings/product-settings-1.png" /></a></p><br><br>				
+                <p><a class="popup_image" data-fancybox="wishlist" href="images/global-settings/product-settings-2.png"><img src="images/global-settings/product-settings-2.png" /></a></p><br><br>				
+                <p><a class="popup_image" data-fancybox="wishlist" href="images/global-settings/product-settings-3.png"><img src="images/global-settings/product-settings-3.png" /></a></p><br>			
+			</div>
+			<div class="content-section" id="wishlist">
+				<h3>Wishlist</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Wishlist</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="wishlist" href="images/global-settings/wishlist-1.png"><img src="images/global-settings/wishlist-1.png" /></a></p><br>			
+			</div>
+			<div class="content-section" id="customer-page">
+				<h3>Customer Page</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Customer Page</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="customer-page" href="images/global-settings/customer-page-1.png"><img src="images/global-settings/customer-page-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="default-padding">
+				<h3>Default Padding</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Default Padding</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="default-padding" href="images/global-settings/default-padding-1.png"><img src="images/global-settings/default-padding-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="password">
+				<h3>Password/Coming Soon Page</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Password/Coming Soon Page</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="password" href="images/global-settings/password-1.png"><img src="images/global-settings/password-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="page-404">
+				<h3>404 Page</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>404 Page</strong></li>
+					<li>There are all settings for 404 page</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="page-404" href="images/global-settings/404-1.png"><img src="images/global-settings/404-1.png" /></a></p><br>				
+			</div>
+			<div class="content-section" id="custom-css-js">
+				<h3>Custom CSS and JS</h3>
+				<ul>
+					<li>Go to <strong>Customizer</strong> > <strong>Theme Settings</strong> > <strong>Custom CSS and JS</strong></li>
+					<li>Add CSS in <strong>CSS Code</strong> field and add JS in <strong>Script Code</strong> field</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="custom-css-js" href="images/global-settings/custom-css-js-1.png"><img src="images/global-settings/custom-css-js-1.png" /></a></p><br>				
+			</div>
+            
+            <div class="content-section" id="header">
+				<h3>Header</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Header</strong></li>
+                    <li>There is two header style, you can easily select any one. Follow bellow image</li>
+				</ul>
+				<br>
+				<h4>Header Style One</h4>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/header1.png"><img src="images/customization/header1.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="slider">
+				<h3>Slider</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Slider</strong></li>
+                    <li>Slider Follow bellow image</li>
+				</ul>
+				<br>
+				<h4>Slider</h4>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/slider.png"><img src="images/customization/slider.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="bannergrid">
+				<h3>Banner Grid</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Banner Grid</strong></li>
+                    <li>Banner Grid Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/bannergrid.png"><img src="images/customization/bannergrid.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="tabwithproduct">
+				<h3>Tab With Product</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Tab With Product</strong></li>
+                    <li>Tab With Product  Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/tabwithproduct.png"><img src="images/customization/tabwithproduct.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="collectioslider">
+				<h3>Collection Slider</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Collection Slider</strong></li>
+                    <li>Collection Slider Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/collectionslider.png"><img src="images/customization/collectionslider.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="latestblog">
+				<h3>Latest Blog</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Latest Blog</strong></li>
+                    <li>Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/latestblog.png"><img src="images/customization/latestblog.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="featured-pro">
+				<h3>Featured Products</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Featured Products</strong></li>
+                    <li>Featured Products  Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/featured-pro.png"><img src="images/customization/featured-pro.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="featured-cat">
+				<h3>Banner Grid Two</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Banner Grid Two</strong></li>
+                    <li>Banner Grid Two  Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/featured-cat.png"><img src="images/customization/featured-cat.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="instagram-feed">
+				<h3>Instagram</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Instagram</strong></li>
+                    <li>Put your Instagram <strong>User ID</strong> and <strong>Access Token</strong></li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="instagram-feed" href="images/customization/instagram-1.png"><img src="images/customization/instagram-1.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="welcometofurns">
+				<h3>Welcome to furns</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Welcome to furns</strong></li>
+                    <li>Welcome to furns Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="welcometofurns" href="images/customization/welcometofurns.png"><img src="images/customization/welcometofurns.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="progressbar">
+				<h3>Progress Bar</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Progress Bar</strong></li>
+                    <li>Progress Bar Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="progressbar" href="images/customization/progressbar.png"><img src="images/customization/progressbar.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="bannergridthree">
+				<h3>Banner Grid Three</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Banner Grid Three</strong></li>
+                    <li>Banner Grid Three Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="bannergridthree" href="images/customization/bannergridthree.png"><img src="images/customization/bannergridthree.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="teammembers">
+				<h3>Team Members</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Team Members</strong></li>
+                    <li>Team Members Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="teammembers" href="images/customization/teammembers.png"><img src="images/customization/teammembers.png" /></a></p><br>	
+				<br>
+			</div>
+			<div class="content-section" id="brandlogo">
+				<h3>Brand Logo</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Brand Logo</strong></li>
+                    <li>Brand Logo Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/brandlogo.png"><img src="images/customization/brandlogo.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="googlemap">
+				<h3>Google Map</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Google Map</strong></li>
+                    <li>Google Map Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="googlemap" href="images/customization/googlemap.png"><img src="images/customization/googlemap.png" /></a></p><br><br>
+			</div>
+			<div class="content-section" id="contacttemplate">
+				<h3>Contact Template</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Contact Template</strong></li>
+                    <li>Contact Template Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="contacttemplate" href="images/customization/contacttemplate.png"><img src="images/customization/contacttemplate.png" /></a></p><br><br>
+			</div>
+			
+			
+			
+
+
+			<div class="content-section" id="custom-html">
+				<h3>Custom HTML</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Custom HTML</strong></li>
+                    <li>There is HTML content field. Add HTML content there.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="custom-html" href="images/theme-sections/custom-html-1.png"><img src="images/theme-sections/custom-html-1.png" /></a></p><br>	
+				<br>
+			</div>
+            <div class="content-section" id="custom-page">
+				<h3>Custom Page</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Custom Page</strong></li>
+                    <li>Click <strong>Add content</strong> then click FAQ as much as you like</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="custom-page" href="images/theme-sections/custom-page-1.png"><img src="images/theme-sections/custom-page-1.png" /></a></p><br>	
+				<br>
+			</div>
+            <div class="content-section" id="section-faq">
+				<h3>FAQ</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>FAQ</strong></li>
+                    <li>Click <strong>Add content</strong> then click FAQ as much as you like</li>
+                    <li>FAQ have two field title and content</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="section-faq" href="images/theme-sections/custom-html.jpg"><img src="images/theme-sections/faq-1.png" /></a></p><br>	
+				<br>
+			</div>
+            
+            <div class="content-section" id="rich-text">
+				<h3>Rich Text</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Rich Text</strong></li>
+                    <li>There is <strong>Rich Text</strong> content field.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="rich-text" href="images/theme-sections/rich-text-1.png"><img src="images/theme-sections/rich-text-1.png" /></a></p><br>	
+				<br>
+			</div>
+            <div class="content-section" id="video-banner">
+				<h3>Video Banner</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Video Banner</strong></li>
+                    <li>Put your <strong>Video URL</strong> in <strong>Video URL</strong> field.</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="video-banner" href="images/theme-sections/video-banner-1.png"><img src="images/theme-sections/video-banner-1.png" /></a></p><br>	
+				<br>
+			</div>
+            <div class="content-section" id="footer">
+				<h3>Footer</h3>
+				<ul>
+                    <li>Go to <strong>Customizer</strong> > <strong>Sections</strong> > <strong>Footer</strong></li>
+                    <li>There is 6 footer content, you can easily add this. Follow bellow image</li>
+				</ul>
+				<br>
+                <p><a class="popup_image" data-fancybox="header" href="images/customization/footer.png"><img src="images/customization/footer.png" /></a></p><br><br>
+			</div>
+		</div>
+	</div><!-- body-wrapper -->
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div class="single-blog-post mb-10 blog-grid-post">
+  <div class="blog-post-media">
+    <div class="blog-image">
+      {% if article.image %}
+      <a href="{{ article.url }}">{{ article | img_url: '370x401' | img_tag: article.title }}</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="blog-post-content-inner mt-6">
+    <div class="blog-athor-date">
+      <a class="blog-date" href="#">{{ article.published_at | date: format: 'month_day_year' }}</a>
+    </div>
+    <h4 class="blog-title"><a href="{{ article.url }}">{{ article.title }}</a></h4>
+    <p>
+      {{ article.content | strip_html | truncatewords: 20 }}
+    </p>
+    <a href="{{ article.url }}" class="btn btn-lg btn-hover-color-primary btn-color-dark mt-5">{{ 'blogs.article.read_more' | t }}</a>
+  </div>
+</div>

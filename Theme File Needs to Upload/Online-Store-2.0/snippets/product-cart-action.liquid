@@ -1,0 +1,32 @@
+<div class="product-cart-action pro-details-cart">
+  {%- if product.available -%}
+  {%- if settings.product_cart_type == 'ajax_spin_cart' -%}
+  <button type="submit" class="ajax-spin-cart add-cart btn btn-primary btn-hover-primary ml-4" id="AddToCart">
+    <span>
+      <span class="cart-title" id="AddToCartText">{{ settings.cart_button_title }}</span>
+      <span class="cart-loading">{{ settings.wait_title }}</span>
+      <span class="cart-added">{{ settings.added_title }}</span>
+      <span class="cart-unavailable">{{ settings.unavailable_title }}</span>
+    </span>
+  </button>
+  {%- elsif settings.product_cart_type == 'ajax_popup_cart' or settings.product_cart_type == 'without_ajax_cart' -%}
+  <button type="submit" class="add-cart btn btn-primary btn-hover-primary ml-4 " id="AddToCart">
+    <span>
+      <span class="cart-title" id="AddToCartText">{{ settings.cart_button_title }}</span>
+    </span>
+  </button>
+  {%- endif -%}
+  {%- unless settings.product_cart_type == 'without_ajax_cart' -%}
+  <script>
+    jQuery('#AddToCart').click(function(e) {
+      e.preventDefault();
+      Shopify.addItemFromFormStart('AddToCartForm', {{ product.id }});
+                                   }); 
+  </script>
+  {%- endunless -%}
+  {%- else -%}
+  <button class="cart-disable add-cart btn btn-primary btn-hover-primary ml-4" type="button">
+    <span class="cart-text">{{ settings.soldout_button_title }}</span>
+  </button>
+  {%- endif -%}
+</div>

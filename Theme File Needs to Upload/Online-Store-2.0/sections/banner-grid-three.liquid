@@ -1,0 +1,325 @@
+<div class="banner-preduct-wrapper pt-100px pb-100px" id="section-{{ section.id }}">
+  <div class="container{% if section.settings.fullwidth_on %}-fluid{% endif %}">
+    <div class="row">
+      {% for block in section.blocks %}
+      {% case block.type %}
+      {% when 'banner_grid2' %}
+      <div class="col-lg-{{ block.settings.banner_col }} col-md-{{ block.settings.banner_col_md }} pr-0">
+        <div class="banner-product-image">
+          <a class="venobox " href="{{ block.settings.banner_images | img_url: 'master' }}" data-gall="myGallery">
+            <img src="{% if block.settings.banner_images %}{{ block.settings.banner_images | img_url: 'master' }}{% else %}https://via.placeholder.com/785x775 {% endif %}" class="lazyload img-fluid w-100" alt="banner">
+          </a>
+        </div>
+      </div>
+      {% when 'banner_grid_dubble2' %}
+      <div class="col-lg-{{ block.settings.banner_col }} col-md-{{ block.settings.banner_col_md }}">
+        <div class="banner-product-image mt-lm-15px">
+          <a class="venobox " href="{{ block.settings.banner_images_1 | img_url: 'master' }}" data-gall="myGallery">
+            <img src="{% if block.settings.banner_images_1 %}{{ block.settings.banner_images_1 | img_url: 'master' }}{% else %}https://via.placeholder.com/370x370 {% endif %}" class="lazyload img-fluid w-100" alt="banner">
+          </a>
+        </div>
+        <div class="banner-product-image mt-3">
+          <a class="venobox " href="{{ block.settings.banner_images_2 | img_url: 'master' }}" data-gall="myGallery">
+            <img src="{% if block.settings.banner_images_2 %}{{ block.settings.banner_images_2 | img_url: 'master' }}{% else %}https://via.placeholder.com/370x370 {% endif %}" class="lazyload img-fluid w-100" alt="banner">
+          </a>
+        </div>
+      </div>
+      {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+{%- style -%}
+  #section-{{ section.id }}{
+    {%- for block in section.blocks -%}
+    {%- case block.type -%}
+    {%- when 'section_margin' -%}
+    margin-top: {{ block.settings.section_margin_top }}px;
+    margin-bottom: {{ block.settings.section_margin_bottom }}px;
+    {%- when 'section_padding' -%}
+    padding-top: {{ block.settings.section_padding_top }}px;
+    padding-bottom: {{ block.settings.section_padding_bottom }}px;
+    {%- when 'section_background' -%}    
+    background: {{ block.settings.section_bg_color }} 
+      {%- if block.settings.section_bg_image -%}url("{{ block.settings.section_bg_image | img_url: 'master' }}"){%- endif -%} no-repeat scroll center center / cover;
+    {%- endcase -%}
+    {%- endfor -%}
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    #section-{{ section.id }}{
+      {%- for block in section.blocks -%}
+      {% case block.type %}
+      {%- when 'section_margin' -%}
+      margin-top: {{ block.settings.section_margin_top_md }}px;
+      margin-bottom: {{ block.settings.section_margin_bottom_md }}px;
+      {%- when 'section_padding' -%}
+      padding-top: {{ block.settings.section_padding_top_md }}px;
+      padding-bottom: {{ block.settings.section_padding_bottom_md }}px;
+      {%- endcase -%}
+      {%- endfor -%}
+    }
+  }
+  @media (max-width: 767px) {
+    #section-{{ section.id }}{
+      {%- for block in section.blocks -%}
+      {%- case block.type -%}
+      {%- when 'section_margin' -%}
+      margin-top: {{ block.settings.section_margin_top_xs }}px;
+      margin-bottom: {{ block.settings.section_margin_bottom_xs }}px;
+      {%- when 'section_padding' -%}
+      padding-top: {{ block.settings.section_padding_top_xs }}px;
+      padding-bottom: {{ block.settings.section_padding_bottom_xs }}px;
+      {%- endcase -%}
+      {%- endfor -%}
+    }
+  }
+{%- endstyle -%}
+
+
+{% schema %}
+  	{
+		"name": "Banner Grid Three",
+		"settings": [
+            {
+              "type": "header",
+              "content": "Banner Width Control"
+            },
+            {
+              "type": "checkbox",
+              "id": "fullwidth_on",
+              "label": "Full Width Enable",
+              "default": false,
+              "info": "If you want Full Width click checkbox"
+            }
+		],
+        "blocks":[
+			   {
+                  "type": "banner_grid2",
+                  "name": "Banner single",
+                  "settings": [
+                      {
+                        "type": "range",
+                        "id": "banner_col",
+                        "min": 1,
+                        "max": 12,
+                        "step": 1,
+                        "label": "Column",
+                        "default": 8,
+                        "info": "Follow Bootstrap-4 Column"
+                      },
+					  {
+                        "type": "range",
+                        "id": "banner_col_md",
+                        "min": 1,
+                        "max": 12,
+                        "step": 1,
+                        "label": "Column",
+                        "default": 8,
+                        "info": "Follow Bootstrap-4 Column"
+                      },
+                      {
+                          "type": "image_picker",
+                          "id": "banner_images",
+                          "label": "Banner Images",
+                          "info": "Recommended Size: 785 x 775px"
+                      }
+				 ]
+               },
+			   {
+                  "type": "banner_grid_dubble2",
+                  "name": "Banner Dubble",
+                  "settings": [
+                      {
+                        "type": "range",
+                        "id": "banner_col",
+                        "min": 1,
+                        "max": 12,
+                        "step": 1,
+                        "label": "Column",
+                        "default": 4,
+                        "info": "Follow Bootstrap-4 Column"
+                      },
+					  {
+                        "type": "range",
+                        "id": "banner_col_md",
+                        "min": 1,
+                        "max": 12,
+                        "step": 1,
+                        "label": "Column",
+                        "default": 4,
+                        "info": "Follow Bootstrap-4 Column"
+                      },
+                      {
+                          "type": "image_picker",
+                          "id": "banner_images_1",
+                          "label": "Banner Images",
+                          "info": "Recommended Size: 370 x 370px"
+                      },
+					  {
+                          "type": "image_picker",
+                          "id": "banner_images_2",
+                          "label": "Banner Images",
+                          "info": "Recommended Size: 370 x 370px"
+                      }
+				 ]
+               },
+               {
+                  "type": "section_margin",
+                  "name": "Section Margin",
+                  "limit": 1,
+                  "settings": [
+                    {
+                      "type": "header",
+                      "content": "Large/Desktop/Tablate Device"
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_margin_top",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Margin Top",
+                      "unit": "px",
+                      "default": 0
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_margin_bottom",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Margin Bottom",
+                      "unit": "px",
+                      "default": 0
+                    },
+                    {
+                      "type": "header",
+                      "content": "Mobile Device"
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_margin_top_xs",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Margin Top",
+                      "unit": "px",
+                      "default": 0
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_margin_bottom_xs",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Margin Bottom",
+                      "unit": "px",
+                      "default": 0
+                    }
+                  ]
+               },
+               {
+                  "type": "section_padding",
+                  "name": "Section Padding",
+                  "limit": 1,
+                  "settings": [
+                    {
+                      "type": "header",
+                      "content": "Large/Desktop/Tablate Device"
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_padding_top",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Padding Top",
+                      "unit": "px",
+                      "default": 50
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_padding_bottom",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Padding Bottom",
+                      "unit": "px",
+                      "default": 85
+                    },
+                    {
+                      "type": "header",
+                      "content": "Mobile Device"
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_padding_top_xs",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Padding Top",
+                      "unit": "px",
+                      "default": 30
+                    },
+                    {
+                      "type": "range",
+                      "id": "section_padding_bottom_xs",
+                      "min": 0,
+                      "max": 150,
+                      "step": 5,
+                      "label": "Padding Bottom",
+                      "unit": "px",
+                      "default": 65
+                    }
+                  ]
+               },
+               {
+                  "type": "section_background",
+                  "name": "Section Background",
+                  "limit": 1,
+                  "settings": [
+                    {
+                      "type": "image_picker",
+                      "id": "section_bg_image",
+                      "label": "BG Image"
+                    },
+                    {
+                      "type": "color",
+                      "id": "section_bg_color",
+                      "label": "BG Color",
+                      "default": "#ffffff"
+                    }
+                  ]
+               }
+
+            ],
+
+        "presets":[
+                {
+                    "name": "Banner Grid Three",
+                    "category": "2. Banner",
+                    "blocks":[
+						{
+                            "type": "banner_grid_dubble2"
+                        },
+						{
+                            "type": "banner_grid2"
+                        }
+                    ]
+                }
+            ]
+
+
+ 	 }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

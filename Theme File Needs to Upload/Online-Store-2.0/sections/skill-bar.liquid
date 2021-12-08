@@ -1,0 +1,405 @@
+{% if section.settings.progress_enable %}
+<!-- Start Slill Progress -->
+<div class="progressbar-section" id="section-{{ section.id }}">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="content" data-aos="fade-up" data-aos-delay="0">
+          {% if section.settings.progress_bar_top_title !='' %}
+          <h4 class="title">{{ section.settings.progress_bar_top_title }}</h4>
+          {% endif %} 
+          <p class="title-desc">{{ section.settings.progress_bar_top_content }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="custom-progress m-t-40">
+          {% for block in section.blocks %}
+          <div id="skill-{{ block.id }}" class="animated-progress progress-blue">
+            <h6 class="font--semi-bold m-b-15">{{ block.settings.progress_title }}</h6>
+            <span data-progress="{{ block.settings.progress_value }}"></span>
+          </div>
+
+          	  <style>
+                #skill-{{ block.id }}.animated-progress > h6 {
+                  color: {{ block.settings.text_color }};
+                }
+                #skill-{{ block.id }}.animated-progress span {
+                  background-color: {{ block.settings.progress_color }};
+                }
+
+              </style> 
+          
+          {%  endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Slill Progress -->
+{% endif %}
+
+
+
+<script>
+$(".animated-progress span").each(function () {
+  $(this).animate(
+    {
+      width: $(this).attr("data-progress") + "%",
+    },
+    1000
+  );
+  $(this).text($(this).attr("data-progress") + "%");
+});
+
+</script>
+
+
+
+<style>
+  #section-{{ section.id }}{
+    {%- for block in section.blocks -%}
+    {%- case block.type -%}
+    {%- when 'section_margin' -%}
+    margin-top: {{ block.settings.section_margin_top }}px;
+    margin-bottom: {{ block.settings.section_margin_bottom }}px;
+    {%- when 'section_padding' -%}
+    padding-top: {{ block.settings.section_padding_top }}px;
+    padding-bottom: {{ block.settings.section_padding_bottom }}px;
+    {%- when 'section_background' -%}    
+    background: {{ block.settings.section_bg_color }} 
+      {%- if block.settings.section_bg_image -%}url("{{ block.settings.section_bg_image | img_url: 'master' }}"){%- endif -%} no-repeat scroll center center / cover;
+    {%- endcase -%}
+    {%- endfor -%}
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    #section-{{ section.id }}{
+      {%- for block in section.blocks -%}
+      {% case block.type %}
+      {%- when 'section_margin' -%}
+      margin-top: {{ block.settings.section_margin_top_md }}px;
+      margin-bottom: {{ block.settings.section_margin_bottom_md }}px;
+      {%- when 'section_padding' -%}
+      padding-top: {{ block.settings.section_padding_top_md }}px;
+      padding-bottom: {{ block.settings.section_padding_bottom_md }}px;
+      {%- endcase -%}
+      {%- endfor -%}
+    }
+  }
+  @media (max-width: 767px) {
+    #section-{{ section.id }}{
+      {%- for block in section.blocks -%}
+      {%- case block.type -%}
+      {%- when 'section_margin' -%}
+      margin-top: {{ block.settings.section_margin_top_xs }}px;
+      margin-bottom: {{ block.settings.section_margin_bottom_xs }}px;
+      {%- when 'section_padding' -%}
+      padding-top: {{ block.settings.section_padding_top_xs }}px;
+      padding-bottom: {{ block.settings.section_padding_bottom_xs }}px;
+      {%- endcase -%}
+      {%- endfor -%}
+    }
+  }
+  
+  
+.animated-progress {
+  width: 100%;
+  height: 30px;
+  margin: 20px 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.animated-progress span {
+  height: 100%;
+  display: block;
+  width: 0;
+  color: rgb(255, 251, 251);
+  line-height: 30px;
+  position: absolute;
+  text-align: end;
+  padding-right: 5px;
+}
+
+.progress-blue span {
+  background-color: blue;
+}
+.progress-green span {
+  background-color: green;
+}
+.progress-purple span {
+  background-color: indigo;
+}
+.progress-red span {
+  background-color: red;
+} 
+  
+  
+  
+  
+</style>
+
+
+{% schema %}
+  {
+    "name": "Progress Bar",
+    "settings": [
+	 {
+    	"type": "header",
+    	"content": "Progress Bar Section"
+     },
+	 {
+        "type": "checkbox",
+        "id": "progress_enable",
+        "label": "Show Progress Bar Section",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Progress Bar Content"
+      },
+      {
+        "type": "text",
+        "id": "progress_bar_top_title",
+        "label": "Skill Bar Title",
+        "default": "Functionality Meets Perfection"
+      },
+	  {
+        "type": "text",
+        "id": "progress_bar_top_content",
+        "label": "Skill Bar Content",
+        "default": "In today’s day and age, one cannot underestimate the importance of design, the art of creating striking visuals to move and captivate your audience. And as the world becomes more and more digitized with each passing second, the importance of graphic design has been rocketed to the top."
+      }
+	],
+    "blocks": [
+      {
+        "type": "progress_bar_area",
+        "name": "Progress Bar",
+        "settings": [
+    
+          {
+            "type": "text",
+            "id": "progress_title",
+            "label": "Progress Bar Title",
+            "default": "UI/UX"
+          },
+          {
+            "type": "text",
+            "id": "progress_value",
+            "label": "Progress Bar Value",
+            "default": "75"
+          },
+		  {
+            "type": "text",
+            "id": "data_aos_delay",
+            "label": "Progress Bar Data Delay",
+            "default": "0"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Title Color",
+            "default": "#212121"
+          },
+          {
+            "type": "color",
+            "id": "progress_color",
+            "label": "Progress Bar Color",
+            "default": "#ff7004"
+          }
+        ]
+      },
+	  {
+          "type": "section_margin",
+          "name": "Section Margin",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Tablate Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			}
+          ]
+       },
+	   {
+          "type": "section_padding",
+          "name": "Section Padding",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 100
+			},
+			{
+			  "type": "header",
+			  "content": "Tablate Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 80
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 60
+			}
+          ]
+       },
+	   {
+          "type": "section_background",
+          "name": "Section Background",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "image_picker",
+			  "id": "section_bg_image",
+			  "label": "BG Image"
+			},
+			{
+			  "type": "color",
+			  "id": "section_bg_color",
+			  "label": "BG Color",
+			  "default": "#ffffff"
+			}
+          ]
+       }
+    ],
+    "presets":[
+        {
+            "name": "Progress bar",
+            "category": "7. About Page"
+        }
+    ]
+
+
+
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

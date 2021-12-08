@@ -1,0 +1,466 @@
+{%- assign sset = section.settings -%}
+{%- if sset.show_team_section -%}
+<!--  Start  Team Section    -->
+<div class="team-section" id="section-{{ section.id }}">
+  {%- if sset.team_title != '' -%}
+  <!-- Start Section Content Text Area -->
+  <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-title text-center">
+            <h2 class="title">{{ sset.team_title }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Section Content Text Area -->
+  {%- endif -%}
+
+  <div class="team-wrapper">
+    <div class="container{% if section.settings.fullwidth_on %}-fluid{%endif%}">
+      <div class="row">
+        {%- for block in section.blocks -%}
+        {%- case block.type -%}
+        {%- when 'team_member' -%}
+        {%- assign bset = block.settings -%}
+        <div class="col-lg-{{ sset.member_col_lg }} col-md-{{ sset.member_col_md }} col-sm-{{ sset.member_col_sm }} mb-5">
+          <div class="team-single" data-aos="fade-up" data-aos-delay="0">
+            <div class="team-img">
+              {%- if bset.member_img -%}
+              <img class="img-fluid" src="{{ bset.member_img | img_url: 'master' }}" alt="{{ image.alt }}">
+              {%- else -%}
+              <img class="img-fluid" src="https://via.placeholder.com/200x200" alt="placeholder-img">
+              {%- endif -%}
+            </div>
+            <div class="team-content">
+              {%- if bset.member_name != '' -%}
+              <h6 class="team-name font--bold mt-5">{{ bset.member_name }}</h6>
+              {%- endif -%}
+              {%- if bset.member_desig != '' -%}
+              <span class="team-title">{{ bset.member_desig }}</span>
+              {%- endif -%}
+
+              <ul class="team-social pos-absolute">
+                {%- if bset.show_fb -%}
+                <li><a href="{{ bset.fb_url }}"><i class="ion-social-facebook"></i></a></li>
+                {%- endif -%}
+                {%- if bset.show_twitter -%}
+                <li><a href="{{ bset.twitter_url }}"><i class="ion-social-twitter"></i></a></li>
+                {%- endif -%}
+                {%- if bset.show_instagram -%}
+                <li><a href="{{ bset.instagram_url }}"><i class="ion-social-instagram"></i></a></li>
+                {%- endif -%}
+                {%- if bset.show_linkedin -%}
+                <li><a href="{{ bset.linkedin_url }}"><i class="ion-social-linkedin"></i></a></li>
+                {%- endif -%}
+                {%- if bset.show_rss -%}
+                <li><a href="{{ bset.rss_url }}"><i class="ion-social-rss"></i></a></li>
+                {%- endif -%}
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+		{%- endcase -%}
+        {%- endfor -%}
+ 
+      </div>
+    </div>
+  </div>
+</div>
+<!--   End  Team Section   -->
+{%- endif -%}
+
+
+
+{%- render 'section-style' -%}
+
+
+{% schema %}
+  {
+    "name": "Team Members",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_team_section",
+            "label": "Show Team Member",
+            "default": true
+        },
+		{
+            "type": "checkbox",
+            "id": "fullwidth_on",
+            "label": "Full Width Enable",
+            "default": false,
+            "info": "If you want Full Width click checkbox"
+        },
+        {
+            "type": "text",
+            "id": "team_title",
+            "label": "Section Title",
+            "default": "Meet Our Team"
+        },
+        {
+            "type": "select",
+            "id": "member_col_lg",
+            "label": "Column for LG",
+            "options":[
+                {
+                  "label": "2",
+                  "value": "6"
+                },
+                {
+                  "label": "3",
+                  "value": "4"
+                },
+                {
+                  "label": "4",
+                  "value": "3"
+                },
+				{
+                  "label": "6",
+                  "value": "2"
+                }
+            ],
+            "default": "3"
+        },
+		{
+            "type": "select",
+            "id": "member_col_md",
+            "label": "Column for MD",
+            "options":[
+                {
+                  "label": "2",
+                  "value": "6"
+                },
+                {
+                  "label": "3",
+                  "value": "4"
+                },
+                {
+                  "label": "4",
+                  "value": "3"
+                },
+				{
+                  "label": "6",
+                  "value": "2"
+                }
+            ],
+            "default": "6"
+        },
+		{
+            "type": "select",
+            "id": "member_col_sm",
+            "label": "Column for SM",
+            "options":[
+                {
+                  "label": "2",
+                  "value": "6"
+                },
+                {
+                  "label": "3",
+                  "value": "4"
+                },
+                {
+                  "label": "4",
+                  "value": "3"
+                },
+				{
+                  "label": "6",
+                  "value": "2"
+                }
+            ],
+            "default": "6"
+        }
+	],
+    "blocks": [
+        {
+            "type": "team_member",
+            "name": "Team Member",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "member_img",
+                    "label": "Image",
+                    "info": "Recommended size: 200x200px"
+                },
+                {
+                    "type": "text",
+                    "id": "member_name",
+                    "label": "Name",
+                    "default": "Ms. Veronica"
+                },
+                {
+                    "type": "text",
+                    "id": "member_desig",
+                    "label": "Designation",
+                    "default": "Web Designer"
+                },
+                {
+                    "type": "header",
+                    "content": "Member Social"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_fb",
+                    "label": "Show Facebook",
+                    "default": true
+                },
+                {
+                    "type": "url",
+                    "id": "fb_url",
+                    "label": "Facbook URL"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_twitter",
+                    "label": "Show Twitter",
+                    "default": true
+                },
+                {
+                    "type": "url",
+                    "id": "twitter_url",
+                    "label": "Twitter URL"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_instagram",
+                    "label": "Show Instagram",
+                    "default": true
+                },
+                {
+                    "type": "url",
+                    "id": "instagram_url",
+                    "label": "Instagram URL"
+                },
+				{
+                    "type": "checkbox",
+                    "id": "show_linkedin",
+                    "label": "Show linkedin",
+                    "default": true
+                },
+                {
+                    "type": "url",
+                    "id": "linkedin_url",
+                    "label": "linkedin URL"
+                },
+				{
+                    "type": "checkbox",
+                    "id": "show_rss",
+                    "label": "Show rss",
+                    "default": true
+                },
+                {
+                    "type": "url",
+                    "id": "rss_url",
+                    "label": "rss URL"
+                }
+			]
+		},
+	    {
+          "type": "section_margin",
+          "name": "Section Margin",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			}
+          ]
+       },
+	   {
+          "type": "section_padding",
+          "name": "Section Padding",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 100
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 65
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_md",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 80
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_md",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 45
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_xs",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 50
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_xs",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 30
+			}
+          ]
+       },
+	   {
+          "type": "section_background",
+          "name": "Section Background",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "image_picker",
+			  "id": "section_bg_image",
+			  "label": "BG Image"
+			},
+			{
+			  "type": "color",
+			  "id": "section_bg_color",
+			  "label": "BG Color",
+			  "default": "#ffffff"
+			}
+          ]
+       }
+	],
+    "presets":[
+      {
+        "name": "Team Members",
+        "category": "6. Services",
+        "blocks":[
+          {
+            "type": "team_member"
+          },
+          {
+            "type": "team_member"
+          },
+          {
+            "type": "team_member"
+          },
+          {
+            "type": "team_member"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

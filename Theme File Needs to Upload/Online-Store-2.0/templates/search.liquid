@@ -1,0 +1,51 @@
+{% assign grid_results = false %}
+{% assign respond_js_secret_key = shop.domain | md5 %}
+{% unless search.terms == respond_js_secret_key %}
+
+{% paginate search.results by 10 %}
+<div class="theme-default-margin search-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 col-md-12">
+        {% if search.performed %}
+        {% if search.results_count == 0 %}
+        <h4 class="text-center page-search-title">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h4>
+        {% else %}
+        <h4 class="text-center page-search-title">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h4>
+        {% endif %}
+        {% else %}
+        <h4 class="text-center page-search-title">{{ 'general.search.title' | t }}</h4>
+        {% endif %}
+        
+        <div class="page-search-bar">
+          <form action="/search" method="get" class="page-search-form" role="search">
+            {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
+            <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="" aria-label="{{ 'general.search.placeholder' | t }}">
+            <button type="submit" class="page-search-button theme-default-button">
+              <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+            </button>
+          </form>
+        </div>
+ 
+        {% if search.performed %}
+        <div class="search-list">
+          {% for item in search.results %}
+          {% include 'product-search-item' %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if paginate.pages > 1 %}
+        <div class="page-search-pagination">
+          {% include 'pagination' %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endpaginate %}
+
+{% else %}
+{% include 'respond' %}
+{% layout none %}
+{% endunless %}

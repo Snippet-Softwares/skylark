@@ -1,0 +1,417 @@
+<!-- Product tab Area Start -->
+<div class="section product-tab-area" id="section-{{ section.id }}">
+  <div class="container{% if section.settings.fullwidth_on %}-fluid{% endif %}">
+    <div class="row">
+      {% if section.settings.section_title != '' %}
+      <div class="col-md-12 text-center" data-aos="fade-up">
+        <div class="section-title mb-0">
+          <h2 class="title">{{ section.settings.section_title }}</h2>
+          {% if section.settings.section_desc != '' %}
+          <p class="sub-title mb-6">{{ section.settings.section_desc }}</p>
+          {%endif%}
+        </div>
+      </div>
+	  {%endif%}
+
+      <!-- Tab Start -->
+      <div class="col-md-12 text-center mb-8" data-aos="fade-up" data-aos-delay="200">
+        <ul class="product-tab-nav nav justify-content-center" id="tabmenubar" role="tablist">
+          {%- assign i = 1 -%}
+          {% for block in section.blocks %}
+          {%- case block.type -%}
+          {%- when 'tab_with_product' -%}
+          {%- assign tab_product = collections[block.settings.tab_product_handle] -%}
+
+          {%- if tab_product == empty -%}
+          <li class="nav-item">
+            <a class="nav-link {% if forloop.first == true %}active{% endif %}" id="arrival-tab" data-toggle="tab" data-bs-toggle="tab" href="#tab-{{ i }}" role="tab" aria-controls="arrival" aria-selected="true">Tab-{{ i }}</a>
+          </li>
+          {%- assign i = i | plus: 1 -%}
+          {%- else -%}
+          <li class="nav-item">
+            <a class="nav-link {% if forloop.first == true %}active{% endif %}" id="sellers-tab" data-toggle="tab" data-bs-toggle="tab" href="#tab-{{ block.id }}-{{ tab_product.title | handle }}" role="tab" aria-controls="sellers" aria-selected="false">{{ tab_product.title }}</a>
+          </li>
+          {%- endif -%}
+          {%- endcase -%}
+          {% endfor %}
+        </ul>
+      </div>
+      <!-- Tab End -->
+      
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="tab-content">
+          {%- assign i = 1 -%}
+          {% for block in section.blocks %}
+          {%- case block.type -%}
+          {%- when 'tab_with_product' -%}
+          {%- assign tab_product = collections[block.settings.tab_product_handle] -%}
+          {%- assign product_limit = section.settings.product_limit_handle -%}
+          {%- if tab_product == empty -%}
+          <div class="tab-pane fade{% if forloop.first == true %} show active{% endif %}" id="tab-{{ i }}">
+            <div class="row">
+              {% for i in (1..product_limit) %}
+              {% capture a %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+              <div class="col-lg-{{ section.settings.product_column }} col-md-{{ section.settings.product_column_md }} col-{{ section.settings.product_column_xs }}" style="margin-bottom: 30px;">
+                <div>
+                  <div>
+                    {% assign product_item = "product-" | append: a  %}
+                    {{ product_item | placeholder_svg_tag: 'product-svg-image' }}
+                  </div>
+                  <h6>
+                    Product Title
+                  </h6>
+                  <div class="">
+                    <span>$99.99</span>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {%- assign i = i | plus: 1 -%}
+          {%- else -%}
+          <!-- 1st tab start -->
+          <div class="tab-pane fade {% if forloop.first == true %}show active{% endif %}" id="tab-{{ block.id }}-{{ tab_product.title | handle }}" role="tabpanel" aria-labelledby="arrival-tab">
+            <div class="row">
+              {% assign product_column = section.settings.product_column_handle %}
+              {% for product in tab_product.products limit: product_limit %}
+              <div class="col-lg-{{ section.settings.product_column }} col-md-{{ section.settings.product_column_md }} col-{{ section.settings.product_column_xs }}" data-aos="fade-up" data-aos-delay="200">
+                {%- render 'product-grid-item' with product as product -%}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- 1st tab end -->
+          {%- endif -%}
+          {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Product tab Area End -->
+
+
+{%- render 'section-style' -%}
+
+
+{% schema %}
+  {
+    "name": "Tab With Product",
+    "settings": [
+        {
+          "type": "header",
+          "content": "Container Width Control"
+        },
+        {
+          "type": "checkbox",
+          "id": "fullwidth_on",
+          "label": "Full Width Enable",
+          "default": false,
+          "info": "If you want Full Width click checkbox"
+        },
+		{
+			"type": "header",
+            "content": "Section Title"
+        },
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Our Products"
+        },
+		{
+          "type": "text",
+          "id": "section_desc",
+          "label": "Section Description",
+		  "default": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore"
+        },
+		{
+			"type": "header",
+            "content": "Product"
+        },
+		{
+            "type": "range",
+            "id": "product_limit_handle",
+            "min": 2,
+            "max": 36,
+            "step": 1,
+            "label": "Limit",
+            "default": 8
+        },
+		{
+			"type": "header",
+            "content": "Product Column"
+        },
+		{
+          "type": "select",
+          "id": "product_column",
+          "label": "Desktop",
+		  "options":[
+				{
+                    "label": "2",
+                    "value": "6"
+                },
+                {
+                    "label": "3",
+                    "value": "4"
+                },
+                {
+                    "label": "4",
+                    "value": "3"
+                }
+			],
+			"default": "3"
+      	},
+		{
+          "type": "select",
+          "id": "product_column_md",
+          "label": "Tablet",
+		  "options":[
+				{
+                    "label": "2",
+                    "value": "6"
+                },
+                {
+                    "label": "3",
+                    "value": "4"
+                },
+                {
+                    "label": "4",
+                    "value": "3"
+                }
+			],
+			"default": "4"
+      	},
+		{
+          "type": "select",
+          "id": "product_column_xs",
+          "label": "Mobile",
+		  "options":[
+				{
+                    "label": "1",
+                    "value": "12"
+                },
+                {
+                    "label": "2",
+                    "value": "6"
+                }
+			],
+			"default": "12"
+      	}
+    ],
+	"blocks":[
+	   {
+          "type": "tab_with_product",
+          "name": "Tab with product",
+          "settings": [
+			{
+			  "type": "collection",
+			  "id": "tab_product_handle",
+			  "label": "Tab With Product"
+			}
+          ]
+       },
+	   {
+          "type": "section_margin",
+          "name": "Section Margin",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			}
+          ]
+       },
+	   {
+          "type": "section_padding",
+          "name": "Section Padding",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 100
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 80
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 60
+			}
+          ]
+       },
+	   {
+          "type": "section_background",
+          "name": "Section Background",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "image_picker",
+			  "id": "section_bg_image",
+			  "label": "BG Image"
+			},
+			{
+			  "type": "color",
+			  "id": "section_bg_color",
+			  "label": "BG Color",
+			  "default": "#ffffff"
+			}
+          ]
+       }
+	],
+	"presets": [
+		{
+		  "name": "Tab With Product",
+		  "category": "3. collections",
+		  "blocks":[
+				{
+					"type": "tab_with_product"
+				},
+				{
+					"type": "tab_with_product"
+				},
+				{
+					"type": "tab_with_product"
+				},
+				{
+					"type": "section_padding"
+				}
+			]
+		}
+	]
+  }
+{% endschema %}
+

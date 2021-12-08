@@ -1,0 +1,215 @@
+{%- if section.settings.custom_collection_enable -%}
+<!-- New Product Start -->
+<div id="section-{{ section.id }}" class="section pb-100px" data-aos="fade-up" data-aos-delay="200">
+  <div class="container">
+    <!-- section title start -->
+    {% if section.settings.section_title != '' %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title text-left mb-11">
+          <h2 class="title">{{ section.settings.section_title }}</h2>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <!-- section title start -->
+    <div class="new-product-slider swiper-container slider-nav-style-1" data-aos="fade-up" data-aos-delay="200">
+      <div class="new-product-wrapper swiper-wrapper">
+        <!-- product-item start -->
+        {% assign featured_product = collections[section.settings.featured_product_handle] %}
+        {% assign featured_product_limit = section.settings.featured_product_limit_handle %}
+
+        {%- if featured_product == empty -%}
+        {% assign a = 1 %}
+        {% for i in (1..featured_product_limit) %}
+
+        {% assign product_item = "product-" | append: a  %}
+        {% assign a = a | plus: 1 %}
+        <div class="new-product-item swiper-slide" style="margin-bottom: 30px;">
+          <div>
+            <div style="background: #f2f2f2;">
+              {{ product_item | placeholder_svg_tag: 'my-custom-class' }}
+            </div>
+            <br>
+            <h6>
+              Product Title
+            </h6>
+            <div class="">
+              <span>$99.99</span>
+            </div>
+          </div>
+        </div>
+        {% if a == 7 %}
+        {% assign a = 1 %}
+        {% endif %}
+        {% endfor %}
+
+
+        {%- else -%}
+        {% for product in featured_product.products limit: featured_product_limit %}
+        <!-- Single Prodect -->
+        <div class="new-product-item swiper-slide">
+          {%- render 'product-grid-item' with product as product -%}
+        </div>
+        {% endfor %}
+        {%- endif -%}
+      </div>
+      <!-- Add Arrows -->
+      <div class="swiper-buttons">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- New Product End -->
+{%- endif -%}
+
+<script>
+  /*---------------------
+        New Product Slider
+     ---------------------- */
+
+    var productSlider = new Swiper('.new-product-slider.swiper-container', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        speed: 1500,
+        loop: true,
+
+        // Navigation arrows
+
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            478: {
+                slidesPerView: 2,
+            },
+            576: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            992: {
+                slidesPerView: 3,
+            },
+            1200: {
+                slidesPerView: 4,
+            },
+        },
+    });
+</script>
+
+{% schema %}
+  {
+    "name": "Custom Collection",
+    "settings": [
+		{
+          "type": "checkbox",
+          "id": "custom_collection_enable",
+          "label": "Show Custom Collection",
+          "default": true
+      	},
+		{
+		  "type": "header",
+          "content": "Section Heading"
+        },
+		{
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Section Title Here"
+      	},
+		{
+			"type": "header",
+            "content": "Product"
+        },
+		{
+			"type": "collection",
+            "id": "featured_product_handle",
+            "label": "Select Collection"
+        },
+		{
+            "type": "range",
+            "id": "featured_product_limit_handle",
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "label": "Limit",
+            "default": 8
+        },
+		{
+			"type": "header",
+            "content": "Product Column"
+        },
+		{
+          "type": "select",
+          "id": "product_column",
+          "label": "Desktop",
+		  "options":[
+				{
+                    "label": "2",
+                    "value": "6"
+                },
+                {
+                    "label": "3",
+                    "value": "4"
+                },
+                {
+                    "label": "4",
+                    "value": "3"
+                }
+			],
+			"default": "3"
+      	},
+		{
+          "type": "select",
+          "id": "product_column_md",
+          "label": "Tablet",
+		  "options":[
+				{
+                    "label": "2",
+                    "value": "6"
+                },
+                {
+                    "label": "3",
+                    "value": "4"
+                },
+                {
+                    "label": "4",
+                    "value": "3"
+                }
+			],
+			"default": "4"
+      	},
+		{
+          "type": "select",
+          "id": "product_column_xs",
+          "label": "Mobile",
+		  "options":[
+				{
+                    "label": "1",
+                    "value": "12"
+                },
+                {
+                    "label": "2",
+                    "value": "6"
+                }
+			],
+			"default": "12"
+      	}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

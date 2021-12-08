@@ -1,0 +1,465 @@
+<!-- Instagram Area Start -->
+<div id="section-{{ section.id }}" class="section pb-100px">
+  <div class="container{% if section.settings.fullwidth_on %}-fluid{% endif %}">
+    <!-- section title start -->
+    {% if section.settings.section_title != '' %}
+    <div class="row">
+      <div class="col-md-12" data-aos="fade-up">
+        <div class="section-title text-center mb-11">
+          <h2 class="title">{{ section.settings.section_title }}</h2>
+          {% if section.settings.section_sub_title != '' %}
+          <p class="sub-title">{{ section.settings.section_sub_title }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    <div class="row">
+      {%- for block in section.blocks -%}{%- case block.type -%}
+      {%- when 'instagram_item' -%}{%- assign bset = block.settings -%}
+      <!-- Single Item -->
+      <div class="col-lg-{{ bset.ban_col_lg }} col-md-{{ bset.ban_col_md }} col-sm-{{ bset.ban_col_sm }} mb-md-30px mb-lm-30px" data-aos="fade-up" data-aos-delay="200">
+        <div class="insta-wrapper">
+          <a href="{{ bset.btn1_url }}" target="_blank">
+            {%- if bset.img1 -%}
+            <img class="lazyload w-100" src="{{ bset.img1 | img_url: 'original' }}" alt="{{ image.alt }}">              
+            {%- else -%}
+            <img class="lazyload w-100" src="https://via.placeholder.com/345x345" alt="{{ image.alt }}">
+            {%- endif -%}
+          </a>
+        </div>
+      </div>
+      {%- endcase -%}{%- endfor -%}
+    </div>
+  </div>
+</div>
+<!-- Instagram Area End -->
+
+
+{%- render 'section-style' -%}
+
+
+{% schema %}
+  {
+    "name": "Instagram Feed Gallery",
+    "settings": [			
+			{
+                "type": "header",
+                "content": "Width Control"
+            },
+  			{
+              "type": "checkbox",
+              "id": "fullwidth_on",
+              "label": "Full Width Enable",
+              "default": false,
+              "info": "If you want Full Width click checkbox"
+          	},
+            {
+              "type": "header",
+              "content": "Section Heading"
+            },
+            {
+              "type": "text",
+              "id": "section_title",
+              "label": "Section Title",
+              "default": "Follow Us Instagram"
+            },
+            {
+              "type": "text",
+              "id": "section_sub_title",
+              "label": "Section Sub Title",
+              "default": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore"
+            }
+            
+		],
+	"blocks":[
+	   {
+          "type": "instagram_item",
+          "name": "Instagram Post",
+          "settings": [
+			  {
+                "type": "select",
+                "id": "ban_col_lg",
+                "label": "Select Column LG",
+                "options":[
+                      {
+                          "label": "1",
+                          "value": "1"
+                      },
+                      {
+                          "label": "2",
+                          "value": "2"
+                      },
+                      {
+                          "label": "3",
+                          "value": "3"
+                      },
+                      {
+                          "label": "4",
+                          "value": "4"
+                      },
+					  {
+                          "label": "5",
+                          "value": "5"
+                      },
+					  {
+                          "label": "6",
+                          "value": "6"
+                      },
+                      {
+                          "label": "7",
+                          "value": "7"
+                      },
+                      {
+                          "label": "8",
+                          "value": "8"
+                      },
+                      {
+                          "label": "9",
+                          "value": "9"
+                      },
+					  {
+                          "label": "10",
+                          "value": "10"
+                      },
+					  {
+                          "label": "11",
+                          "value": "11"
+                      },
+					  {
+                          "label": "12",
+                          "value": "12"
+                      }
+                  ],
+                  "default": "3"
+              },
+              {
+                "type": "select",
+                "id": "ban_col_md",
+                "label": "Select Column MD",
+                "options":[
+                      {
+                          "label": "1",
+                          "value": "1"
+                      },
+                      {
+                          "label": "2",
+                          "value": "2"
+                      },
+                      {
+                          "label": "3",
+                          "value": "3"
+                      },
+                      {
+                          "label": "4",
+                          "value": "4"
+                      },
+					  {
+                          "label": "5",
+                          "value": "5"
+                      },
+					  {
+                          "label": "6",
+                          "value": "6"
+                      },
+                      {
+                          "label": "7",
+                          "value": "7"
+                      },
+                      {
+                          "label": "8",
+                          "value": "8"
+                      },
+                      {
+                          "label": "9",
+                          "value": "9"
+                      },
+					  {
+                          "label": "10",
+                          "value": "10"
+                      },
+					  {
+                          "label": "11",
+                          "value": "11"
+                      },
+					  {
+                          "label": "12",
+                          "value": "12"
+                      }
+                  ],
+                  "default": "6"
+              },
+			  {
+                "type": "select",
+                "id": "ban_col_sm",
+                "label": "Select Column SM",
+                "options":[
+                      {
+                          "label": "1",
+                          "value": "1"
+                      },
+                      {
+                          "label": "2",
+                          "value": "2"
+                      },
+                      {
+                          "label": "3",
+                          "value": "3"
+                      },
+                      {
+                          "label": "4",
+                          "value": "4"
+                      },
+					  {
+                          "label": "5",
+                          "value": "5"
+                      },
+					  {
+                          "label": "6",
+                          "value": "6"
+                      },
+                      {
+                          "label": "7",
+                          "value": "7"
+                      },
+                      {
+                          "label": "8",
+                          "value": "8"
+                      },
+                      {
+                          "label": "9",
+                          "value": "9"
+                      },
+					  {
+                          "label": "10",
+                          "value": "10"
+                      },
+					  {
+                          "label": "11",
+                          "value": "11"
+                      },
+					  {
+                          "label": "12",
+                          "value": "12"
+                      }
+                  ],
+                  "default": "6"
+              },
+              {
+                  "type": "image_picker",
+                  "id": "img1",
+                  "label": "Image"
+              },
+              {
+                  "type": "url",
+                  "id": "btn1_url",
+                  "label": "URL"
+              }
+          ]
+       },
+	   {
+          "type": "section_margin",
+          "name": "Section Margin",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			}
+          ]
+       },
+	   {
+          "type": "section_padding",
+          "name": "Section Padding",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 100
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 65
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_md",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 80
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_md",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 45
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_xs",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 50
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_xs",
+			  "min": 0,
+			  "max": 300,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 30
+			}
+          ]
+       },
+	   {
+          "type": "section_background",
+          "name": "Section Background",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "image_picker",
+			  "id": "section_bg_image",
+			  "label": "BG Image"
+			},
+			{
+			  "type": "color",
+			  "id": "section_bg_color",
+			  "label": "BG Color",
+			  "default": "#ffffff"
+			}
+          ]
+       }
+	],
+	"presets": [
+		{
+		  "name": "Instagram Feed Gallery",
+		  "category": "others",
+		  "blocks":[
+				{
+					"type": "instagram_item"
+				},
+				{
+					"type": "instagram_item"
+				},
+				{
+					"type": "instagram_item"
+				},
+				{
+					"type": "instagram_item"
+				}
+			]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

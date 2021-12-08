@@ -1,0 +1,35 @@
+{%- if product.handle != blank -%}
+<a class="action-wishlist tile-actions--btn flex wishlist-btn wishlist" href="javascript: void(0)" button-wishlist data-product-handle="{{ product.handle }}" data-toggle="tooltip" data-placement="top" title="{{ settings.wishlist_title }}">
+  <span class="add-wishlist">{{ settings.add_wishlit_title }} Add to wishlist</span>
+  <span class="loading-wishlist"> {{ settings.loading_wishlist }}</span>
+  <span class="remove-wishlist"> {{ settings.remove_wishlit_title }}</span>
+</a>
+{%- endif -%}
+<a class="go-to-wishlist" href="/pages/wishlist" data-toggle="tooltip" data-placement="top" title="{{ settings.wishlist_title }}"><i class="icon-heart"></i>{{ settings.go_to_wishlit_title }}</a>
+
+
+
+
+
+
+
+
+
+
+{% comment %}
+
+
+{% if customer %}
+<a class="action-wishlist tile-actions--btn flex wishlist-btn action wishlist" href="#" data-product-handle="{{ product.handle }}">
+  <i class="ion-android-favorite-outline"></i><span class="add-wishlist">{{ settings.add_wishlit_title }}</span>
+  <i class="icon-refresh"></i><span class="loading-wishlist">{{ settings.loading_wishlist }}</span>
+  <i class="icon-trash"></i><span class="remove-wishlist">{{ settings.remove_wishlit_title }}</span>
+</a>
+{% else %}
+<a class="action wishlist tile-actions--btn flex wishlist-btn action wishlist" href="/account/login" title="Wishlist">
+{{ settings.add_wishlit_title }} Add to wishlist
+</a>
+{% endif %}
+
+
+{% endcomment %}

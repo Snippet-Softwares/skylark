@@ -1,0 +1,356 @@
+{
+  "sections": {
+    "16344672293348ce72": {
+      "type": "slider-two",
+      "blocks": {
+        "16344672293348ce72-0": {
+          "type": "slide3",
+          "settings": {
+            "slider_bg_img3": "shopify:\/\/shop_images\/slider-2-1.jpg",
+            "slider_title": "Flexible Sofa Set",
+            "slider_sub_title": "New Products",
+            "slider_content": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore et dolore magna",
+            "slider_button": "Shop now",
+            "slider_button_url": "",
+            "slider_title_color": "#fff",
+            "slider_subtitle_color": "#fff",
+            "slider_content_color": "#fff",
+            "slider_btn_color": "#fff",
+            "slider_btn_bg_color": "#ff7004",
+            "slider_btn_bc_color": "#ff7004",
+            "slider_btn_color_hov": "#fff",
+            "slider_btn_bg_color_hov": "#ff862a",
+            "slider_btn_bc_color_hov": "#ff862a"
+          }
+        },
+        "16344672293348ce72-1": {
+          "type": "slide3",
+          "settings": {
+            "slider_bg_img3": "shopify:\/\/shop_images\/slider-2-2.jpg",
+            "slider_title": "Flexible Sofa Set",
+            "slider_sub_title": "New Products",
+            "slider_content": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore et dolore magna",
+            "slider_button": "Shop now",
+            "slider_button_url": "",
+            "slider_title_color": "#fff",
+            "slider_subtitle_color": "#fff",
+            "slider_content_color": "#fff",
+            "slider_btn_color": "#fff",
+            "slider_btn_bg_color": "#ff7004",
+            "slider_btn_bc_color": "#ff7004",
+            "slider_btn_color_hov": "#fff",
+            "slider_btn_bg_color_hov": "#ff862a",
+            "slider_btn_bc_color_hov": "#ff862a"
+          }
+        }
+      },
+      "block_order": [
+        "16344672293348ce72-0",
+        "16344672293348ce72-1"
+      ],
+      "settings": {
+        "slider_on_off": "5000",
+        "autoplay_speed": 5000,
+        "slider_next_prev_btn_color": "#212121",
+        "slider_next_prev_btn_bg": "#fff",
+        "slider_next_prev_btn_hov_color": "#fff",
+        "slider_next_prev_btn_hov_bg": "#ff7004"
+      }
+    },
+    "1634467343a19be116": {
+      "type": "banner-grid-two",
+      "blocks": {
+        "1634467343a19be116-0": {
+          "type": "banner",
+          "settings": {
+            "ban_col_lg": "4",
+            "ban_col": "4",
+            "banner_content_alingment": "start",
+            "img1": "shopify:\/\/shop_images\/5.jpg",
+            "t2": "New Office Chair <br> Collection",
+            "button": "Shop Now",
+            "btn1_url": "",
+            "t1_color": "#212121",
+            "btn_color": "#474747",
+            "btn_color_hov": "#ff7004"
+          }
+        },
+        "1634467343a19be116-1": {
+          "type": "banner",
+          "settings": {
+            "ban_col_lg": "4",
+            "ban_col": "4",
+            "banner_content_alingment": "start",
+            "img1": "shopify:\/\/shop_images\/6.jpg",
+            "t2": "Living Room <br> Collection",
+            "button": "Shop Now",
+            "btn1_url": "",
+            "t1_color": "#212121",
+            "btn_color": "#474747",
+            "btn_color_hov": "#ff7004"
+          }
+        },
+        "8e1ff426-a422-4b6a-84fb-03eeec6de3ef": {
+          "type": "banner",
+          "settings": {
+            "ban_col_lg": "4",
+            "ban_col": "4",
+            "banner_content_alingment": "start",
+            "img1": "shopify:\/\/shop_images\/7.jpg",
+            "t2": "Children Room <br> Collection",
+            "button": "Shop Now",
+            "btn1_url": "",
+            "t1_color": "#212121",
+            "btn_color": "#474747",
+            "btn_color_hov": "#ff7004"
+          }
+        },
+        "cf429662-b21f-4bf7-9577-2098d698ca8c": {
+          "type": "section_padding",
+          "settings": {
+            "section_padding_top": 50,
+            "section_padding_bottom": 100,
+            "section_padding_top_md": 40,
+            "section_padding_bottom_md": 80,
+            "section_padding_top_xs": 30,
+            "section_padding_bottom_xs": 65
+          }
+        }
+      },
+      "block_order": [
+        "1634467343a19be116-0",
+        "1634467343a19be116-1",
+        "8e1ff426-a422-4b6a-84fb-03eeec6de3ef",
+        "cf429662-b21f-4bf7-9577-2098d698ca8c"
+      ],
+      "settings": {
+        "fullwidth_on": false
+      }
+    },
+    "tab-with-product": {
+      "type": "tab-with-product",
+      "blocks": {
+        "c34b7781-406b-4f59-8311-25f298c37efd": {
+          "type": "tab_with_product",
+          "settings": {
+            "tab_product_handle": "new-arrivala"
+          }
+        },
+        "33a5f52b-e70f-4b93-97c4-286dcdd6e1a8": {
+          "type": "tab_with_product",
+          "settings": {
+            "tab_product_handle": "top-product"
+          }
+        },
+        "039a7644-2363-4708-8bab-bca1db8f9e47": {
+          "type": "tab_with_product",
+          "settings": {
+            "tab_product_handle": "top-rated"
+          }
+        }
+      },
+      "block_order": [
+        "c34b7781-406b-4f59-8311-25f298c37efd",
+        "33a5f52b-e70f-4b93-97c4-286dcdd6e1a8",
+        "039a7644-2363-4708-8bab-bca1db8f9e47"
+      ],
+      "settings": {
+        "fullwidth_on": false,
+        "section_title": "Our Products",
+        "section_desc": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore",
+        "product_limit_handle": 8,
+        "product_column": "3",
+        "product_column_md": "4",
+        "product_column_xs": "12"
+      }
+    },
+    "banner-grid": {
+      "type": "banner-grid",
+      "blocks": {
+        "a8e14a65-eb7c-47c2-98e3-84478c461e17": {
+          "type": "banner",
+          "settings": {
+            "ban_col_lg": "6",
+            "ban_col": "6",
+            "banner_content_alingment": "end",
+            "img1": "shopify:\/\/shop_images\/1.jpg",
+            "t2": "Sale Furniture <br> For Summer",
+            "t1": "Great Discounts Here",
+            "btn1_url": "shopify:\/\/collections\/all",
+            "t1_color": "#212121",
+            "st_color": "#474747"
+          }
+        },
+        "28c0526c-6871-4ec6-ab1f-b74e84d3b7cf": {
+          "type": "banner",
+          "settings": {
+            "ban_col_lg": "6",
+            "ban_col": "6",
+            "banner_content_alingment": "start",
+            "img1": "shopify:\/\/shop_images\/2_76701094-614e-430a-b890-56a394c1e885.jpg",
+            "t2": "Office Chair <br> For Best Offer",
+            "t1": "Great Discounts Here",
+            "btn1_url": "shopify:\/\/collections\/all",
+            "t1_color": "#212121",
+            "st_color": "#474747"
+          }
+        },
+        "49913793-cac9-4cba-8ef7-b5bb108ab1ba": {
+          "type": "section_padding",
+          "settings": {
+            "section_padding_top": 60,
+            "section_padding_bottom": 85,
+            "section_padding_top_md": 50,
+            "section_padding_bottom_md": 75,
+            "section_padding_top_xs": 40,
+            "section_padding_bottom_xs": 60
+          }
+        }
+      },
+      "block_order": [
+        "a8e14a65-eb7c-47c2-98e3-84478c461e17",
+        "28c0526c-6871-4ec6-ab1f-b74e84d3b7cf",
+        "49913793-cac9-4cba-8ef7-b5bb108ab1ba"
+      ],
+      "settings": {
+        "fullwidth_on": false
+      }
+    },
+    "163446749249ae0127": {
+      "type": "featured-collection",
+      "blocks": {
+        "163446749249ae0127-0": {
+          "type": "section_padding",
+          "settings": {
+            "section_padding_top": 0,
+            "section_padding_bottom": 100,
+            "section_padding_top_md": 0,
+            "section_padding_bottom_md": 80,
+            "section_padding_top_xs": 0,
+            "section_padding_bottom_xs": 60
+          }
+        }
+      },
+      "block_order": [
+        "163446749249ae0127-0"
+      ],
+      "settings": {
+        "fullwidth_on": false,
+        "section_title": "New Products",
+        "section_sub_title": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore",
+        "featured_product_handle": "new-arrivala",
+        "featured_product_limit_handle": 8,
+        "product_column": "4",
+        "product_column_md": "3",
+        "product_column_sm": "2",
+        "product_column_xs": "2"
+      }
+    },
+    "latest-blog": {
+      "type": "latest-blog",
+      "blocks": {
+        "0d7e7a9c-4cda-44a0-b1c0-abc2122ee6bf": {
+          "type": "section_padding",
+          "settings": {
+            "section_padding_top": 0,
+            "section_padding_bottom": 90,
+            "section_padding_top_md": 0,
+            "section_padding_bottom_md": 70,
+            "section_padding_top_xs": 0,
+            "section_padding_bottom_xs": 50
+          }
+        }
+      },
+      "block_order": [
+        "0d7e7a9c-4cda-44a0-b1c0-abc2122ee6bf"
+      ],
+      "settings": {
+        "section_title": "Latest News",
+        "section_sub_title": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore",
+        "blog_handle": "news",
+        "blog_limit_handle": 3,
+        "blog_column": "4",
+        "blog_column_md": "6",
+        "blog_column_xs": "12"
+      }
+    },
+    "instagram-feed-gallery": {
+      "type": "instagram-feed-gallery",
+      "disabled": true,
+      "blocks": {
+        "2ea43547-1e90-4e06-a6be-5f13f43411c3": {
+          "type": "instagram_item",
+          "settings": {
+            "ban_col_lg": "3",
+            "ban_col_md": "6",
+            "ban_col_sm": "6",
+            "img1": "shopify:\/\/shop_images\/1_82407c9c-f3fd-4c0a-b178-256198eb8308.png",
+            "btn1_url": "#"
+          }
+        },
+        "c3adc089-e294-41d3-9634-a14a8cd0da22": {
+          "type": "instagram_item",
+          "settings": {
+            "ban_col_lg": "3",
+            "ban_col_md": "6",
+            "ban_col_sm": "6",
+            "img1": "shopify:\/\/shop_images\/2_b6694638-fd35-494e-a93a-919df617cef6.png",
+            "btn1_url": "#"
+          }
+        },
+        "764b5041-4153-494a-ba60-026d7b3d9aca": {
+          "type": "instagram_item",
+          "settings": {
+            "ban_col_lg": "3",
+            "ban_col_md": "6",
+            "ban_col_sm": "6",
+            "img1": "shopify:\/\/shop_images\/3_5327d69f-c9e4-40d5-b218-356c0062b440.png",
+            "btn1_url": "#"
+          }
+        },
+        "ed311902-b981-4d96-8a13-f8c130ae0ce0": {
+          "type": "instagram_item",
+          "settings": {
+            "ban_col_lg": "3",
+            "ban_col_md": "6",
+            "ban_col_sm": "6",
+            "img1": "shopify:\/\/shop_images\/4_ceac24e4-0694-4a93-9411-1498bfd60f1a.png",
+            "btn1_url": "#"
+          }
+        },
+        "00fece8f-a969-456a-9529-4620edd55813": {
+          "type": "section_padding",
+          "settings": {
+            "section_padding_top": 0,
+            "section_padding_bottom": 100,
+            "section_padding_top_md": 0,
+            "section_padding_bottom_md": 85,
+            "section_padding_top_xs": 0,
+            "section_padding_bottom_xs": 60
+          }
+        }
+      },
+      "block_order": [
+        "2ea43547-1e90-4e06-a6be-5f13f43411c3",
+        "c3adc089-e294-41d3-9634-a14a8cd0da22",
+        "764b5041-4153-494a-ba60-026d7b3d9aca",
+        "ed311902-b981-4d96-8a13-f8c130ae0ce0",
+        "00fece8f-a969-456a-9529-4620edd55813"
+      ],
+      "settings": {
+        "fullwidth_on": false,
+        "section_title": "Follow Us Instagram",
+        "section_sub_title": "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore"
+      }
+    }
+  },
+  "order": [
+    "16344672293348ce72",
+    "1634467343a19be116",
+    "tab-with-product",
+    "banner-grid",
+    "163446749249ae0127",
+    "latest-blog",
+    "instagram-feed-gallery"
+  ]
+}

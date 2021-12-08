@@ -1,0 +1,200 @@
+{% if section.settings.mobile_menu_enable %}
+<button class="offcanvas-close"></button>
+<div class="inner customScroll">
+  <div class="offcanvas-menu mb-4">
+    <ul>
+      {%- for link in linklists.main-menu.links -%}
+      {%- assign childlink_handle = link.title | handle -%}
+      {%- if linklists[childlink_handle].links.size > 0 -%}
+      <li class="menu-item-has-children"><a href="{{ link.url }}"><span class="menu-text">{{ link.title }}</span></a>
+        <ul class="sub-menu">
+          {%- assign menuhandle = link.title | strip -%}
+          {%- for block in section.blocks -%}
+          {%- case block.type -%}
+          {%- when 'megamenu' -%}
+          {%- if block.settings.mega_title == menuhandle -%}
+          {%- for childlink in linklists[childlink_handle].links -%}
+          {%- assign grand_childlink_handle = childlink.title | handle -%}
+          {%- if linklists[grand_childlink_handle] and linklists[grand_childlink_handle].links.size > 0 -%}
+          <li class="menu-item-has-children">
+            <a href="{{ childlink.url }}"><span class="menu-text">{{ childlink.title }}</span></a>
+            <ul class="sub-menu" >
+              {%- for grand_childlink_handle in linklists[grand_childlink_handle].links -%}
+              {%- assign sub_grand_childlink_handle = grand_childlink_handle.title | handle -%}
+              {%- assign level3 = grand_childlink_handle.title | strip -%}
+              {%- assign level3_menu = block.settings.level3_menu -%}
+              {%- assign level3_menu_isset = block.settings.mege_level_2 -%}
+
+              {%- assign level3_menu_2 = block.settings.level3_menu_2 -%}
+              {%- assign level3_menu_isset_2 = block.settings.mege_level_2_set2 -%}
+
+
+              {%- assign level3_menu_3 = block.settings.level3_menu_3 -%}
+              {%- assign level3_menu_isset_3 = block.settings.mege_level_2_set3 -%}
+
+
+              {%- if linklists[level3_menu] != empty and level3_menu_isset == level3 -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for link_leve2 in linklists[level3_menu].links -%}
+                  <li><a href="{{ link_leve2.url }}">{{ link_leve2.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- elsif linklists[level3_menu_2] != empty and level3_menu_isset_2 == level3 -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for link_leve2 in linklists[level3_menu_2].links -%}
+                  <li><a href="{{ link_leve2.url }}">{{ link_leve2.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- elsif linklists[level3_menu_3] != empty and level3_menu_isset_3 == level3 -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for link_leve2 in linklists[level3_menu_3].links -%}
+                  <li><a href="{{ link_leve2.url }}">{{ link_leve2.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- else -%}
+              <li><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a></li>
+              {%- endif -%}
+
+
+              {%- endfor -%}
+            </ul> 
+          </li> 
+          {%- else -%}
+          <li><a href="{{ childlink.url }}"><span class="menu-text">{{ childlink.title }}</span></a></li>
+          {%- endif -%}
+          {%- endfor -%}
+          {%- endif -%}
+          {%- when 'submenu' -%}
+          {%- if block.settings.submenu_title == menuhandle -%}
+
+          {%- for childlink in linklists[childlink_handle].links -%}
+          {%- assign grand_childlink_handle = childlink.title | handle -%}
+          {%- if linklists[grand_childlink_handle] and linklists[grand_childlink_handle].links.size > 0 -%}
+
+          <li class="menu-item-has-children"><a  href="{{ childlink.url }}"><span class="menu-text">{{ childlink.title }}</span></a>
+            <ul class="sub-menu">
+              {%- for grand_childlink_handle in linklists[grand_childlink_handle].links -%}
+              {%- assign level_four_handle = grand_childlink_handle.title | strip -%}
+              {%- assign multiLevel4_menu = block.settings.multi_level4_menu -%}
+              {%- assign level4_menu_isset = block.settings.multi_level_4 -%}
+
+              {%- assign multiLevel4_menu_2 = block.settings.multi_level4_menu_2 -%}
+              {%- assign level4_menu_isset_2 = block.settings.multi_level_4_2 -%}
+
+              {%- assign multiLevel4_menu_3 = block.settings.multi_level4_menu_3 -%}
+              {%- assign level4_menu_isset_3 = block.settings.multi_level_4_3 -%}
+
+              {%- assign multiLevel4_menu_4 = block.settings.multi_level4_menu_4 -%}
+              {%- assign level4_menu_isset_4 = block.settings.multi_level_4_4 -%}
+
+              {%- assign multiLevel4_menu_5 = block.settings.multi_level4_menu_5 -%}
+              {%- assign level4_menu_isset_5 = block.settings.multi_level_4_5 -%}
+
+              {%- if linklists[multiLevel4_menu] != empty and level4_menu_isset == level_four_handle -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for level4_menu in linklists[multiLevel4_menu].links -%}
+                  <li><a href="{{ level4_menu.url }}">{{ level4_menu.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- elsif linklists[multiLevel4_menu_2] != empty and level4_menu_isset_2 == level_four_handle -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for level4_menu in linklists[multiLevel4_menu].links -%}
+                  <li><a href="{{ level4_menu.url }}">{{ level4_menu.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- elsif linklists[multiLevel4_menu_3] != empty and level4_menu_isset_3 == level_four_handle -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for level4_menu in linklists[multiLevel4_menu].links -%}
+                  <li><a href="{{ level4_menu.url }}">{{ level4_menu.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- elsif linklists[multiLevel4_menu_4] != empty and level4_menu_isset_4 == level_four_handle -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for level4_menu in linklists[multiLevel4_menu].links -%}
+                  <li><a href="{{ level4_menu.url }}">{{ level4_menu.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- elsif linklists[multiLevel4_menu_5] != empty and level4_menu_isset_5 == level_four_handle -%}
+              <li class="menu-item-has-children"><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a>
+                <ul class="sub-menu">
+                  {%- for level4_menu in linklists[multiLevel4_menu].links -%}
+                  <li><a href="{{ level4_menu.url }}">{{ level4_menu.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- else -%}
+              <li><a href="{{ grand_childlink_handle.url }}">{{ grand_childlink_handle.title }}</a></li>
+              {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </li>
+
+          {%- else -%}
+          <li><a  href="{{ childlink.url }}"><span class="menu-text">{{ childlink.title }}</span></a></li>
+          {%- endif -%}
+          {%- endfor -%}
+          {%- endif -%}
+
+          {%- when 'dropdown' -%}
+          {%- if block.settings.dropdown_title == menuhandle -%}
+          {%- for childlink in linklists[childlink_handle].links -%}
+          <li><a href="{{ childlink.url }}"><span class="menu-text">{{ childlink.title }}</span></a></li>
+          {%- endfor -%}
+          {%- endif -%}
+          {%- endcase -%}
+          {%- endfor -%}
+
+        </ul>
+      </li>
+      {%- else -%}
+      <li><a href="{{ link.url }}"><span class="menu-text">{{ link.title }}</span></a></li>
+      {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+  <!-- OffCanvas Menu End -->
+
+  <!-- Language Currency start -->
+  <div class="offcanvas-userpanel mt-8">
+    <ul>
+      <!-- Language Start -->
+      {%- if section.settings.mobile_google_translate_enable -%}
+      <li class="offcanvas-userpanel__role">
+        <a href="#">English <i class="ion-ios-arrow-down"></i></a>
+        {% render 'gtranslate3' %}
+      </li>
+      {%- endif -%}
+      <!-- Language End -->
+      <!-- Currency Start -->
+      {%- if section.settings.mobile_header_currency_enable -%}
+      <li class="offcanvas-userpanel__role">
+        {%- render 'currency-picker2' -%}
+      </li>
+      {%- endif -%}
+      <!-- Currency End -->
+    </ul>
+  </div>
+  <!-- Language Currency End -->
+  {%- if section.settings.mobile_social_midea_enable -%}
+  <div class="offcanvas-social mt-auto">
+    {% render 'social-midea' %}
+  </div>
+  {%- endif -%}
+</div>
+
+
+{% endif %}

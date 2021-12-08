@@ -1,0 +1,520 @@
+<!--====================  mobile header area ====================-->
+<div class="mobile-header-area">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-6">
+        <!-- logo -->
+        <div class="logo">
+          {% render 'header-logo' %}
+        </div>
+      </div>
+      <div class="col-6">
+        <!-- mobile menu -->
+        <div class="mobile-navigation-icon" id="mobile-menu-trigger">
+          <i></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====================  End of mobile header area  ====================-->
+
+<!--=======  offcanvas mobile menu  =======-->
+<div class="offcanvas-mobile-menu" id="mobile-menu-overlay">
+  <a href="javascript:void(0)" class="offcanvas-menu-close" id="mobile-menu-close-trigger">
+    <i class="fa fa-times"></i>
+  </a>
+  <div class="offcanvas-wrapper">
+    <div class="offcanvas-inner-content">
+      {%- if section.settings.mobile_search_field_enable -%}
+      <div class="offcanvas-mobile-search-area">
+        <form action="/search" method="get" role="search">
+          <input type="hidden" name="type" value="product">
+          <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      {%- endif -%}
+      <nav class="offcanvas-navigation">
+        <ul>
+          {% for link in linklists.main-menu.links %}
+          {% assign childlink_handle = link.title | handle %}
+          {% if linklists[childlink_handle] and linklists[childlink_handle].links.size > 0 %}
+          <li class="menu-item-has-children">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            <ul class="sub-menu">
+              {% for childlink in linklists[childlink_handle].links %}
+              {% assign grand_childlink_handle = childlink.title | handle %}
+              {% if linklists[grand_childlink_handle] and linklists[grand_childlink_handle].links.size > 0 %}
+              <li class="menu-item-has-children">
+                <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                <ul class="sub-menu">
+                  {% for grand_childlink in linklists[grand_childlink_handle].links %}
+                  <li><a href="{{ grand_childlink.url }}">{{ grand_childlink.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+              {% elsif childlink.type == "collection_link" and childlink.object.image %}
+              <li>
+                <a href="{{ childlink.url }}"><img src="{{ childlink.object.image | img_url: 'large' }}" alt="" /></a>
+              </li>
+              {% else %}
+              <li><a href="{{ childlink.url }}">{{ childlink.title }}</a></li>
+              {% endif %}  
+              {% endfor %}
+            </ul>
+          </li>
+          {% else %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      <div class="offcanvas-settings">
+        <nav class="offcanvas-navigation">
+          <ul>
+            {%- if section.settings.user_menu_enable -%}
+            <li class="menu-item-has-children"><a href="#">{{ section.settings.user_menu_title }} </a>
+              <ul class="sub-menu">
+                {%- assign user_menu = section.settings.user_menu_handle -%}
+                {%- for link in linklists[user_menu].links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endfor -%}
+
+                {%- if shop.customer_accounts_enabled and customer and section.settings.logout_title != '' -%}
+                <li>
+                  <a href="/account/logout">{{ section.settings.logout_title }}</a>
+                </li>
+                {%- elsif section.settings.login_title != '' -%}
+                <li>
+                  <a href="/account/login">{{ section.settings.login_title }}</a>
+                </li>
+                {%- endif -%}
+              </ul>
+            </li>    
+            {%- endif -%}
+            {%- if section.settings.mobile_header_currency_enable -%}
+            <li class="menu-item-has-children currency"><a href="#">{{ section.settings.currency_title }} <span class="current-currency">{{ shop.currency }}</span> </a>             
+              {% assign currency = settings.supported_currencies | split: '|' %}
+              <ul class="sub-menu switcher-dropdown" id="currencies">
+                {% for value in currency %}
+                {% assign array = value | split: ',' %}
+                {% assign iso_4217 = array[0] | upcase | strip %}
+                {% assign name = array[1] | strip %}
+                <li data-currency="{{ iso_4217 }}" class="currency__item"><a style="cursor: pointer">{{ name }}</a></li>
+                {% endfor %}
+              </ul>
+            </li> 
+            {%- endif -%}
+          </ul>
+        </nav>
+      </div>
+      <div class="offcanvas-widget-area">
+        {%- if section.settings.mobile_tel_number != '' or section.settings.mobile_email_address != '' -%}
+        <div class="off-canvas-contact-widget">
+          <div class="header-contact-info">
+            <ul class="header-contact-info__list">
+              {%- if section.settings.mobile_tel_number != '' -%}
+              <li><i class="fa fa-phone"></i> <a href="{{ section.settings.mobile_tel_number }}">{{ section.settings.mobile_tel_number }}</a></li>
+              {%- endif -%}
+              {%- if section.settings.mobile_email_address != '' -%}
+              <li><i class="fa fa-envelope"></i> <a href="{{ section.settings.mobile_email_address }}">{{ section.settings.mobile_email_address }}</a></li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </div>
+        {%- endif -%}
+        <!--Off Canvas Widget Social Start-->
+        {%- if section.settings.mobile_social_midea_enable -%}
+        <div class="off-canvas-widget-social">
+          {% render 'social-midea' %}
+        </div>
+        {%- endif -%}
+        <!--Off Canvas Widget Social End-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--=======  End of offcanvas mobile menu  =======-->
+
+
+
+
+
+<style>
+  /*=============================================
+  =            CSS Index            =
+  =============================================
+
+  -> Default CSS
+  -> Header
+
+
+  /*=====  End of CSS Index  ======*/
+  /*=============================================
+  =            Default CSS            =
+  =============================================*/
+  
+  ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0; }
+  
+  /*=====  End of Default CSS  ======*/
+  /*=============================================
+  =            Header            =
+  =============================================*/
+  .mobile-header-area {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd; }
+
+  .mobile-navigation-icon {
+    width: 24px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+    float: right; }
+  .mobile-navigation-icon:hover i {
+    background-color: #222; }
+  .mobile-navigation-icon:hover i:before {
+    width: 80%;
+    background-color: #222; }
+  .mobile-navigation-icon:hover i:after {
+    background-color: #222;
+    width: 60%; }
+  .mobile-navigation-icon i {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    height: 2px;
+    background-color: rgba(34, 34, 34, 0.4);
+    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); }
+  .mobile-navigation-icon i:before {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(34, 34, 34, 0.4);
+    content: "";
+    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); }
+  .mobile-navigation-icon i:after {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(34, 34, 34, 0.4);
+    content: "";
+    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); }
+
+  /* offcanvas mobile menu */
+  .header-mobile-navigation {
+    padding: 20px 0; }
+  .header-mobile-navigation .mobile-navigation .header-cart-icon a span {
+    left: 50%; }
+
+  .offcanvas-widget-area {
+    margin-bottom: 35px;
+    margin-top: auto; }
+  @media only screen and (max-width: 479px) {
+    .offcanvas-widget-area {
+      margin-bottom: 30px; } }
+
+  .off-canvas-contact-widget {
+    margin-bottom: 20px; }
+  .off-canvas-contact-widget .header-contact-info {
+    -ms-flex-preferred-size: 33.33%;
+    flex-basis: 33.33%; }
+  .off-canvas-contact-widget .header-contact-info__list li {
+    display: inline-block;
+    margin-right: 25px; }
+  .off-canvas-contact-widget .header-contact-info__list li i {
+    font-size: 14px;
+    margin-right: 5px; }
+  .off-canvas-contact-widget .header-contact-info__list li a {
+    color: #666;
+    font-weight: 400;
+    line-height: 1.5; }
+  .off-canvas-contact-widget .header-contact-info__list li a:hover {
+    color: #f0542d; }
+  .off-canvas-contact-widget .header-contact-info__list li:last-child {
+    margin-right: 0; }
+
+  .offcanvas-mobile-menu {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    max-width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    padding-left: 60px;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s; }
+  .offcanvas-mobile-menu.active {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0); }
+  .offcanvas-mobile-menu.inactive {
+    -webkit-transform: translateX(calc(100% + 60px));
+    -ms-transform: translateX(calc(100% + 60px));
+    transform: translateX(calc(100% + 60px)); }
+
+  .offcanvas-menu-close {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #343538;
+    z-index: 9;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    line-height: 60px;
+    text-align: center;
+    font-size: 30px; }
+  @media only screen and (max-width: 479px) {
+    .offcanvas-menu-close {
+      width: 50px;
+      height: 50px;
+      line-height: 55px;
+      left: 10px;
+      font-size: 25px; } }
+  .offcanvas-menu-close:hover, .offcanvas-menu-close:focus {
+    color: #ffffff; }
+  .offcanvas-menu-close i {
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0); }
+  .offcanvas-menu-close:hover i {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg); }
+
+  .offcanvas-wrapper {
+    overflow: auto;
+    height: 100%;
+    -webkit-box-shadow: 0 0 87px 0 rgba(0, 0, 0, 0.09);
+    box-shadow: 0 0 87px 0 rgba(0, 0, 0, 0.09);
+    background-color: #ffffff; }
+
+  .offcanvas-mobile-search-area {
+    background-color: #e6e6e6;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 60px);
+    z-index: 9;
+    margin-left: 60px; }
+  .offcanvas-mobile-search-area input {
+    width: 100%;
+    font-size: 16px;
+    display: block;
+    padding: 9px 25px;
+    color: #222;
+    background: #e6e6e6;
+    border: none; }
+  @media only screen and (max-width: 479px) {
+    .offcanvas-mobile-search-area input {
+      font-size: 14px;
+      padding: 5px 15px; } }
+  .offcanvas-mobile-search-area button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #aaa;
+    padding: 0; }
+  .offcanvas-mobile-search-area button i {
+    font-size: 18px;
+    line-height: 40px; }
+
+  .offcanvas-inner-content {
+    padding: 90px 35px 0;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  @media only screen and (max-width: 479px) {
+    .offcanvas-inner-content {
+      padding: 70px 25px 0; } }
+
+  .offcanvas-navigation {
+    margin-bottom: 50px; }
+  .offcanvas-navigation > ul > li > a {
+    font-size: 15px;
+    color: #111;
+    font-weight: 600;
+    line-height: 1.5;
+    display: block;
+    padding: 10px 0; }
+  .offcanvas-navigation > ul > li > a:hover {
+    color: #f0542d; }
+  @media only screen and (max-width: 479px) {
+    .offcanvas-navigation > ul > li > a {
+      font-size: 14px;
+      line-height: 20px; } }
+  .offcanvas-navigation ul.sub-menu {
+    margin-left: 25px; }
+  .offcanvas-navigation ul.sub-menu > li > a {
+    font-size: 14px;
+    color: #111;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 10px 0; }
+  .offcanvas-navigation ul.sub-menu > li > a:hover {
+    color: #f0542d; }
+  @media only screen and (max-width: 479px) {
+    .offcanvas-navigation ul.sub-menu > li > a {
+      font-size: 14px;
+      line-height: 18px; } }
+  .offcanvas-navigation ul li.menu-item-has-children {
+    position: relative;
+    display: block; }
+  .offcanvas-navigation ul li.menu-item-has-children a {
+    display: block; }
+  .offcanvas-navigation ul li.menu-item-has-children.active > .menu-expand i:before {
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0); }
+  .offcanvas-navigation ul li.menu-item-has-children .menu-expand {
+    position: absolute;
+    right: auto;
+    left: 95%;
+    top: -5px;
+    width: 30px;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    text-align: center; }
+  .offcanvas-navigation ul li.menu-item-has-children .menu-expand i {
+    display: block;
+    margin-top: 25px;
+    border-bottom: 1px solid;
+    position: relative;
+    width: 10px;
+    -webkit-transition: all 250ms ease-out;
+    -o-transition: all 250ms ease-out;
+    transition: all 250ms ease-out; }
+  .offcanvas-navigation ul li.menu-item-has-children .menu-expand i:before {
+    width: 100%;
+    content: "";
+    border-bottom: 1px solid;
+    display: block;
+    position: absolute;
+    top: 0;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg); }
+
+  .off-canvas-widget-social a {
+    margin: 0 10px;
+    font-size: 14px; }
+  .off-canvas-widget-social a:first-child {
+    margin-left: 0; }
+  @media only screen and (max-width: 479px) {
+    .off-canvas-widget-social a {
+      margin: 0 10px; } }
+  .off-canvas-widget-social a:hover {
+    color: #f0542d; }
+
+  /* offcanvas settings */
+  .offcanvas-settings .offcanvas-navigation > ul > li > a {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 5px 0; }
+
+  .offcanvas-settings .offcanvas-navigation > ul > li.menu-item-has-children .menu-expand {
+    height: 30px;
+    top: -10px;
+    margin-top: 0; }
+
+  .offcanvas-settings .offcanvas-navigation ul.sub-menu > li > a {
+    padding: 5px 0; }
+
+  /*=====  End of Header  ======*/
+
+</style>
+
+
+
+
+
+
+<script>
+  /*=============================================
+    =            mobile menu active            =
+    =============================================*/
+    $("#mobile-menu-trigger").on('click', function(){
+        $("#mobile-menu-overlay").addClass("active");
+        $body.addClass('no-overflow');
+    });
+    
+    $("#mobile-menu-close-trigger").on('click', function(){
+        $("#mobile-menu-overlay").removeClass("active");
+        $body.removeClass('no-overflow');
+    });
+    /*=====  End of mobile menu active  ======*/
+    
+    
+    
+    /*=============================================
+    =            offcanvas mobile menu            =
+    =============================================*/
+
+    var $offCanvasNav = $('.offcanvas-navigation'),
+        $offCanvasNavSubMenu = $offCanvasNav.find('.sub-menu');
+    
+    /*Add Toggle Button With Off Canvas Sub Menu*/
+    $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand"><i></i></span>');
+    
+    /*Close Off Canvas Sub Menu*/
+    $offCanvasNavSubMenu.slideUp();
+    
+    /*Category Sub Menu Toggle*/
+    $offCanvasNav.on('click', 'li a, li .menu-expand', function(e) {
+        var $this = $(this);
+        if ( ($this.parent().attr('class').match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/)) && ($this.attr('href') === '#' || $this.hasClass('menu-expand')) ) {
+            e.preventDefault();
+            if ($this.siblings('ul:visible').length){
+                $this.parent('li').removeClass('active');
+                $this.siblings('ul').slideUp();
+            } else {
+                $this.parent('li').addClass('active');
+                $this.closest('li').siblings('li').removeClass('active').find('li').removeClass('active');
+                $this.closest('li').siblings('li').find('ul:visible').slideUp();
+                $this.siblings('ul').slideDown();
+            }
+        }
+    });
+    /*=====  End of offcanvas mobile menu  ======*/
+</script>
+
+
+
+

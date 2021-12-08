@@ -1,0 +1,44 @@
+{%- assign on_sale = false -%}
+{%- if product.compare_at_price > product.price -%}
+{%- assign on_sale = true -%}
+{%- endif -%}
+
+{%- assign sold_out = true -%}
+{%- if product.available -%}
+{%- assign sold_out = false -%}
+{%- endif -%}
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+
+{%- if product.available -%}
+{%- assign func = "Shopify.addItem(" | append: variant.id | append: ", 1)" -%}
+{%- endif -%}  
+
+{% if item.featured_image %}
+<div class="search-item">
+  <div class="search-item-image">
+    <a href="{{ item.url | within: collection }}"><img src="{{ item.featured_image.src | img_url: 'large' }}" alt=""></a>
+  </div>
+  <div class="search-item-content">
+    <h4><a href="{{ item.url | within: collection }}">{{ item.title | highlight: search.terms }}</a></h4>
+    <div class="search-price">
+      <span>{{ item.price | money }}</span>
+      {% if item.compare_at_price_max > item.price %}
+      <span class="compare-price"><del>{{ item.compare_at_price | money }}</del></span>
+      {% endif %}
+    </div>
+    {%- if item.description contains '[short_description]' -%} 
+    {%- assign short_description_first = item.description | split:'[/short_description]' | first -%}
+    {%- assign short_description_final = short_description_first | split:'[short_description]' | last -%}
+    {{ short_description_final }}
+    {%- else -%}
+    <p>{{ item.description | strip_html | truncatewords: 50 | highlight: search.terms | split: '[short_description]' | first | split: '[product_description]' | first | split: '[new_products]' | first | split: '[product_video]' | first | split: '[affiliate_link]' | first | split: '[countdown]' | first | split: '[unique_description_1]' | first | split: '[unique_description_2]' | first | split: '[unique_description_3]' | first }}</p>
+    {%- endif -%}
+  </div>
+</div>
+{% else %}
+<div class="search-blog-item">
+  <h4 class="search-blog-title"><a href="{{ item.url }}">{{ item.title }}</a></h4>
+  <p>{{ item.content | strip_html | truncatewords: 50 | highlight: search.terms }}</p>
+</div>
+{% endif %}

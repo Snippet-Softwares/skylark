@@ -1,0 +1,49 @@
+{%- comment -%} "theme-default-pagination" this Class is needed for active page pagination button disable{%- endcomment -%}
+{% if paginate.pages > 1 %}
+<div class="theme-default-pagination pro-pagination-style text-center mb-md-30px mb-lm-30px mt-6" data-aos="fade-up">
+  <nav class="pagination-area">
+    <ul class="">
+      {% if paginate.previous %}
+      <li>
+        <a class="prev" href="{{ paginate.previous.url }}" aria-label="Previous">
+          <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
+        </a>
+      </li>
+      {% else %}
+      <li class="disabled prev">
+        <a class="prev" href="#">
+          <span><i class="ion-ios-arrow-left"></i></span>
+        </a>
+      </li>
+      {% endif %}
+      {% for part in paginate.parts %}
+      {% if part.is_link %}
+      <li>
+        <a href="{{ part.url }}" title="">{{ part.title }}</a>
+      </li>
+      {% else %}
+      {% if part.title == paginate.current_page %}
+      <li><a class="active" href="">{{ part.title }}</a></li>
+      {% else %}
+      <li><a href="#">{{ part.title }}</a></li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      {% if paginate.next %}
+      <li class="next"><a class="next" href="{{ paginate.next.url }}" title="{{ paginate.next.title }}"><span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span></a></li>
+      {% else %}
+      <li class="disabled next">
+        <a class="next" href="#">
+          <span><i class="ion-ios-arrow-right"></i></span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+{% endif %}
+
+<script>
+  $(".theme-default-pagination .disabled a").removeAttr("href");
+  $(".theme-default-pagination li.active a").removeAttr("href");
+</script>

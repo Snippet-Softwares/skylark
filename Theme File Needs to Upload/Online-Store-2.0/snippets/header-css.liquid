@@ -1,0 +1,32 @@
+<!-- Put all third-party CSS files in the vendor.css file and minify the files -->
+{{ 'simple-line-icons.css' | asset_url | stylesheet_tag }}
+{{ 'ionicons.min.css' | asset_url | stylesheet_tag }}
+{{ 'animate.css' | asset_url | stylesheet_tag }}
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+{{ 'jquery-ui.min.css' | asset_url | stylesheet_tag }}
+{{ 'jquery.lineProgressbar.css' | asset_url | stylesheet_tag }}
+{{ 'nice-select.css' | asset_url | stylesheet_tag }}
+{{ 'venobox.css' | asset_url | stylesheet_tag }}
+
+<!-- Link your style.css and responsive.css files below -->
+{{ 'style.css' | asset_url | stylesheet_tag }}
+
+<!-- Theme Default CSS -->
+{{ 'theme-default.css' | asset_url | stylesheet_tag }}
+<!-- Make your theme CSS calls here -->
+{{ 'theme-custom.css' | asset_url | stylesheet_tag }}
+
+{% if settings.rtl_enable %}
+{{ 'theme-rtl.css' | asset_url | stylesheet_tag }}
+{% endif %}
+<!-- Make your theme RTL CSS calls here -->
+{{ 'theme-responsive.css' | asset_url | stylesheet_tag }}
+
+<!-- Make all your dynamic CSS and Color calls here -->
+{{ 'skin-and-color.css' | asset_url | stylesheet_tag }}
+
+{%- if settings.custom_css != '' -%}
+{{ settings.custom_css }}
+{%- endif -%}
+
+

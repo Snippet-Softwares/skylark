@@ -1,0 +1,54 @@
+<div class="contact-info-wrap">
+  <h2 class="title" data-aos="fade-up" data-aos-delay="200">Contact Info</h2>
+  {% if section.settings.phone_number_content != '' %}
+  <div class="single-contact-info" data-aos="fade-up" data-aos-delay="200">
+    {% if section.settings.phone_title_1 != '' %}
+    <div class="contact-info-inner">
+      <span class="sub-title">{{ section.settings.phone_title_1 }}</span>
+    </div>
+    {% endif %}
+    <div class="contact-info-dec">
+      {{ section.settings.phone_number_content }}
+    </div>
+  </div>
+  {% endif %}
+  {% if section.settings.email_content != '' %}
+  <div class="single-contact-info" data-aos="fade-up" data-aos-delay="200">
+    {% if section.settings.email_title_1 != '' %}
+    <div class="contact-info-inner">
+      <span class="sub-title">{{ section.settings.email_title_1 }}</span>
+    </div>
+    {% endif %}
+    <div class="contact-info-dec">
+      {{ section.settings.email_content }}
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if section.settings.address_content_1 != '' %}
+  <div class="single-contact-info" data-aos="fade-up" data-aos-delay="200">
+    {% if section.settings.address_title_1 != '' %}
+    <div class="contact-info-inner">
+      <span class="sub-title">{{ section.settings.address_title_1 }}</span>
+    </div>
+    {% endif %}
+    <div class="contact-info-dec">
+      {{ section.settings.address_content_1 }}
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if section.settings.social_enable %}
+  <div class="contact-social">
+    {% if section.settings.social_title_1 != '' %}
+    <h3 class="title" data-aos="fade-up" data-aos-delay="200">{{ section.settings.social_title_1 }}</h3>
+    {% endif %}
+    <div class="social-info" data-aos="fade-up" data-aos-delay="200">
+      {% render 'footer-social-media' %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+
+

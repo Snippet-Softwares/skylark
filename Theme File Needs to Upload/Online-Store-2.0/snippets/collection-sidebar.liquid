@@ -1,0 +1,243 @@
+<div class="shop-sidebar-wrap">
+  {% for block in section.blocks %}
+  {% case block.type %}
+
+  {% when 'recent-view' %}
+  {% render 'recent-view' %}
+  {% when 'search' %}
+  <div class="sidebar-widget">
+    {%- if block.settings.widget_title != '' -%}
+    <h3 class="sidebar-title">{{ block.settings.widget_title }}</h3>
+    {%- endif -%}
+    <form action="/search" method="get" role="search">
+      <input type="hidden" name="type" value="product">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+      <button type="submit"><i class="icon-magnifier"></i>
+      </button>
+    </form>
+  </div>
+  <!-- Sidebar single item -->
+  {% when 'category' %}
+  <div class="sidebar-widget">
+    {%- if block.settings.widget_title != '' -%}
+    <div class="main-heading">
+      <h3 class="sidebar-title">{{ block.settings.widget_title }}</h3>
+    </div>
+    {%- endif -%}
+    <div class="sidebar-widget-category">
+      <ul>
+        {% assign categories_list_limit = block.settings.categories_list_limit_hanlde %}
+        {% for c in collections limit: categories_list_limit %}
+        <li class="{% if collection and collection.handle == c.handle %}active{% endif %}"><a href="{{ c.url }}">{{ c.title }} <span>({{ c.products_count }})</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  {% when 'menu' %}
+  <div class="sidebar-widget category-sub-menu">
+    {%- if block.settings.widget_title != '' -%}
+    <h3 class="sidebar-title">{{ block.settings.widget_title }}</h3>
+    {%- endif -%}
+    <ul>
+      {% assign menu = block.settings.menu_handle %}
+      {% for link in linklists[menu].links %}
+      {% assign childlink_handle = link.title | handle %}
+      {% if linklists[childlink_handle] and linklists[childlink_handle].links.size > 0 %}
+      <li class="has-sub {% if link.active %}active{% endif %}"><a href="{{ link.url }}">{{ link.title }}</a>
+        <ul>
+          {% for childlink in linklists[childlink_handle].links %}
+          <li><a href="{{ childlink.url }}">{{ childlink.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% else %}
+      <li class="{% if link.active %}active{% endif %}"><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Sidebar single item -->
+  <div class="sidebar-widget-group">
+    <!-- Sidebar single item -->
+    {% when 'size' %}
+    <div class="sidebar-widget">
+      {%- if block.settings.widget_title != '' -%}
+      <h3 class="sidebar-title">{{ block.settings.widget_title }}</h3>
+      {%- endif -%}
+      <div class="sidebar-widget-list">
+        <ul>
+          {% assign tags = block.settings.size_picker | replace: ', ', ',' | replace: ' ,', ',' | split: ',' %}
+          {% assign size_list_limit = block.settings.size_list_limit_hanlde %}
+
+          {% for t in tags limit: size_list_limit %}
+          {% assign tag = t | strip %}
+          {%- if current_tags contains tag -%}
+          <li class="active">
+            <div class="sidebar-widget-list-left">
+              <input type="checkbox" /> <a href="/collections/all/{{ tag | handle }}">{{ tag }} </a>
+              <span class="checkmark"></span>
+            </div>
+          </li>
+          {%- elsif collection.all_tags contains tag -%}
+          <li>
+            <div class="sidebar-widget-list-left">
+              <input type="checkbox" value="" /> <a href="/collections/all/{{ tag | handle }}">{{ tag }}
+              </a>
+              <span class="checkmark"></span>
+            </div>
+          </li>
+          {%- endif -%}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <!-- Sidebar single item -->
+    {% when 'color' %}
+    <div class="sidebar-widget no-cba">
+      {%- if block.settings.widget_title != '' -%}
+      <h3 class="sidebar-title">{{ block.settings.widget_title }}</h3>
+      {%- endif -%}
+      <div class="sidebar-widget-list">
+        <ul>
+          {% assign tags = block.settings.color_picker | replace: ', ', ',' | replace: ' ,', ',' | split: ',' %}
+          {% assign colors_list_limit = block.settings.colors_list_limit_hanlde %}
+
+          {% for t in tags limit: colors_list_limit %}
+          {% assign tag = t | strip %}
+          {%- if current_tags contains tag -%}
+          <li class="{{ tag }} active">
+            <div class="sidebar-widget-list-left">
+              <input type="checkbox" /> <a href="/collections/all/{{ tag | handle }}">{{ tag }}</a>
+              <span class="checkmark" style="background: {{ tag }} no-repeat center; background-size: initial;"></span>
+            </div>
+          </li>
+          {%- elsif collection.all_tags contains tag -%}
+          <li class="{{ tag }}">
+            <div class="sidebar-widget-list-left">
+              <input type="checkbox" value="" /> <a href="/collections/all/{{ tag | handle }}">{{ tag }}</a>
+              <span class="checkmark" style="background: {{ tag }} no-repeat center; background-size: initial;"></span>
+            </div>
+          </li>
+          {%- endif -%}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sidebar single item -->
+    {% when 'vendor' %}
+    <div class="sidebar-widget">
+      {%- if block.settings.widget_title != '' -%}
+      <h3 class="sidebar-title">{{ block.settings.widget_title }}</h3>
+      {%- endif -%}
+      <div class="sidebar-widget-list">
+        <ul>
+          {% assign vendors_list_limit = block.settings.vendors_list_limit_hanlde %}
+          {% for vendor in shop.vendors limit: vendors_list_limit %}
+          <li class="{% if collection.current_vendor == vendor %}active{% endif %}">
+            <div class="sidebar-widget-list-left">
+              <input type="checkbox" /> <a href="{{ vendor | url_for_vendor }}">{{ vendor }}
+              </a>
+              <span class="checkmark"></span>
+            </div>
+          </li>
+		  {% endfor %}
+        </ul>
+      </div>
+    </div>
+    
+	<!-- Sidebar single item -->
+    {% when 'type' %}
+    <div class="sidebar-widget">
+      {%- if block.settings.widget_title != '' -%}
+      <h3 class="sidebar-title">{{ block.settings.widget_title }}</h3>
+      {%- endif -%}
+      <div class="sidebar-widget-list">
+        <ul>
+          {% assign types_list_limit = block.settings.types_list_limit_hanlde %}
+          {% for type in shop.types limit: types_list_limit %}
+          {%- if type != '' -%}
+          <li class="{% if collection.current_type == type %}active{% endif %}">
+            <div class="sidebar-widget-list-left">
+              <input type="checkbox" /> <a href="{{ type | url_for_type }}">{{ type }}
+              </a>
+              <span class="checkmark"></span>
+            </div>
+          </li>
+          {%- endif -%}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="shop-sidebar-wrap">
+  <!-- Sidebar single item -->
+  {% when 'tag' %}
+  <div class="sidebar-widget tag">
+    {%- if block.settings.widget_title != '' -%}
+    <div class="main-heading">
+      <h3 class="sidebar-title mt-3">{{ block.settings.widget_title }}</h3>
+    </div>
+    {%- endif -%}
+    <div class="sidebar-widget-tag">
+      <ul>
+        {% assign tags_list_limit = block.settings.tags_list_limit_hanlde %}
+        {% for tag in collection.all_tags limit: tags_list_limit %}
+        {%- if current_tags contains tag -%}
+        <li class="active"><a href="/collections/all/{{ tag | handle }}">{{ tag }}</a></li>
+        {%- else -%}
+        <li><a href="/collections/all/{{ tag | handle }}">{{ tag }}</a></li>
+        {%- endif -%}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <!-- Sidebar single item -->
+  {% when 'banner' %}
+  {% capture i %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+  <div class="sidebar-widget sidebar-banner-area">
+    {%- if block.settings.widget_title != '' -%}
+      <h3 class="sidebar-title  mt-3">{{ block.settings.widget_title }}</h3>
+    {%- endif -%}
+    <div>
+      {% if block.settings.banner_image != blank and block.settings.banner_image_url != blank %}
+      <a href="{{ block.settings.banner_image_url }}">
+        <img src="{{ block.settings.banner_image | img_url: 'grande' }}" alt="{{ block.settings.banner_image.alt }}">
+      </a>
+      {% elsif block.settings.banner_image != blank %}
+      <img src="{{ block.settings.banner_image | img_url: 'grande' }}" alt="{{ block.settings.banner_image.alt }}">
+      {% else %}
+      {{ 'collection-' | append: i | placeholder_svg_tag: 'banner-svg-image' }}
+      {% endif %}
+    </div>
+  </div>
+  </div>
+  {% endcase %}
+  {% endfor %}
+</div>
+
+
+
+<script>
+  $(".sidebar-widget li.active a").removeAttr("href");
+
+  $('.category-sub-menu li.has-sub > a').on('click', function () {
+    $(this).removeAttr('href');
+    var element = $(this).parent('li');
+    if (element.hasClass('open')) {
+      element.removeClass('open');
+      element.find('li').removeClass('open');
+      element.find('ul').slideUp();
+    } else {
+      element.addClass('open');
+      element.children('ul').slideDown();
+      element.siblings('li').children('ul').slideUp();
+      element.siblings('li').removeClass('open');
+      element.siblings('li').find('li').removeClass('open');
+      element.siblings('li').find('ul').slideUp();
+    }
+  }); 
+</script>

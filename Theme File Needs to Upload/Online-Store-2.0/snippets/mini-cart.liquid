@@ -1,0 +1,124 @@
+{% assign itemStyle = '' %}{% if cart.item_count == 0 %}{% assign itemStyle = ' style="display:none;"' %}{% endif %}
+{% assign itemEmpty = '' %}{% if cart.item_count == 0 %}{% assign itemEmpty = ' style="display:block;"' %}{% endif %}
+{% assign itemCount = '' %}{% if cart.item_count == 1 %}{% assign itemCount = ' style="display:block;"' %}{% endif %}
+{% assign itemCount2 = '' %}{% if cart.item_count > 1 %}{% assign itemCount2 = ' style="display:block;"' %}{% endif %}
+
+
+{%- assign item_count = cart.item_count -%}
+<span class="item-single-item-count" {{ itemCount }}>{{ section.settings.cart_item_title }}</span> 
+<span class="item-multiple-item-count" {{ itemCount2 }}>{{ section.settings.cart_items_title }}</span>
+<span class="cart-empty-title" {{ itemEmpty }}>{{ section.settings.cart_items_title }}</span>
+
+
+<div class="inner">
+  
+  <div class="head">
+    <span class="title">{{ section.settings.mini_cart_title | default: 'Cart' }}</span>
+    <button class="offcanvas-close">×</button>
+  </div>
+  
+  <div class="body customScroll">
+    <ul class="cart-empty-title" {{ itemEmpty }}>
+      <h4>{{ 'cart.general.empty' | t }}</h4>
+    </ul>
+    
+    <ul class="cart-box-product minicart-product-list" {{ itemStyle  }}>
+      {% for item in cart.items %}
+      <li>
+        <a href="{{ item.url }}" class="image"><img src="{{ item | img_url: 'small' }}" alt="Cart product Image"></a>
+        <div class="content">
+          <a href="{{ item.url }}" class="title">{{ item.title }}</a>
+          <span class="quantity-price">{{ item.quantity }} x <span class="amount">{{ item.price | money }}</span></span>
+          <a href="javascript:void(0);" class="remove" onclick="Shopify.removeItem({{ item.variant.id }})">×</a>
+        </div>
+      </li>
+	  {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="foot cart-box-product" {{ itemStyle  }}>
+    <div class="sub-total">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="text-left">{{ section.settings.mini_cart_total_title | default: 'Total :' }}</td>
+            <td class="text-right theme-color amount shopping-cart__total">{{ cart.total_price | money }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="buttons cart-box-product {% if section.settings.agree_button_enable %}disabled{% endif %}">
+      
+      {%- if section.settings.checkout_btn_enable -%}
+      {%- if section.settings.agree_button_enable -%}
+      <input type="checkbox" id="ageree_term_cond" value="1">
+      <label for="ageree_term_cond">{{ section.settings.agree_button_text }}</label>
+      {%- endif -%}
+      <a href="/checkout" class="checkout_btn btn btn-outline-dark current-btn mb-6">{{ section.settings.mini_cart_checkout_title }}</a>
+      {%- endif -%}
+      
+      {%- if section.settings.cart_btn_enable -%}
+      <a href="/cart" class="btn btn-dark btn-hover-primary">{{ section.settings.view_cart_title }}</a>
+      {%- endif -%}
+      
+    </div>
+    {%- if section.settings.free_shipping_enable -%}
+    <p class="minicart-message cart-box-product">{{ section.settings.free_shipping_offer_title }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+
+{%- comment -%}
+
+
+<div class="inner">
+  <div class="head">
+    <span class="title">{{ section.settings.mini_cart_title | default: 'Cart' }}</span>
+    <button class="offcanvas-close">×</button>
+  </div>
+  
+  <div class="body customScroll">
+    <ul class="cart-empty-title" {{ itemEmpty }}>
+      <h4>{{ 'cart.general.empty' | t }}</h4>
+    </ul>
+    
+    <ul class="cart-box-product minicart-product-list" {{ itemStyle  }}>
+      {% for item in cart.items %}
+      <li>
+        <a href="{{ item.url }}" class="image"><img src="{{ item | img_url: 'small' }}" alt="Cart product Image"></a>
+        <div class="content">
+          <a href="{{ item.url }}" class="title">{{ item.title }}</a>
+          <span class="quantity-price">{{ item.quantity }} x <span class="amount">{{ item.price | money }}</span></span>
+          <a href="javascript:void(0);" class="remove" onclick="Shopify.removeItem({{ item.variant.id }})">×</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="cart-box-product foot" {{ itemStyle  }}>
+    <div class="sub-total">
+      <strong>{{ section.settings.mini_cart_total_title | default: 'Total:' }}</strong>
+      <span class="amount shopping-cart__total">{{ cart.total_price | money }}</span>
+    </div>
+    <div class="cart-box-product buttons {% if section.settings.agree_button_enable %}disabled{% endif %}">
+      {%- if section.settings.checkout_btn_enable -%}
+      {%- if section.settings.agree_button_enable -%}
+      <input type="checkbox" id="ageree_term_cond" value="1">
+      <label for="ageree_term_cond">{{ section.settings.agree_button_text }}</label>
+      {%- endif -%}
+      <a href="/checkout" class="checkout_btn btn btn-outline-dark">{{ section.settings.mini_cart_checkout_title }}</a>
+      {%- endif -%}
+      {%- if section.settings.cart_btn_enable -%}
+      <a href="/cart" class="cart_btn btn btn-dark btn-hover-primary">{{ section.settings.view_cart_title }}</a>
+      {%- endif -%}
+    </div>
+
+	{%- if section.settings.free_shipping_enable -%}
+    <p class="cart-box-product minicart-message">{{ section.settings.free_shipping_offer_title }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- endcomment -%}

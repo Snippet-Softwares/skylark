@@ -1,0 +1,12 @@
+<div class="currency">
+  <a href="#"><span class="current-currency">({{ shop.currency }})</span> <i class="ion-ios-arrow-down"></i></a>
+  {% assign currency = settings.supported_currencies | split: '|' %}
+  <ul class="user-sub-menu" id="currencies">
+    {% for value in currency %}
+    {% assign array = value | split: ',' %}
+    {% assign iso_4217 = array[0] | upcase | strip %}
+    {% assign name = array[1] | strip %}
+    <li data-currency="{{ iso_4217 }}" class="currency__item dropdown-item"><a style="cursor: pointer">{{ name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

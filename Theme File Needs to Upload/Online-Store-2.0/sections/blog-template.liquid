@@ -1,0 +1,236 @@
+<!-- Blog Area Start -->
+<div class="blog-grid pb-100px pt-100px main-blog-page">
+  <div class="container">
+    <div class="row {% if section.settings.sidebar_handle == 'left_sidebar_handle' %}flex-row-reverse{% endif %}">
+      {%- assign blogs_limit = section.settings.blog_limit_handle -%}
+      {%- paginate blog.articles by blogs_limit -%}
+      <div class="{% if section.settings.sidebar_handle == 'without_sidebar' %}col-lg-12{% else %}col-lg-9{% endif %} order-lg-last col-md-12 order-md-first">
+        <div class="blog-posts">
+          <div class="row">
+
+            {% for article in blog.articles %}
+            <div class="col-md-6 mb-res-sm-30px" data-aos="fade-up" data-aos-delay="200">
+              {% render 'blog-grid-item-2' with article as article %}
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+        <!--  Pagination Area Start -->
+        {%- if paginate.pages > 1 -%}
+        <div class="pro-pagination-style mt-20px mb-md-50px mb-lm-60px text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="pages">
+            {% render 'pagination' with paginate as paginate %}
+          </div>
+        </div>
+        {%- endif -%}
+        <!--  Pagination Area End -->
+      </div>
+      {%- endpaginate -%}
+      {%- unless section.settings.sidebar_handle == 'without_sidebar' -%}
+      <!-- Sidebar Area Start -->
+      <div class="col-lg-3 order-lg-first col-md-12 order-md-last mt-md-50px mt-lm-50px" data-aos="fade-up" data-aos-delay="200">
+        {% render 'blog-sidebar' %}
+      </div>
+      <!-- Sidebar Area End -->
+      {%- endunless -%}
+    </div>
+  </div>
+</div>
+<!-- Blag Area End -->
+
+
+{% schema %}
+  {
+    "name": "Blog Page",
+    "settings": [
+		{
+			"type": "header",
+            "content": "Blog"
+        },
+		{
+            "type": "range",
+            "id": "blog_limit_handle",
+            "min": 2,
+            "max": 100,
+            "step": 1,
+            "label": "Post Limit",
+            "default": 9,
+			"info": "How many products are displayed on each page"
+        },
+		{
+			"type": "header",
+            "content": "Blog Column"
+        },
+		{
+          "type": "select",
+          "id": "blog_column",
+          "label": "Desktop",
+		  "options":[
+				{
+                    "label": "2",
+                    "value": "6"
+                },
+                {
+                    "label": "3",
+                    "value": "4"
+                },
+                {
+                    "label": "4",
+                    "value": "3"
+                }
+			],
+			"default": "4"
+      	},
+		{
+          "type": "select",
+          "id": "blog_column_md",
+          "label": "Tablet",
+		  "options":[
+				{
+                    "label": "2",
+                    "value": "6"
+                },
+                {
+                    "label": "3",
+                    "value": "4"
+                },
+                {
+                    "label": "4",
+                    "value": "3"
+                }
+			],
+			"default": "6"
+      	},
+		{
+          "type": "select",
+          "id": "blog_column_xs",
+          "label": "Mobile",
+		  "options":[
+				{
+                    "label": "1",
+                    "value": "12"
+                },
+                {
+                    "label": "2",
+                    "value": "6"
+                }
+			],
+			"default": "12"
+      	},
+		{
+			"type": "header",
+			"content": "Blog Sidebar"
+		},
+		{
+			"type": "radio",
+			"id": "sidebar_handle",
+			"label": "Sidebar Position -",
+			"options": [
+				{
+					"label": "Left Sidebar",
+					"value": "left_sidebar_handle"
+				},
+				{
+					"label": "Right Sidebar",
+					"value": "right_sidebar_handle"
+				},
+				{
+					"label": "Without Sidebar",
+					"value": "without_sidebar"
+				}
+			],
+			"default": "left_sidebar_handle"
+		}
+	 ],
+	 "blocks":[
+		{
+          "type": "search",
+          "name": "Search",
+		  "limit": 1,
+          "settings": [
+            {
+              "type": "text",
+              "id": "widget_title",
+              "label": "Title",
+              "default": "Search"
+            }
+          ]
+       },
+	   {
+          "type": "recent_post",
+          "name": "Recent Post",
+		  "limit": 1,
+          "settings": [
+            {
+              "type": "text",
+              "id": "recent_post_title",
+              "label": "Recent Post Title",
+              "default": "Recent Post"
+			},
+            {
+              "type": "range",
+              "id": "recent_post_limit_handle",
+              "min": 2,
+              "max": 10,
+              "step": 1,
+              "label": "Post Limit",
+              "default": 3
+            }
+          ]
+       },
+	   {
+          "type": "archive",
+          "name": "Archive",
+		  "limit": 1,
+          "settings": [
+            {
+              "type": "text",
+              "id": "archive_title",
+              "label": "Archive Title",
+              "default": "Archive"
+            }
+          ]
+       },
+	   {
+          "type": "tag",
+          "name": "Tag",
+		  "limit": 1,
+          "settings": [
+            {
+              "type": "text",
+              "id": "blog_tags_title",
+              "label": "Tags Title",
+              "default": "Tags"
+			},
+            {
+              "type": "range",
+              "id": "blog_tags_list_limit_handle",
+              "min": 5,
+              "max": 20,
+              "step": 1,
+              "label": "Tag Limit",
+              "default": 10
+            }
+          ]
+       },
+	   {
+          "type": "menu",
+          "name": "Menu",
+          "settings": [
+            {
+              "type": "text",
+              "id": "menu_title",
+              "label": "Menu Title",
+              "default": "Custom Menu"
+            },
+			{
+              "type": "link_list",
+              "id": "menu_handle",
+              "label": "Menu"
+            }
+          ]
+       }
+	]
+  }
+{% endschema %}

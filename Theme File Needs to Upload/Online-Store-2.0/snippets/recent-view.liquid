@@ -1,0 +1,64 @@
+{{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
+
+{%- if block.settings.recent_view_title != '' -%}
+<div id="recently-viewed-products" class="collection clearfix" style="display:none">
+  <h2>{{ block.settings.recent_view_title }}</h2>
+</div>
+{%- endif -%}
+
+{% raw %}
+<script id="recently-viewed-product-template" type="text/x-jquery-tmpl">
+<div class="single-product recent-view">
+	<div class="single-product-item product-item">
+		<div id="product-${handle}">
+			<div class="clearfix hover-effect product-img">
+				<a href="${url}">
+					<img src="${Shopify.Products.resizeImage(featured_image, "medium")}" />
+				</a>
+			</div>
+			<div class="clearfix rec_v_details product-info">
+				<h6 class="product-title"><a href="${url}">${title}</a></h6>  
+				<h3 class="pro-price">   
+					{{if compare_at_price > price}} 
+					<span class="new-price">{{html Shopify.formatMoney(price, window.money_format)}}</span>
+					<span class="old-price"> {{html Shopify.formatMoney(compare_at_price, window.money_format)}}</span>
+					{{else}}
+					<span class="new-price">{{html Shopify.formatMoney(price, window.money_format)}}</span>
+					{{/if}}
+				</h3>
+			</div>   
+		</div>
+	</div>
+</div>
+</script>
+{% endraw %}
+
+<script>
+
+  /* this code for currency support */
+  window.show_multiple_currencies = {{ settings.currency_enable }};
+  window.shop_currency = "{{ shop.currency }}";
+  window.money_format = "{{shop.money_with_currency_format}}";
+  
+  /* recently viewed plugin api start */
+  Shopify.Products.showRecentlyViewed({
+    howManyToShow:{{ block.settings.product_limit }},
+    howManyToStoreInMemory:{{ block.settings.product_memory_limit }},
+    wrapperId: 'recently-viewed-products', 
+    templateId: 'recently-viewed-product-template', 
+    onComplete: function() {
+
+    if (window.currency_enable) {
+    /* this section ID to be your currency picker (Select) ID */
+      Currency.convertAll(window.shop_currency, jQuery('#currencies').val(), 'span.money', 'money_format');
+  }
+                                      }
+
+                                      });
+  /* recently viewed plugin api end */
+
+</script>
+
+<script>
+  Shopify.Products.recordRecentlyViewed();
+</script>

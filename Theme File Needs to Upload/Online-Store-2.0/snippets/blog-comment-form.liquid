@@ -1,0 +1,37 @@
+{% form 'new_comment', article %}
+
+{{ form.errors | default_errors }}
+
+
+<div class="blog-comment-form leave-comment">
+  <h2 class="comment-heading" data-aos="fade-up" data-aos-delay="200">{{ 'blogs.comments.title' | t }}</h2>
+  {% if blog.moderated? %}
+  <p data-aos="fade-up" data-aos-delay="200">{{ 'blogs.comments.moderated' | t }}</p>
+  {% endif %}
+  <div class="row">
+    <div class="col-md-12" data-aos="fade-up" data-aos-delay="200">
+      <div class="single-form">
+        <label>Your Review:</label>
+        <textarea class="custom-textarea" name="comment[body]" id="commentBody"  placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
+      </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+      <div class="single-form mb-lm-15px">
+        <label>Name:</label>
+        <input type="text" class="{% if form.errors contains 'author' %}error{% endif %}" name="comment[author]" id="commentAuthor" value="{{ form.author }}" placeholder="{{ 'blogs.comments.name' | t }}">
+      </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+      <div class="single-form mb-lm-15px">
+        <label>Email:</label>
+        <input type="text" class="{% if form.errors contains 'email' %}error{% endif %}" name="comment[email]" id="commentEmail" value="{{ form.email }}" placeholder="{{ 'blogs.comments.email' | t }}">
+      </div>
+    </div>
+    <div class="col-md-12" data-aos="fade-up" data-aos-delay="200">
+      <div class="single-form">
+        <button class="btn btn-primary btn-hover-dark border-0 mt-6" type="submit">{{ 'blogs.comments.post' | t }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endform %}

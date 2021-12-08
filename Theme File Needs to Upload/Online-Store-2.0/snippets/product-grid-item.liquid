@@ -1,0 +1,193 @@
+{%- assign on_sale = false -%}
+{%- if product.compare_at_price > product.price -%}
+{%- assign on_sale = true -%}
+{%- endif -%}
+
+{%- assign sold_out = true -%}
+{%- if product.available -%}
+{%- assign sold_out = false -%}
+{%- endif -%}
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+
+{%- if product.available -%}
+{%- assign func = "Shopify.addItem(" | append: variant.id | append: ", 1)" -%}
+{%- endif -%} 
+
+<!-- Single Prodect -->
+<div class="{{ variant.id }} product">
+  <div class="thumb">
+    {% if product.images.size > 1 %}
+    <a class="image" href="{{ product.url | within: collection }}">
+      <img class="popup_cart_image" alt="" src="{{ product.featured_image.src | img_url: 'large' }}">
+      {% for image in product.images limit: 1 offset: 1 %}
+      <img class="hover-image popup_cart_image" alt="" src="{{ image.src | img_url: 'large' }}">
+      {% endfor %}
+    </a>
+    {% else %}
+    <a class="image" href="{{ product.url | within: collection }}">
+      <img class="popup_cart_image" alt="" src="{{ product.featured_image.src | img_url: 'large' }}">
+    </a>
+    {% endif %}
+    <span class="badges">
+      {%- render 'product-badge', product: product, sold_out: sold_out,on_sale: on_sale -%}
+    </span>
+    <div class="actions">
+      {% render 'wishlist-button', product: product %}
+      {%- if settings.product_quickview_enalbe -%}
+      <a href="javascript:void(0);"onclick="quiqview('{{ product.handle | handleize }}')" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="icon-size-fullscreen"></i></a>
+      {%- endif -%}
+
+      {%- if settings.compare_product_enalbe -%}
+      {%- unless product.description contains '[affiliate_link]' -%}
+      <a href="#" class="action compare" data-pid="{{ product.handle  }}" title="Compare" data-original-title="Compare">{{ settings.compare_button_title }}</a>
+      {%- endunless -%}
+      {%- endif -%}
+    </div>
+
+    
+    <div class="product_countdown">
+      {%- if product.description contains '[countdown]' -%}
+      {%- assign count_down_first = product.description | split:'[/countdown]' | first -%}
+      {%- assign count_down_final = count_down_first | split:'[countdown]' | last -%}
+      <div data-countdown="{{ count_down_final }}"></div> 
+      {%- endif -%}
+    </div>
+    
+    
+    {%- unless product.description contains '[affiliate_link]' -%}
+
+        {% if product.available %}
+        {% if settings.product_cart_type == 'ajax_spin_cart' %}
+        {% if product.variants.size == 1 %}
+        <li><a href="javascript:void(0);" onclick="{{ func }}; return false;" class="add-to-cart ajax-spin-cart p-cart-btn">
+          <span>
+            <span class="cart-title">{{ settings.cart_button_title }}</span>
+            <span class="cart-loading">{{ settings.wait_title }}</span>
+            <span class="cart-added">{{ settings.added_title }}</span>
+            <span class="cart-unavailable">{{ settings.unavailable_title }}</span>
+          </span>
+          </a></li>
+        {% else %}
+        <li><a href="{{ product.url | within: collection }}" class="add-to-cart">
+          <span>
+            <span class="cart-title">{{ settings.select_options }}</span>
+          </span>
+          </a></li>
+        {% endif %}
+
+        {% elsif settings.product_cart_type == 'ajax_popup_cart' %}
+        {% if product.variants.size == 1 %}
+        <li><a href="javascript:void(0);" onclick="{{ func }}; return false;" class="add-to-cart p-cart-btn">
+          <span>
+            <span class="cart-title">{{ settings.cart_button_title }}</span>
+          </span>
+          </a></li>
+        {% else %}
+        <li><a href="{{ product.url | within: collection }}" class="add-to-cart">
+          <span>
+            <span class="cart-title">{{ settings.select_options }}</span>
+          </span>
+          </a></li>
+        {% endif %}
+
+        {% elsif settings.product_cart_type == 'without_ajax_cart' %}
+        {% if product.variants.size == 1 %}
+        <li><a href="javascript:void(0);" onclick="{{ func }}; return false;" class="add-to-cart">
+          <span>
+            <span class="cart-title">{{ settings.cart_button_title }}</span>
+          </span>
+          </a></li>
+        {% else %}
+        <form action="/cart/add" method="post" enctype="multipart/form-data">
+          <select name="id" style="display:none;">
+            {% for variant in product.variants %}
+            <option value="{{ variant.id }}">{{ variant.title | escape }} - {{ variant.price | money }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="add-to-cart p-cart-btn">
+            <span>
+              <span class="cart-title">{{ settings.cart_button_title }}</span>
+            </span>
+          </button>
+        </form>
+        {% endif %}
+        {% endif %}
+        {% else %}
+        <button class="add-to-cart cart-disable p-cart-btn">
+          <span class="cart-text">{{ settings.soldout_button_title }}</span>
+        </button>
+        {% endif %}
+
+        {%- else -%}
+        {% assign affiliate_link_first = product.description | split:'[/affiliate_link]' | first %}
+        {% assign affiliate_link_final = affiliate_link_first | split:'[affiliate_link]' | last %}
+        <li class="add-to-cart p-cart-btn"><a href="{{ affiliate_link_final }}">
+          <span class="cart-title">{{ settings.affiliate_cart_button_title }}</span>
+          </a></li>
+        {%- endunless -%}
+
+  </div>
+  
+  <div class="content">
+    <h5 class="title popup_cart_title"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h5>
+    <span class="price">
+      <span class="new">{{ product.variants.first.price | money }}</span>
+      {%- if product.variants.first.compare_at_price > product.variants.first.price -%}
+      <span class="old">{{ product.variants.first.compare_at_price | money }}</span>
+      {%- endif -%}
+    </span>
+  </div>
+  
+  
+  
+  {%- if settings.product_color_variant_enalbe -%}
+  <div class="product-color">    
+    <ul class="grid-color-swatch">
+      {% for option in product.options %}
+      {% if option == 'Color' %}
+      {% assign index = forloop.index0 %}
+      {% assign colorlist = '' %}
+      {% assign color = '' %}
+      {% for variant in product.variants limit: 5 %}
+      {% capture color %}
+      {{ variant.options[index] }}
+      {% endcapture %}
+      {% unless colorlist contains color %}
+
+      {% assign text = color | handleize %}
+
+      <li class="{{ color | split: ' ' | last | handle }}">
+        <label style="{% if text == 'white' %}border: 1px solid #f1f1f1;{% endif %} 
+                      background: {{ color | split: ' ' | last | handle }} {% if variant.image %}url({{ variant.image.src | product_img_url: 'thumb' }}) no-repeat scroll center center / cover;{% endif %}">
+        </label>
+
+        {% if variant.image != null %}
+        <div class="hidden">
+          <a href="{{ variant.image.src | product_img_url: 'large' }}"></a>
+        </div>
+        {% endif %}
+      </li>
+
+      {% capture tempList %}
+      {{ colorlist | append: color | append: ' ' }}
+      {% endcapture %}
+
+      {% assign colorlist = tempList %}
+      {% endunless %}
+
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  {%- endif -%}
+  
+
+    
+  
+  
+</div>
+
+
+

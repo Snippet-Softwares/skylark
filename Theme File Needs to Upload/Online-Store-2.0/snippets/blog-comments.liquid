@@ -1,0 +1,29 @@
+<h2 class="comment-heading" data-aos="fade-up" data-aos-delay="200">{{ 'blogs.comments.with_count' | t: count: article.comments_count }}</h2>
+<div class="review-wrapper">
+  {% for comment in article.comments %}
+  <div class="single-review" data-aos="fade-up" data-aos-delay="200">
+    <div class="review-img">
+      {% if section.settings.commentator_image %}
+      <img src="{{ section.settings.commentator_image | img_url: '100x100', crop: 'center' }}" alt="{{ section.settings.commentator_image.alt }}">
+      {% else %}
+      <img src="https://www.gravatar.com/avatar/{{ comment.email | remove: ' ' | strip_newlines | downcase | md5 | append: '?s=200' }}" />
+      {% endif %}
+    </div>
+    <div class="review-content">
+      <div class="review-top-wrap">
+        <div class="review-left">
+          <div class="review-name">
+            <h4 class="title">{{ comment.author }}</h4>
+            <span class="date">{{ comment.created_at | date: "%b %d, %Y at %H:%M" }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-bottom">
+        <p>
+           {{ comment.content }}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

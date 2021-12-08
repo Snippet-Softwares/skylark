@@ -1,0 +1,61 @@
+<div class="instagram-feed" id="section-{{ section.id }}" data-section-type="instafeed-section" data-section-id="{{ section.id }}">
+  {% if section.settings.section_title != '' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>{{ section.settings.section_title }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div id="instafeed" class="multiple-items"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  (function ($) {
+    "use strict";
+
+    jQuery(document).ready(function(){
+
+      var userFeed = new Instafeed({
+        get: 'user',
+        userId: '{{ section.settings.instafeed_user_id }}',
+        limit: '{{ section.settings.instafeed_limit }}',
+        accessToken: '{{ section.settings.instafeed_access_token }}',
+        resolution: '{{ section.settings.image_resolution }}',
+        template: '<a href="\{\{link\}\}"><img src="\{\{image\}\}"></a>'
+      });
+      userFeed.run();
+    });
+
+  })(jQuery); 
+</script>
+
+
+<!--
+<script>
+  
+  {% comment %} If instafeed have carousel then use "jQuery On Load" function {% endcomment %}
+  jQuery(window).on('load', function () {
+    
+    // Carousel activation code
+        
+  });
+</script>
+-->
+
+
+
+
+<script src="{{ 'instafeed.min.js' | asset_url }}"></script>

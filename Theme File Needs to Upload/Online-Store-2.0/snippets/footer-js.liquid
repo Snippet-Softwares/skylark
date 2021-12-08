@@ -1,0 +1,63 @@
+{{ 'fastclick.min.js' | asset_url | script_tag | remove: ' type="text/javascript"' }}
+{{ 'timber.js' | asset_url | script_tag | remove: ' type="text/javascript"' }}
+
+{% comment %}
+Template-specific js
+{% endcomment %}
+<script>
+  {% if resetPassword %}
+  $(function() {
+    timber.resetPasswordSuccess();
+  });
+  {% endif %}
+</script>
+
+{%- unless settings.product_cart_type == 'without_ajax_cart' -%}
+{%- render 'popup_cart' -%}
+{%- endunless -%}
+
+{%- if settings.ajax_search_enable -%}
+{% render 'ajax-search-bar' %}
+{%- endif -%}
+
+{%- if settings.product_quickview_enalbe -%}
+{% render 'product-quickview' %}
+
+
+{%- endif -%}
+
+{% if settings.product_cart_type == 'ajax_spin_cart' %}
+<script>
+  $('.ajax-spin-cart').on('click', function() {
+    $(this).addClass('loading add-item');
+    setTimeout(function () {
+      $('.ajax-spin-cart').removeClass('loading');
+    },1000);
+    setTimeout(function () {
+      $('.ajax-spin-cart').removeClass("add-item");
+    },2000);
+
+  });
+</script>
+{% endif %}
+
+{%- if settings.wishlist_enable -%}
+{{ 'wishlist.js' | asset_url | script_tag | remove: ' type="text/javascript"' }}
+{%- endif -%}
+
+{%- if settings.currency_enable -%}
+{%- render 'currency' -%}
+{%- endif -%}
+
+<script>
+  $('[data-countdown]').each(function() {
+    var $this = $(this), finalDate = $(this).data('countdown');
+    $this.countdown(finalDate, function(event) {
+      $this.html(event.strftime('<div class="countdown-area"><div class="single-countdown"><div class="count-number">%D</div><div class="count-title">days</div></div><div class="single-countdown"><div class="count-number">%H</div><div class="count-title">Hour</div></div><div class="single-countdown"><div class="count-number">%M</div><div class="count-title">Mint</div></div><div class="single-countdown"><div class="count-number">%S</div><div class="count-title">Sec</div></div></div>'));
+    });
+  });
+</script>
+
+{%- if settings.custom_script != '' -%}
+{{ settings.custom_script }}
+{%- endif -%}

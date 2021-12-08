@@ -1,0 +1,21 @@
+<div class="top-notification-bar">
+  <div class="container">
+    <div class="row">
+      <div class="notification-entry text-center col-12">
+        {{ settings.notification_text }}
+        {% if settings.notification_button_name != '' %}
+        <p><a class="notification-button" href="{{ settings.notification_button_url }}">{{ settings.notification_button_name }}</a></p>
+        {% endif %}
+        <button class="notification-close-btn">X</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var nToggle = $('.notification-close-btn');
+  nToggle.on('click', function(){
+    $('.top-notification-bar').slideToggle();
+  })
+</script>

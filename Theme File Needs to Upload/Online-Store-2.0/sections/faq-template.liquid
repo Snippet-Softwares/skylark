@@ -1,0 +1,348 @@
+<!--Faq Policy area start-->
+<div id="section-{{ section.id }}" class="login-register-area pb-100px pt-100px faq-area">
+  <div class="container">
+    <div class="row">
+      <div class="ml-auto mr-auto col-lg-9">
+        <div class="checkout-wrapper">
+          <div class="inner-descripe" data-aos="fade-up" data-aos-delay="200">
+            {% if section.settings.section_title != '' %}
+            <h4 class="title"> {{ section.settings.section_title }} </h4>
+            {% endif %}
+            {% if section.settings.section_content != '' %}
+            <p> {{ section.settings.section_content }}.</p>
+            {% endif %}
+          </div>
+          <div id="faq" class="panel-group">
+            {%- assign i = 1 -%}
+            {%- for block in section.blocks -%}
+            {%- case block.type -%}
+            {%- when 'faq' -%}
+
+            <div class="panel panel-default single-my-account" data-aos="fade-up" data-aos-delay="200">
+
+              <div class="panel-heading my-account-title">
+                <h3 class="panel-title"><a data-bs-toggle="collapse" href="#collapse-{{ i }}" class=" {% unless forloop.first %}collapsed{% endunless %}" aria-expanded="true">{{ block.settings.accordion_title }}</a></h3>
+              </div>
+
+              <div id="collapse-{{ i }}" class="panel-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#faq">
+                <div class="panel-body">
+                  {{ block.settings.accordion_content }}
+                </div>
+              </div>
+
+            </div>
+
+
+            {%- assign i = i | plus: 1 -%}
+            {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Faq Policy area end-->
+
+
+
+
+
+
+
+
+{% comment %}
+
+
+
+
+<div class="faq-page" id="section-{{ section.id }}">
+  {% if section.settings.section_title != '' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>{{ section.settings.section_title }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  {% endif %}
+  <div class="container">
+    <div id="accordion">
+      {%- assign i = 1 -%}
+      {%- for block in section.blocks -%}
+      {%- case block.type -%}
+      {%- when 'faq' -%}
+      <div class="card">
+        <div class="card-header" id="heading-{{ i }}">
+          <h5 class="mb-0">
+            <button class="btn btn-link {% unless forloop.first %}collapsed{% endunless %}" data-toggle="collapse" data-target="#collapse-{{ i }}" aria-expanded="true" aria-controls="collapse-{{ i }}">
+              {{ block.settings.accordion_title }}
+            </button>
+          </h5>
+        </div>
+        <div id="collapse-{{ i }}" class="collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading-{{ i }}" data-parent="#accordion">
+          <div class="card-body">
+            {{ block.settings.accordion_content }}
+          </div>
+        </div>
+      </div>
+      {%- assign i = i | plus: 1 -%}
+      {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% endcomment %}
+
+{%- render 'section-style' -%}
+
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "settings": [
+		{
+		  "type": "header",
+          "content": "Section Heading"
+        },
+		{
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Section Title Here"
+      	},
+		{
+          "type": "textarea",
+          "id": "section_content",
+          "label": "Section Content",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id erat sagittis, faucibus metus malesuada, eleifend turpis. Mauris semper augue id nisl aliquet, a porta lectus mattis. Nulla at tortor augue. In eget enim diam. Donec gravida tortor sem, ac fermentum nibh rutrum sit amet. Nulla convallis mauris vitae congue consequat. Donec interdum nunc purus, vitae vulputate arcu fringilla quis. Vivamus iaculis euismod dui."
+      	}
+	],
+	"blocks":[
+		{
+			"type":"faq",
+			"name": "Faq",
+			"settings": [
+				{
+                  "type": "text",
+                  "id": "accordion_title",
+                  "label": "Title",
+				  "default": "Title"
+                },
+				{
+                  "type": "richtext",
+                  "id": "accordion_content",
+                  "label": "Content",
+				  "default": "<p>Content</p>"
+                }
+			]	
+		},
+		{
+          "type": "section_margin",
+          "name": "Section Margin",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			}
+          ]
+       },
+	   {
+          "type": "section_padding",
+          "name": "Section Padding",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 100
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 80
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 60
+			}
+          ]
+       },
+	   {
+          "type": "section_background",
+          "name": "Section Background",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "image_picker",
+			  "id": "section_bg_image",
+			  "label": "BG Image"
+			},
+			{
+			  "type": "color",
+			  "id": "section_bg_color",
+			  "label": "BG Color",
+			  "default": "#ffffff"
+			}
+          ]
+       }
+	],
+	"presets": [
+		{
+		  "name": "FAQ",
+		  "category": "others",
+		  "blocks":[
+				{
+					"type": "faq"
+				},
+				{
+					"type": "faq"
+				},
+				{
+					"type": "faq"
+				},
+				{
+					"type": "faq"
+				},
+				{
+					"type": "faq"
+				},
+				{
+					"type": "section_padding"
+				}
+			]
+		}
+	]
+  }
+{% endschema %}

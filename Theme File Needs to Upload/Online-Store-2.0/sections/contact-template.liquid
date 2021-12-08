@@ -1,0 +1,163 @@
+<div class="contact-area pb-100px">
+  <div class="container">
+    <div class="custom-row-2 row">
+      {% if section.settings.contact_information_enable %}
+      <div class="col-lg-4 col-md-5 mb-lm-60px col-sm-12 col-xs-12 w-sm-100">
+        {% render 'contact-information' %}
+      </div>
+      {% endif %}
+
+      {% if section.settings.contact_form_enable %}
+      <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
+        <div class="contact-form">
+          {% if section.settings.form_title != '' %}
+          <div class="contact-title mb-30">
+            <h2 class="title" data-aos="fade-up" data-aos-delay="200">{{ section.settings.form_title }}</h2>
+          </div>
+          {% endif %}
+          {% render 'contact-form' %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Contact Template",
+    "settings": [
+		  {
+              "type": "header",
+              "content": "Contact Form"
+          },
+          {
+              "type": "checkbox",
+              "id": "contact_form_enable",
+              "label": "Show Contact Form",
+              "default": true
+          },
+          {
+              "type": "text",
+              "id": "form_title",
+              "label": "Form Title",
+              "default": "Get In Touch"
+          },
+          {
+              "type": "text",
+              "id": "name_placeholder",
+              "label": "Input fild Name",
+              "default": "Your name *"
+          },
+          {
+              "type": "text",
+              "id": "email_placeholder",
+              "label": "Input fild Email",
+              "default": "Your email *"
+          },
+		  {
+              "type": "text",
+              "id": "subject_placeholder",
+              "label": "Input fild Subject",
+              "default": "Subject"
+          },
+          {
+              "type": "text",
+              "id": "message_placeholder",
+              "label": "Input fild Message",
+              "default": "Type your message here.."
+          },
+          {
+              "type": "text",
+              "id": "form_button_name",
+              "label": "Form Button Name",
+              "default": "Send"
+          },
+		  {
+              "type": "header",
+              "content": "Contact Information Area"
+          },
+		  {
+              "type": "checkbox",
+              "id": "contact_information_enable",
+              "label": "Show Contact Information",
+              "default": true
+          },
+          {
+              "type": "text",
+              "id": "contact_info_title",
+              "label": "Contact Info Title",
+              "default": "Contact Info"
+          },
+
+
+		  {
+              "type": "header",
+              "content": "Phone"
+          },
+		  {
+              "type": "text",
+              "id": "phone_title_1",
+              "label": "Phone Lable",
+              "default": "Phone :"
+          },
+		  {
+              "type": "textarea",
+              "id": "phone_number_content",
+              "label": "Phone Number Content",
+              "default": "+012 345 678 102 <br/> +012 345 678 102"
+          },
+
+		  {
+              "type": "header",
+              "content": "Email"
+          },
+		  {
+              "type": "text",
+              "id": "email_title_1",
+              "label": "Email Lable",
+              "default": "Email :"
+          },
+		  {
+              "type": "textarea",
+              "id": "email_content",
+              "label": "Email Content",
+              "default": "urname@email.com <br/> urwebsitenaem.com>"
+          },
+
+		  {
+              "type": "header",
+              "content": "Address"
+          },
+          {
+              "type": "text",
+              "id": "address_title_1",
+              "label": "Address Lable",
+              "default": "Address :"
+          },
+		  {
+              "type": "textarea",
+              "id": "address_content_1",
+              "label": "Address Content",
+              "default": "Address goes here, <br/> street, Crossroad 123."
+          },
+          {
+                "type": "header",
+                "content": "Social"
+            },
+            {
+                "type": "text",
+                "id": "social_title_1",
+                "label": "Social Lable",
+                "default": "Follow Us"
+            },
+			{
+                "type": "checkbox",
+                "id": "social_enable",
+                "label": "Show Social",
+                "default": true
+            }
+		  
+	]
+  }
+{% endschema %}
+

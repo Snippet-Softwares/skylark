@@ -1,0 +1,60 @@
+{% if settings.product_cart_type == 'ajax_popup_cart' %}
+<!-- modalAddToCart -->
+<div class="modal fade ajax-popup" id="modalAddToCart" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog white-modal modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-content-text">
+          <div class="popup-image">
+            <p class="success-message"><i class="icon-check"></i>{{ settings.successfull_note }}</p>
+            <div class="cart_img_inner">
+              <div class="popup_img_inner">
+                <img class="popupimage" src="">
+              </div>
+              <div class="content_inner">
+                <h6 class="productmsg"></h6>
+				<span class="pop_current_price"> </span>
+              </div>
+            </div>
+          </div>
+          <div class="popup-content">
+            <p class="total_item"> {{ settings.total_cart_before_title }} <span class="cart_count bigcounter">{{ cart.item_count }}</span> {{ settings.total_cart_after_title }}</p>
+            <p class="cart_total"> <span class="total_price_label">{{ settings.total_price_label }} </span> <span class="shopping-cart__total">{{ cart.total_price | money }}</span></p>
+            <div class="modal-button {% if settings.popup_agree_button_enable %}disabled{% endif %}">
+              <a href="/collections/all" class="furns-button furns-button--medium"> {{ settings.continue_shopping }} </a>
+              <a href="/cart" class="furns-button furns-button--medium">{{ settings.view_cart_button2 }}</a>
+              
+              {%- if settings.popup_agree_button_enable -%}
+                <input type="checkbox" id="popup_ageree_term_cond" value="1">
+                <label for="popup_ageree_term_cond">{{ settings.agree_button_text }}</label>
+              {%- endif -%}
+          
+              <a href="/checkout" class="furns-button furns-button--medium popup-checkout--btn">{{ settings.checkout_button2 }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-close">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="icon-close"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modalAddToCart -->
+{% endif %}
+<!-- modalAddToCart Error -->
+<div class="modal fade ajax-popup error-ajax-popup" id="modalAddToCartError" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog white-modal modal-md">
+    <div class="modal-content ">
+      <div class="modal-body">
+        <div class="modal-content-text">
+          <p class="error_message"></p>
+        </div>
+        <div class="modal-close">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="icon-close"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

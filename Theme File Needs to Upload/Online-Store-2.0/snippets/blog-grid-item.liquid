@@ -1,0 +1,21 @@
+<div class="article">
+  <div class="blog-image">
+    {% if article.image %}
+    <a class="article__featured-image" href="{{ article.url }}">
+      {{ article | img_url: '370x401' | img_tag: article.title }}
+    </a>
+    {% endif %}
+  </div>
+  <div class="blog-text">
+    <div class="blog-athor-date">
+      <a class="blog-date" href="#">{{ article.published_at | date: format: 'month_day_year' }}</a>
+    </div>
+    <h5 class="blog-heading"><a class="blog-heading-link" href="{{ article.url }}">{{ article.title }}</a></h5>
+    {% if article.excerpt.size > 0 %}
+    {{ article.excerpt }}
+    {% else %}
+    <p class="blog-detail-text">{{ article.content | strip_html | truncatewords: 20 }}</p>
+    {% endif %}
+    <a href="{{ article.url }}" class="btn btn-lg btn-hover-color-primary btn-color-dark mt-5">{{ 'blogs.article.read_more' | t }}</a>
+  </div>
+</div>

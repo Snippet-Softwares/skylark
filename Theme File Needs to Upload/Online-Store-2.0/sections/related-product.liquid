@@ -1,0 +1,160 @@
+{%- assign related_product_limit_count = section.settings.related_product_limit_handle -%}
+{%- assign related_product_limit = related_product_limit_count | plus: 1 -%}
+
+{%- if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' -%}
+{%- assign found_a_collection = false -%}
+{%- for c in product.collections -%}
+
+{%- if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 -%}
+{%- assign found_a_collection = true -%}
+{%- assign collection = c -%}
+{%- endif -%}
+
+{%- endfor -%}
+{%- endif -%}
+
+{%- if collection and collection.products_count > 1 and section.settings.related_products_enable -%}
+<!-- New Product Start -->
+<div class="section pb-100px" data-aos="fade-up" data-aos-delay="200">
+  <div class="container">
+    <!-- section title start -->
+    {%- if section.settings.section_title != '' -%}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title text-left mb-11">
+          <h2 class="title">{{ section.settings.section_title }}</h2>
+        </div>
+      </div>
+    </div>
+    {%- endif -%}
+    <!-- section title start -->
+    <div class="new-product-slider swiper-container slider-nav-style-1" data-aos="fade-up" data-aos-delay="200">
+      <div class="new-product-wrapper swiper-wrapper">
+        {%- assign current_product = product -%}
+        {%- assign current_product_found = false -%}
+        {%- for product in collection.products limit: related_product_limit -%}
+
+        {%- if product.handle == current_product.handle -%}
+        {%- assign current_product_found = true -%}
+        {%- else -%}
+        {%- unless current_product_found == false and forloop.last -%}
+        <!-- Single Prodect -->
+        <div class="new-product-item swiper-slide">
+          {%- render 'product-grid-item' with product as product -%}
+        </div>
+        {%- endunless -%}
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <!-- Add Arrows -->
+      <div class="swiper-buttons">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- endif -%}
+
+<script>
+  /*---------------------
+        New Product Slider
+     ---------------------- */
+
+    var productSlider = new Swiper('.new-product-slider.swiper-container', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        speed: 1500,
+        loop: true,
+
+        // Navigation arrows
+
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            478: {
+                slidesPerView: 2,
+            },
+            576: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            992: {
+                slidesPerView: 3,
+            },
+            1200: {
+                slidesPerView: 4,
+            },
+        },
+    });
+</script>
+
+{% schema %}
+  {
+    "name": "Related Product",
+    "settings": [
+		{
+            "type": "checkbox",
+            "id": "related_products_enable",
+            "label": "Show Related Product",
+            "default": true
+        },
+		{
+		  "type": "header",
+          "content": "Section Heading"
+        },
+		{
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "12 Other Products In The Same Category:"
+      	},
+		{
+            "type": "header",
+            "content": "Product Options"
+        },
+		{
+          "type": "select",
+          "id": "product_column",
+          "label": "Produc Column",
+		  "options":[
+				{
+					"label": "2 Products",
+					"value": "6"
+				},
+				{
+					"label": "3 Products",
+					"value": "4"
+				},
+				{
+					"label": "4 Products",
+					"value": "3"
+				}
+			],
+			"default": "4"
+      	},
+		{
+            "type": "range",
+            "id": "related_product_limit_handle",
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "label": "Product Limit",
+            "default": 4
+        }
+	]
+  }
+{% endschema %}
+
+
+
+

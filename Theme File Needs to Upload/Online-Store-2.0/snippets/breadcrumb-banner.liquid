@@ -1,0 +1,24 @@
+<!-- breadcrumb-area start -->
+<div class="breadcrumb-area breadcrumbs-section">
+  <div class="breadcrumbs overlay-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="row breadcrumb_box  align-items-center breadcrumbs-inner">
+            {% if settings.breadcrub_page_title_enable %}
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center text-md-left">
+              <h2 class="breadcrumb-title breadcrumb-title">{{ page_title }}</h2>
+            </div>
+            {% endif %}
+            <div class="col-lg-6  col-md-6 col-sm-12">
+              <!-- breadcrumb-list start -->
+              {% render 'breadcrumb-builtin' %}
+              <!-- breadcrumb-list end -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb-area end -->

@@ -1,0 +1,378 @@
+<div class="custom-content" id="section-{{ section.id }}">
+  {% if section.settings.section_title != '' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>{{ section.settings.section_title }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  {% endif %}
+  <div class="container">
+    <div class="row custom-content-align">
+      {% for block in section.blocks %}
+      {% case block.type %}
+      {% when 'rich_text' %}
+      <div class="col-lg-{{ block.settings.content_column }} col-md-{{ block.settings.content_column_md }} col-xs-12" {{ block.shopify_attributes }}>
+        <div class="rich-text">
+          {{ block.settings.rich_text_handle }}
+        </div>
+      </div>
+      {% when 'html_content' %}
+      <div class="col-lg-{{ block.settings.content_column }} col-md-{{ block.settings.content_column_md }} col-xs-12" {{ block.shopify_attributes }}>
+        <div class="html-content">
+          {{ block.settings.html_content }}
+        </div>
+      </div>
+      {%- if block.settings.html_content_css != '' -%}
+      <style>
+        {{ block.settings.html_content_css }}
+      </style>
+      {%- endif -%}
+      {% when 'image_content' %}
+      <div class="col-lg-{{ block.settings.content_column }} col-md-{{ block.settings.content_column_md }} col-xs-12" {{ block.shopify_attributes }}>
+        <div class="image-content">
+          {% if block.settings.image_content_image != blank and block.settings.image_content_image_url != blank %}
+          <a href="{{ block.settings.image_content_image_url }}">
+            <img src="{{ block.settings.image_content_image | img_url: 'master' }}" alt="{{ block.settings.image_content_image.alt }}">
+          </a>
+          {% elsif block.settings.image_content_image != blank %}
+          <img src="{{ block.settings.image_content_image | img_url: 'master' }}" alt="{{ block.settings.image_content_image.alt }}">
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'custom-svg-image' }}
+          {% endif %}
+        </div>
+      </div>
+      {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{%- render 'section-style' -%}
+
+
+
+{% schema %}
+  {
+    "name": "Custom Content",
+    "settings": [
+		{
+		  "type": "header",
+          "content": "Section Heading"
+        },
+		{
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Section Title Here"
+      	}
+	],
+	"blocks":[
+          {
+            "type": "rich_text",
+            "name": "Rich Text",
+            "settings": [
+              {
+                "type": "range",
+                "id": "content_column",
+                "min": 1,
+                "max": 12,
+                "step": 1,
+                "label": "Content Column",
+                "unit": "/12",
+                "default": 6
+              },
+              {
+                "type": "range",
+                "id": "content_column_md",
+                "min": 1,
+                "max": 12,
+                "step": 1,
+                "label": "Tablet Content Column",
+                "unit": "/12",
+                "default": 6
+              },
+              {
+                "type": "richtext",
+                "id": "rich_text_handle",
+                "label": "Content",
+                "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+              }
+            ]
+         },
+		{
+          "type": "html_content",
+          "name": "HTML Content",
+          "settings": [
+			{
+			  "type": "range",
+			  "id": "content_column",
+			  "min": 1,
+			  "max": 12,
+			  "step": 1,
+			  "label": "Content Column",
+			  "unit": "/12",
+			  "default": 6
+			},
+			{
+			  "type": "range",
+			  "id": "content_column_md",
+			  "min": 1,
+			  "max": 12,
+			  "step": 1,
+			  "label": "Tablet Content Column",
+			  "unit": "/12",
+			  "default": 6
+			},
+            {
+			  "type": "html",
+			  "id": "html_content",
+			  "label": "HTML Content",
+			  "default": "<div class='html-content-class'><h2>Custom Content Title</h2><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p></div>"
+			},
+			{
+			  "type": "html",
+			  "id": "html_content_css",
+			  "label": "HTML Content CSS",
+			  "default": ".html-content-class{color: #666; margin-top: 100px;}.html-content-class h2{margin-bottom: 20px;}"
+			}
+          ]
+       },
+	   {
+          "type": "image_content",
+          "name": "Image Content",
+          "settings": [
+			{
+			  "type": "range",
+			  "id": "content_column",
+			  "min": 1,
+			  "max": 12,
+			  "step": 1,
+			  "label": "Content Column",
+			  "unit": "/12",
+			  "default": 6
+			},
+			{
+			  "type": "range",
+			  "id": "content_column_md",
+			  "min": 1,
+			  "max": 12,
+			  "step": 1,
+			  "label": "Tablet Content Column",
+			  "unit": "/12",
+			  "default": 6
+			},
+            {
+			  "type": "image_picker",
+			  "id": "image_content_image",
+			  "label": "Image"
+			},
+            {
+			  "type": "url",
+			  "id": "image_content_image_url",
+			  "label": "URL"
+			}
+          ]
+       },
+	   {
+          "type": "section_padding",
+          "name": "Section Padding",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 100
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 80
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_padding_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Padding Bottom",
+			  "unit": "px",
+			  "default": 60
+			}
+          ]
+       },
+	   {
+          "type": "section_margin",
+          "name": "Section Margin",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "header",
+			  "content": "Large/Desktop Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Tablet Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_md",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "header",
+			  "content": "Mobile Device"
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_top_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Top",
+			  "unit": "px",
+			  "default": 0
+			},
+			{
+			  "type": "range",
+			  "id": "section_margin_bottom_xs",
+			  "min": 0,
+			  "max": 150,
+			  "step": 5,
+			  "label": "Margin Bottom",
+			  "unit": "px",
+			  "default": 0
+			}
+          ]
+       },
+	   {
+          "type": "section_background",
+          "name": "Section Background",
+		  "limit": 1,
+          "settings": [
+            {
+			  "type": "image_picker",
+			  "id": "section_bg_image",
+			  "label": "BG Image"
+			},
+			{
+			  "type": "color",
+			  "id": "section_bg_color",
+			  "label": "BG Color",
+			  "default": "#ffffff"
+			}
+          ]
+       }
+	],
+	"presets": [
+		{
+		  "name": "Custom Content",
+		  "category": "others",
+		  "blocks":[
+				{
+					"type": "html_content"
+				},
+				{
+					"type": "image_content"
+				},
+				{
+					"type": "section_padding"
+				}
+			]
+		}
+	]
+  }
+{% endschema %}
+

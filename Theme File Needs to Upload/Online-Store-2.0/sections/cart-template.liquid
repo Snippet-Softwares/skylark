@@ -1,0 +1,330 @@
+<!-- PAGE SECTION START -->
+<div class="cart-page theme-default-margin cart-main-area pt-100px pb-100px">
+  <div class="container">
+    {%- if cart.item_count > 0 -%}
+    <form action="/cart" method="post" novalidate class="cart">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="cart-table table-responsive mb-40 table-content table-responsive cart-table-content">
+            <table>
+              <thead>
+                <tr>
+                  <th class="pro-thumbnail">{{ section.settings.table_image_title }}</th>
+                  <th class="pro-title">{{ section.settings.table_product_title }}</th>
+                  <th class="pro-price">{{ section.settings.table_price_title }}</th>
+                  <th class="pro-quantity">{{ section.settings.table_quantity_title }}</th>
+                  <th class="pro-subtotal">{{ section.settings.table_total_title }}</th>
+                  <th class="pro-remove">{{ section.settings.table_reomove_title }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in cart.items %}
+                <tr>
+                  <td class="pro-thumbnail product-thumbnail"><a href="{{ item.url }}"><img src="{{ item | img_url: 'compact' }}" alt="{{ item.title | escape }}" /></a></td>
+                  <td class="pro-title product-name">
+                    <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    {%- unless item.variant.title contains 'Default' -%}
+                    <span>{{ item.variant.title }}</span>
+                    {%- endunless -%}
+                    {% if section.settings.cart_vendor_enable %}
+                    <p>{{ item.vendor }}</p>
+                    {% endif %}
+                  </td>
+                  <td class="pro-price product-price-cart"><span class="amount">{{ item.price | money }}</span></td>
+                  <td class="product-quantity"><div class="product-quantity cart-plus-minus"><input class="cart-plus-minus-box" type="text" value="{{ item.quantity }}" name="updates[]" /></div></td>
+                  <td class="pro-subtotal product-subtotal">{{ item.line_price | money }}</td>
+                  <td class="pro-remove product-remove"><a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">×</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="cart-shiping-update-wrapper">
+            <div class="cart-shiping-update">
+              <a class="theme-default-button" href="javascript:history.back()">{{ section.settings.continue_shopping_title }}</a>
+            </div>
+            <div class="cart-clear">
+              <button class="theme-default-button" name="update" type="submit">{{ section.settings.update_button_title }}</button>
+              <a class="theme-default-button" href="/cart/clear">{{ section.settings.clear_cart_title }}</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-12 col-12">
+          <div class="cart-payment">
+            <div class="row">
+              {%- unless section.settings.cart_feature == 'without_both' -%}
+              <div class="col-lg-6">  
+                {%- if section.settings.cart_feature == 'cart_note' -%}
+                <div class="cart-coupon">
+                  <h3>{{ section.settings.cart_note_title }}</h3>
+                  <textarea name="note" class="" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+                </div>
+                {%- endif -%}
+                {%- if section.settings.cart_feature == 'shipping_calculator' -%}
+                {%- render 'cart-shipping-calculator' -%}
+                {%- endif -%}
+              </div>
+              {%- endunless -%}
+              
+              
+              <div class="col-lg-6{% if section.settings.cart_feature == 'without_both' %} offset-lg-6{% endif %} col-md-12 mt-md-30px">
+                <div class="grand-totall">
+                  <div class="title-wrap">
+                    <h4 class="cart-bottom-title section-bg-gary-cart">{{ section.settings.cart_total_heading_title }}</h4>
+                  </div>
+                  <h5>{{ section.settings.cart_subtotal_title }} <span id="bk-cart-subtotal-price">{{ cart.total_price | money }}</span></h5>
+
+                  <h4 class="grand-totall-title">{{ section.settings.cart_total_title }} <span id="bk-cart-subtotal-price">{{ cart.total_price | money }}</span></h4>
+                  {%- if cart.total_discounts > 0 -%}
+                  {% assign savings = cart.total_discounts | money %}
+                  <p>
+                    <span class="cart-subtotal__savings"><em>{{ 'cart.general.savings_html' | t: price: savings }}</em></span>
+                  </p>
+                  {%- endif -%}
+                  <a href="/checkout">{{ section.settings.checkout_button_title }}</a>
+                </div>
+              </div>
+              
+              {%- comment -%}
+              <div class="col-lg-6{% if section.settings.cart_feature == 'without_both' %} offset-lg-6{% endif %}">
+                <div class="cart-total">
+                  <h3>{{ section.settings.cart_total_heading_title }}</h3>
+                  <table>
+                    <tbody>
+                      <tr class="cart-subtotal">
+                        <th>{{ section.settings.cart_subtotal_title }}</th>
+                        <td><span class="amount"><span id="bk-cart-subtotal-price">{{ cart.total_price | money }}</span></span></td>
+                      </tr>
+                      <tr class="order-total">
+                        <th>{{ section.settings.cart_total_title }}</th>
+                        <td>
+                          <strong><span class="amount"><span id="bk-cart-subtotal-price">{{ cart.total_price | money }}</span></span></strong>
+                        </td>
+                      </tr>											
+                    </tbody>
+                  </table>
+                  {%- if cart.total_discounts > 0 -%}
+                  {% assign savings = cart.total_discounts | money %}
+                  <p>
+                    <span class="cart-subtotal__savings"><em>{{ 'cart.general.savings_html' | t: price: savings }}</em></span>
+                  </p>
+                  {%- endif -%}
+                  <div class="proceed-to-checkout">
+                    <button type="submit" class="theme-default-button" name="checkout">{{ section.settings.checkout_button_title }}</button>
+                  </div>
+                </div>
+              </div>
+              {%- endcomment -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    {%- else -%}
+    <div class="empty-cart-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-heading">
+                        <h2>{{ section.settings.shopping_cart_title }}</h2>
+                    </div>
+                    <div class="empty-text-contant text-center empty-cart-page">
+                        <i class="icon-handbag"></i>
+                        <h1>{{ section.settings.cart_empty_title }}</h1>
+                      	<p>{{ section.settings.cart_continue_title }} 
+                        <a class="empty-cart-btn" href="/collections/all">
+                            <i class="ion-ios-arrow-left"> </i> {{ section.settings.here_title }}
+                        </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%- endif -%}
+  </div>
+</div>
+<!-- PAGE SECTION END -->
+
+
+<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
+<!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
+
+
+
+{% schema %}
+  {
+    "name": "Cart Page",
+    "settings": [
+		{
+			"type": "header",
+			"content": "Table Heading Title"
+		},
+		{
+			"type": "text",
+			"id": "table_image_title",
+			"label": "Image Heading Title",
+			"default": "Image"
+		},
+		{
+			"type": "text",
+			"id": "table_product_title",
+			"label": "Product Heading Title",
+			"default": "Product"
+		},
+		{
+			"type": "text",
+			"id": "table_price_title",
+			"label": "Price Heading Title",
+			"default": "Price"
+		},
+		{
+			"type": "text",
+			"id": "table_quantity_title",
+			"label": "Quantity Heading Title",
+			"default": "Quantity"
+		},
+		{
+			"type": "text",
+			"id": "table_total_title",
+			"label": "Total Heading Title",
+			"default": "Total"
+		},
+		{
+			"type": "text",
+			"id": "table_reomove_title",
+			"label": "Remove Heading Title",
+			"default": "Remove"
+		},
+		{
+			"type": "header",
+			"content": "Button Title"
+		},
+		{
+			"type": "text",
+			"id": "update_button_title",
+			"label": "Update Button Title",
+			"default": "Update Cart"
+		},
+		{
+			"type": "text",
+			"id": "continue_shopping_title",
+			"label": "Continue Shopping Button Title",
+			"default": "Continue Shopping"
+		},
+		{
+			"type": "text",
+			"id": "clear_cart_title",
+			"label": "Clear Cart Button Title",
+			"default": "Clear Cart"
+		},
+		{
+			"type": "checkbox",
+			"id": "cart_vendor_enable",
+			"label": "Show Product Vendor",
+			"default": false
+		},
+		{
+			"type": "header",
+			"content": "Cart Note / Shipping Calculator"
+		},
+		{
+            "type": "radio",
+            "id": "cart_feature",
+            "label": "Show Any One",
+            "options": [
+                {
+                    "value": "shipping_calculator",
+                    "label": "Shipping Calculator"
+                },
+                {
+                    "value": "cart_note",
+                    "label": "Cart Note"
+                },
+                {
+                    "value": "without_both",
+                    "label": "Without Both"
+                }
+            ],
+            "default": "shipping_calculator"
+        },
+		{
+			"type": "text",
+			"id": "shipping_calculator_heading",
+			"label": "Shipping Calculator Title",
+			"default": "Get shipping estimates"
+		},
+		{
+			"type": "text",
+			"id": "shipping_calculator_button_title",
+			"label": "Shipping Calculator Button Title",
+			"default": "Calculate shipping"
+		},
+		{
+			"type": "text",
+			"id": "cart_note_title",
+			"label": "Cart Note Title",
+			"default": "Special instructions for seller"
+		},
+		{
+			"type": "header",
+			"content": "Cart Totals"
+		},
+		{
+			"type": "text",
+			"id": "cart_total_heading_title",
+			"label": "Cart Total Heading Title",
+			"default": "Cart Totals"
+		},
+		{
+			"type": "text",
+			"id": "cart_subtotal_title",
+			"label": "Cart Subtotal Title",
+			"default": "Subtotal"
+		},
+		{
+			"type": "text",
+			"id": "cart_total_title",
+			"label": "Cart Total Title",
+			"default": "Total"
+		},
+		{
+			"type": "text",
+			"id": "checkout_button_title",
+			"label": "Checkout Button Title",
+			"default": "Proceed to Checkout"
+		},
+		{
+			"type": "header",
+			"content": "Cart Empty"
+		},
+		{
+			"type": "text",
+			"id": "shopping_cart_title",
+			"label": "Shopping Cart Title",
+			"default": "Shopping Cart"
+		},
+		{
+			"type": "text",
+			"id": "cart_empty_title",
+			"label": "Cart Empty Title",
+			"default": "Your cart is currently empty."
+		},
+		{
+			"type": "text",
+			"id": "cart_continue_title",
+			"label": "Continue Browsing Title",
+			"default": "Continue browsing"
+		},
+		{
+			"type": "text",
+			"id": "here_title",
+			"label": "Here Title",
+			"default": "here"
+		}
+	]
+  }
+{% endschema %}

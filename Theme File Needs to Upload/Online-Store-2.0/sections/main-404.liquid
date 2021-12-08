@@ -1,0 +1,29 @@
+<!-- Blank area start -->
+<div class="blank-page-area pb-100px pt-100px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        {% if settings.main_heading_404 !='' %}
+        <div class="blank-content-header">
+          <h1>{{ settings.main_heading_404 }}</h1>
+        </div>
+        {% endif %}
+        <div class="page-not-found text-center">
+          {% if settings.opps_404 %}
+          <img src="{{ settings.opps_404 | img_url: '1024x1024' }}" alt="" />
+          {% endif %}
+          {% if settings.heading_404 !='' %}
+          <h4>{{ settings.heading_404 }}</h4>
+          {% endif %}
+          {% if settings.sub_text_404 !='' %}
+          <p>{{ settings.sub_text_404 }}</p>
+          {% endif %}
+          {% if settings.button_title !='' %}
+          <a href="{{ settings.button_url }}" data-text="{{ settings.button_title }}" >{{ settings.button_title }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Blank area end -->
